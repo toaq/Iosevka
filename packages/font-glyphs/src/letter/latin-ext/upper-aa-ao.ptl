@@ -142,16 +142,6 @@ glyph-block Letter-Latin-Upper-AA-AO : begin
 			local fMotion : slabs === PShape.SlabMotion
 			local fSlabBot : slabs && slabs !== PShape.SlabMotion
 
-			create-glyph "cyrl/Rha/left.\(suffix)" : glyph-proc
-				local df : include : DivFrame para.diversityM 3
-				include : df.markSet.capital
-				set-base-anchor 'cvDecompose' 0 0
-				local subDf : df.sliceFine 3 2 0.575
-
-				include : difference
-					PShape CAP (df -- subDf) (slab -- slabs)
-					if fGap [PShape.OpenGap (df -- subDf) (top -- CAP) (bot -- [if fSlabBot df.mvs 0])] [glyph-proc]
-
 		foreach { suffix {stroke1 stroke2 serifShape fMaskBase} } [Object.entries XConfig] : do
 			define [letterShape df top bot turn tension] : glyph-proc
 				local lf : XLetterForm df top bot stroke1 stroke2 turn tension
@@ -162,14 +152,3 @@ glyph-block Letter-Latin-Upper-AA-AO : begin
 						[Just XSerifs.Full] : composite-proc sf.rt.full sf.rb.full
 						[Just XSerifs.BilateralMotion] : composite-proc sf.rb.outer
 						__ : glyph-proc
-
-			create-glyph "cyrl/Rha/right.\(suffix)" : glyph-proc
-				local df : DivFrame para.diversityM 3
-				set-width 0
-				set-mark-anchor 'cvDecompose' 0 0
-				include : letterShape df CAP 0 0.1 0.28
-
-		select-variant "cyrl/Rha/left" (follow -- 'cyrl/Er')
-		select-variant "cyrl/Rha/right"
-
-		derive-multi-part-glyphs "cyrl/Rha" 0x516 {'cyrl/Rha/left' 'cyrl/Rha/right'} BuildRha

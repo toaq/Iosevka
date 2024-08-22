@@ -84,31 +84,3 @@ glyph-block Symbol-Mosaic-Inverted : for-width-kinds WideWidth1
 		include : difference
 			refer-glyph : MangleName : NameUni 0x2588
 			refer-glyph : MangleName 'arrowDown'
-
-glyph-block Symbol-Mosaic-Inverted-Box-Drawing : for-width-kinds WideWidth4
-	glyph-block-import CommonShapes
-	glyph-block-import Common-Derivatives
-
-	define MosaicTop    fontMetrics.os2.sTypoAscender
-	define MosaicBottom fontMetrics.os2.sTypoDescender
-
-	create-glyph [MangleName : NameUni 0x1FBBD] [MangleUnicode 0x1FBBD] : glyph-proc
-		set-width MosaicWidth
-		include : ForceUpright
-		include : difference
-			refer-glyph : MangleName : NameUni 0x2588
-			refer-glyph : MangleName : NameUni 0x2573
-
-	create-glyph [MangleName : NameUni 0x1FBBE] [MangleUnicode 0x1FBBE] : glyph-proc
-		set-width MosaicWidth
-		include : ForceUpright
-		include : difference
-			refer-glyph : MangleName : NameUni 0x2588
-			refer-glyph : MangleName : NameUni 0x1FBA3
-
-	create-glyph [MangleName : NameUni 0x1FBBF] [MangleUnicode 0x1FBBF] : glyph-proc
-		set-width MosaicWidth
-		include : ForceUpright
-		include : difference
-			refer-glyph : MangleName : NameUni 0x2588
-			refer-glyph : MangleName : NameUni 0x1FBAE

@@ -125,9 +125,6 @@ glyph-block Letter-Latin-Lower-J : begin
 	select-variant 'dotlessjBarHookTop' 0x284 (follow -- 'dotlessj/sansSerif')
 	CreateAccentedComposition 'jBar'    0x249 'dotlessjBar' 'tittleAbove'
 
-	alias 'grek/yot' 0x3F3 'j'
-	alias 'cyrl/je'  0x458 'j'
-
 	create-glyph 'dotlessjCurlyTail.serifless' : glyph-proc
 		include : MarkSet.p
 		set-base-anchor 'above' (Middle + JBalance) XH

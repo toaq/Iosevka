@@ -38,13 +38,9 @@ class LayoutTable
 	public [addCommonFeature fea] : begin
 		define dfltDflt : this.pickLanguage 'DFLT_DFLT'
 		define latnDflt : this.pickLanguage 'latn_DFLT'
-		define grekDflt : this.pickLanguage 'grek_DFLT'
-		define cyrlDflt : this.pickLanguage 'cyrl_DFLT'
 
 		dfltDflt.addFeature fea
 		latnDflt.addFeature fea
-		grekDflt.addFeature fea
-		cyrlDflt.addFeature fea
 
 		return fea
 

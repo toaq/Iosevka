@@ -63,6 +63,3 @@ glyph-block Letter-Latin-Yogh : begin
 		create-glyph "yogh.\(suffix)" : glyph-proc
 			include : MarkSet.capital
 			include : YoghShape slabTop XH Descender
-
-	select-variant 'Yogh' 0x21C (follow -- 'cyrl/ZeTopSerifOnly')
-	select-variant 'yogh' 0x21D (follow -- 'cyrl/zeTopSerifOnly')

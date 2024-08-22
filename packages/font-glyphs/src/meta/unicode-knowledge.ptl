@@ -28,11 +28,9 @@ export : define markCompositionTf : list
 	list { 'commaAbove' 'graveAbove'        } 'psiliVaria'
 	list { 'commaAbove' 'acuteAbove'        } 'psiliOxia'
 	list { 'commaAbove' 'perispomeniAbove'  } 'psiliPerispomeni'
-	list { 'commaAbove' 'cyrlPokrytieAbove' } 'commaCyrlPorkytieAbove'
 	list { 'revCommaAbove' 'graveAbove'       } 'dasiaVaria'
 	list { 'revCommaAbove' 'acuteAbove'       } 'dasiaOxia'
 	list { 'revCommaAbove' 'perispomeniAbove' } 'dasiaPerispomeni'
-	list { 'cyrlPsiliAbove' 'cyrlPokrytieAbove' } 'cyrlPsiliPokrytieAbove'
 
 export : define decompOverrides : object
 	# Latvians use comma instead of cedillas in several letters.
@@ -100,11 +98,6 @@ export : define decompOverrides : object
 	0x1FFD { 'markBaseSpace' 'acuteAbove' }
 	0x1FFE { 'markBaseSpace' 'revCommaAbove' }
 	0x2E2F { 'markBaseSpace' 'yerikAbove' }
-	0x2E45 { 'markBaseSpace' 'cyrlInvKavykaOver' }
-	0x2E47 { 'markBaseSpace' 'cyrlKavykaOver' }
-	0x2E48 { 'markBaseSpace' 'cyrlKavykaWithDotOver' }
-	0xA67E { 'markBaseSpace' 'cyrlKavykaAbove' }
-	0xA67F { 'markBaseSpace' 'cyrlPayerokAbove' }
 	0xA788 { 'markBaseSpace' 'circumflexBelow' }
 	0xA78A { 'markBaseSpace' 'equalOver' }
 	0xAB6A { 'markBaseSpace' 'leftTackOver' }
@@ -126,30 +119,6 @@ export : define decompOverrides : object
 	0x24D  { 'r' 'barOver' }
 	0x24F  { 'y' 'hStrike' }
 
-	0x386 { 'grek/Alpha'   'tonosGrekUpperTonos' }
-	0x388 { 'grek/Epsilon' 'tonosGrekUpperTonos' }
-	0x389 { 'grek/Eta'     'tonosGrekUpperTonos' }
-	0x38A { 'grek/Iota'    'tonosGrekUpperTonos' }
-	0x38C { 'grek/Omicron' 'tonosGrekUpperTonos' }
-	0x38E { 'grek/Upsilon' 'tonosGrekUpperTonos' }
-	0x38F { 'grek/Omega'   'tonosGrekUpperTonos' }
-	0x390 { 'grek/iota'    'dialytikaTonosAbove' }
-	0x3AC { 'grek/alpha'   'tonosAbove' }
-	0x3AD { 'grek/epsilon' 'tonosAbove' }
-	0x3AE { 'grek/eta'     'tonosAbove' }
-	0x3AF { 'grek/iota'    'tonosAbove' }
-	0x3B0 { 'grek/upsilon' 'dialytikaTonosAbove' }
-	0x3CC { 'grek/omicron' 'tonosAbove' }
-	0x3CD { 'grek/upsilon' 'tonosAbove' }
-	0x3CE { 'grek/omega'   'tonosAbove' }
-
-	0x46E  { 'cyrl/KsiBase' 'caronAbove' }
-	0x46F  { 'cyrl/ksiBase' 'caronAbove' }
-	0x47C  { 'cyrl/BroadOmega' 'cyrlPsiliAbove' 'cyrlPokrytieAbove' }
-	0x47D  { 'cyrl/broadOmega' 'cyrlPsiliAbove' 'cyrlPokrytieAbove' }
-	0x47E  { 'cyrl/Omega' 'cyrl/teAbove' }
-	0x47F  { 'cyrl/omega' 'cyrl/teAbove' }
-
 	0x1D6C { 'b' 'tildeOverOnExension' }
 	0x1D6D { 'd' 'tildeOverOnExension' }
 	0x1D6E { 'f' 'tildeOver' }
@@ -161,7 +130,6 @@ export : define decompOverrides : object
 	0x1D76 { 'z/reduced' 'tildeStrike2' }
 	0x1D7C { 'latn/iota'    'barOver' }
 	0x1D7D { 'p'            'hStrike' }
-	0x1D7F { 'latn/upsilon' 'hStrike' }
 
 	0x1E08 { 'CCedilla' 'acuteAbove' }
 	0x1E09 { 'cCedilla' 'acuteAbove' }
@@ -177,11 +145,6 @@ export : define decompOverrides : object
 	0x1EE2 { 'OHorn' 'dotBelow' }
 	0x1EE3 { 'oHorn' 'dotBelow' }
 
-	0x1FD2 { 'grek/iota'    'dialytikaVariaAbove' }
-	0x1FD3 { 'grek/iota'    'dialytikaOxiaAbove' }
-	0x1FE2 { 'grek/upsilon' 'dialytikaVariaAbove' }
-	0x1FE3 { 'grek/upsilon' 'dialytikaOxiaAbove' }
-
 	0x2c61 { 'l' 'dblBarOver' }
 	0x2c65 { 'a' 'shortSlash' }
 	0x2c66 { 't' 'longSlash' }
@@ -191,8 +154,6 @@ export : define decompOverrides : object
 	0xA799 { 'f' 'barOver' }
 	0xA7B8 { 'U' 'longSlash' }
 	0xA7B9 { 'u' 'shortSlash' }
-	0xA7BA { 'grek/Alpha'  'EgyptologicalYodTonos' }
-	0xA7BC { 'grek/Iota'   'EgyptologicalYodTonos' }
 	0xA7BE { 'U/withTonos' 'EgyptologicalYodTonos' }
 	0xA7BB { 'a' 'EgyptologicalYodAbove' }
 	0xA7BD { 'i' 'EgyptologicalYodAbove' }
@@ -212,7 +173,6 @@ export : define decompOverrides : object
 	0xA7A9 { 's' 'oblStrike' }
 
 	0xAB30 { 'scripta'   'hStrike' }
-	0xAB3E { 'frak/o'    'shortSlash' }
 	0xAB3F { 'turnc'     'shortSlash' }
 	0xAB4F { 'uShortLeg' 'hStrike' }
 

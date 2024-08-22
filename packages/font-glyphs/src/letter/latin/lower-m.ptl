@@ -277,53 +277,10 @@ glyph-block Letter-Latin-Lower-M : begin
 
 				include : Serifs df XH 0 [if shortLeg [SmallMShortLegHeight XH df] 0] 0 true earless
 
-		if (Body === SmallMArches && !shortLeg) : begin
-			if (!tailed) : begin
-				create-glyph "cyrl/tjeKomi.italic.\(suffix)" : glyph-proc
-					local df : include : DivFrame [mix 1 para.diversityM 2] 4
-					include : df.markSet.e
-					local subDf : df.slice 4 3 0
-					include : Body subDf XH 0 0 (XH / 2)
-					include : UpwardHookShape
-						left -- subDf.rightSB - [HSwToV subDf.mvs]
-						right -- df.rightSB
-						ybegin -- (XH / 2)
-						yend -- (XH / 2)
-						ada -- (SmallArchDepthA * 0.6 * df.div)
-						adb -- (SmallArchDepthB * 0.6 * df.div)
-						sw -- subDf.mvs
-					include : Serifs subDf XH 0 0 (XH / 2) true false
-					local sf2 : [SerifFrame.fromDf df (XH / 2) 0].slice 2 3
-					if SLAB : include sf2.rt.full
-
-			create-glyph "cyrl/teMidHook.italic.\(suffix)" : glyph-proc
-				local df : include : DivFrame [mix 1 para.diversityM 2] 4
-				include : df.markSet.e
-				local subDf : df.slice 4 3 0
-				include : mShapeBody subDf XH
-				include : MidHook.general
-					left   -- subDf.rightSB
-					right  -- df.rightSB
-					top    -- XH * 0.625 + df.mvs / 4
-					ada    -- ArchDepthA
-					adb    -- ArchDepthB
-					sw     -- subDf.mvs
-
 	select-variant 'm' 'm'
 	select-variant 'm/descBase' (shapeFrom -- 'm')
 	link-reduced-variant 'm/sansSerif' 'm' MathSansSerif
 
-	select-variant 'cyrl/te.italic' (shapeFrom -- 'm')
-	alias 'cyrl/te/reduced.italic' null 'cyrl/te.italic'
-	select-variant 'cyrl/te.italic/descBase' (shapeFrom -- 'm')
-	select-variant 'cyrl/tjeKomi.italic'
-	select-variant 'cyrl/teMidHook.italic' (follow -- 'cyrl/te.italic')
-	alias 'cyrl/te.BGR' null 'cyrl/te.italic'
-	alias 'cyrl/te/reduced.BGR' null 'cyrl/te.italic'
-	alias 'cyrl/teThreeLeg.italic' null 'cyrl/te.italic'
-	derive-composites 'cyrl/teDescender.italic' null 'cyrl/te.italic/descBase' : do
-		local df : DivFrame para.diversityM 3
-		CyrDescender.rSideJut df.rightSB 0 (refSw -- df.mvs)
 	derive-composites 'mPalatalHook' 0x1D86 'm/descBase' : do
 		local df : DivFrame para.diversityM 3
 		PalatalHook.r
@@ -394,14 +351,6 @@ glyph-block Letter-Latin-Lower-M : begin
 				include : turnMShapeBody df (Width - SB)
 				include : Translate 0 (SB / 2)
 
-		if (Body === SmallMArches && !tailed) : begin
-			create-glyph "cyrl/shcha.italic.\(suffix)" : glyph-proc
-				local df : include : DivFrame para.diversityM 3
-				include : df.markSet.e
-				include : turnMShapeBody df XH
-				eject-contour 'serifLT'
-				include : CyrDescender.rSideJut df.rightSB 0 (refSw -- df.mvs)
-
 	select-variant 'turnm' 0x26F (follow -- [conditional-follow [MEnoughSpaceForFullSerifs : dfM] 'turnm/full' 'turnm/reduced'])
 	select-variant 'turnm/reduced' (shapeFrom -- 'turnm')
 
@@ -411,19 +360,6 @@ glyph-block Letter-Latin-Lower-M : begin
 	select-variant 'turnmLeg/reduced' (shapeFrom -- 'turnmLeg')
 
 	select-variant 'turnmSideways' 0x1D1F (follow -- [conditional-follow [MEnoughSpaceForFullSerifs : dfM] 'turnm/full' 'turnm/reduced'])
-
-	select-variant 'cyrl/sha.italic' (shapeFrom -- 'turnm') (follow -- [conditional-follow [MEnoughSpaceForFullSerifs : dfM] 'cyrl/sha.italic/full' 'cyrl/sha.italic/reduced'])
-	alias 'cyrl/sha.BGR' null 'cyrl/sha.italic'
-	select-variant 'cyrl/sha/reduced.italic' (shapeFrom -- 'turnm') (follow -- 'cyrl/sha.italic/reduced')
-	alias 'cyrl/sha/reduced.BGR' null 'cyrl/sha/reduced.italic'
-
-	select-variant 'cyrl/shcha.italic' (follow -- [conditional-follow [MEnoughSpaceForFullSerifs : dfM] 'cyrl/shcha.italic/full' 'cyrl/shcha.italic/reduced'])
-	alias 'cyrl/shcha.BGR' null 'cyrl/shcha.italic'
-	select-variant 'cyrl/shcha/reduced.italic' (shapeFrom -- 'cyrl/shcha.italic') (follow -- 'cyrl/shcha.italic/reduced')
-	alias 'cyrl/shcha/reduced.BGR' null 'cyrl/shcha/reduced.italic'
-
-	derive-composites 'cyrl/te.SRB' null 'cyrl/sha.italic' 'macronAbove'
-	derive-composites 'cyrl/te/reduced.SRB' null 'cyrl/sha/reduced.italic' 'macronAbove'
 
 	glyph-block-import Letter-Blackboard : BBS BBD BBBarLeft
 	create-glyph 'mathbb/m' 0x1D55E : glyph-proc

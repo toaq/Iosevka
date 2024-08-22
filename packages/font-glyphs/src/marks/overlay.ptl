@@ -402,30 +402,6 @@ glyph-block Mark-Overlay : begin
 			include : with-transform [ApparentTranslate (-markMiddle) (-aboveMarkMid)]
 				refer-glyph 'leftHalfCircleAbove'
 
-		create-glyph 'cyrlInvKavykaOver' : glyph-proc
-			set-width 0
-			set-mark-anchor 'overlay' 0 0 0 0
-
-			include : with-transform [ApparentTranslate (-markMiddle) (-aboveMarkMid)]
-				refer-glyph 'cyrlInvKavykaAbove'
-
-		create-glyph 'cyrlKavykaOver' : glyph-proc
-			set-width 0
-			set-mark-anchor 'overlay' 0 0 0 0
-
-			include : with-transform [ApparentTranslate (-markMiddle) (-aboveMarkMid)]
-				refer-glyph 'cyrlKavykaAbove'
-
-		foreach { suffix { DrawAt kdr } } [Object.entries DotVariants] : do
-			create-glyph "cyrlKavykaWithDotOver.\(suffix)" : glyph-proc
-				set-width 0
-				set-mark-anchor 'overlay' 0 0 0 0
-
-				include : with-transform [ApparentTranslate (-markMiddle) (-aboveMarkMid)]
-					refer-glyph "cyrlKavykaWithDotAbove.\(suffix)"
-
-		select-variant 'cyrlKavykaWithDotOver' (follow -- 'diacriticDot')
-
 	do "Inner dots"
 		glyph-block-export InnerDot
 		define [InnerDot x y kHeight fRound kdr _space _div] : begin

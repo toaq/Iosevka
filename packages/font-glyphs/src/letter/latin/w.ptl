@@ -353,23 +353,19 @@ glyph-block Letter-Latin-W : begin
 			straightDoubleV                    { WShapeImpl   WHooktopShape   FORM-DOUBLE-V   }
 			straightFlatTop                    { WShapeImpl   WHooktopShape   FORM-FLAT-TOP   }
 			straightVerticalSides              { WVertSides   WVSHookTopShape FORM-STRAIGHT   }
-			roundedVerticalSides               { WRounded     WHookTopRounded FORM-CURLY      } 
+			roundedVerticalSides               { WRounded     WHookTopRounded FORM-CURLY      }
 			curly                              { WShapeImpl   WHooktopShape   FORM-CURLY      }
 			cursive                            { WCursiveImpl WHookTopCursive FORM-CURLY      }
-			cyrlCapialOmega                    { WShapeImpl   WHooktopShape   FORM-CYRL-OMEGA }
-			cyrlSmallOmega                     { WShapeImpl   WHooktopShape   FORM-CYRL-OMEGA }
 
 		# Serifs
-		function [body] : if (body == 'cyrlCapialOmega' || body == 'cyrlSmallOmega')
-			then : object [""  SERIFS-CYRL-OMEGA]
-			else : object
-				serifless     SERIFS-NONE
-				motionSerifed SERIFS-MOTION
-				serifed     : match body
-					[Just 'straightAsymmetric']  SERIFS-ASYMMETRIC-ALL
-					[Just 'straightDoubleV']     SERIFS-DOUBLE-V-ALL
-					[Just 'cursive']             SERIFS-MOTION
-					__                           SERIFS-ALL
+		function [body] : object
+			serifless     SERIFS-NONE
+			motionSerifed SERIFS-MOTION
+			serifed     : match body
+				[Just 'straightAsymmetric']  SERIFS-ASYMMETRIC-ALL
+				[Just 'straightDoubleV']     SERIFS-DOUBLE-V-ALL
+				[Just 'cursive']             SERIFS-MOTION
+				__                           SERIFS-ALL
 
 	foreach { suffix { {implT hookTopImplT bodyType} slabType } } [pairs-of WConfig] : do
 		create-glyph "W.\(suffix)" : glyph-proc
@@ -409,12 +405,7 @@ glyph-block Letter-Latin-W : begin
 	select-variant 'smcpW' 0x1D21 (shapeFrom -- 'w') (follow -- 'W')
 	select-variant 'ww' 0x2AC (follow -- 'w')
 	select-variant 'wHookTop' 0x2C73
-	alias 'cyrl/We' 0x51C 'W'
-	alias 'cyrl/we' 0x51D 'w'
 	CreateTurnedLetter 'turnw' 0x28D 'w' HalfAdvance (XH / 2)
-
-	alias 'cyrl/Omega' 0x460 'W.cyrlCapialOmega'
-	alias 'cyrl/omega' 0x461 [if para.isItalic 'w.cyrlSmallOmega' 'w.cyrlCapialOmega']
 
 	glyph-block-import Letter-Blackboard : BBS BBD
 	glyph-block-import Letter-Latin-V : BBVShape BBVOuterMaskShape

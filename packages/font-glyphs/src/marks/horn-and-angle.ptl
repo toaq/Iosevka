@@ -159,30 +159,6 @@ glyph-block Mark-Horn-And-Angle : begin
 		set-base-anchor 'aboveBraceL' (-SB + DotRadius) aboveMarkMid
 		set-base-anchor 'aboveBraceR' (-SB + DotRadius) aboveMarkMid
 
-	create-glyph 'cyrlKavykaTR' 0x1DF6 : glyph-proc
-		set-width 0
-		include : BreveShape
-			xMiddle -- 0
-			width   -- 2 * (markExtend * 1.5 - [HSwToV markHalfStroke])
-			top     -- aboveMarkTop
-			bottom  -- aboveMarkBot
-			hs      -- markHalfStroke
-		set-mark-anchor 'topRight' 0 XH 0 aboveMarkTop
-		set-base-anchor 'aboveBraceL' (-0.75 * markExtend) aboveMarkMid
-		set-base-anchor 'aboveBraceR' ( 0.75 * markExtend) aboveMarkMid
-
-	create-glyph 'cyrlKavykaTL' 0x1DF7 : glyph-proc
-		set-width 0
-		include : BreveShape
-			xMiddle -- 0
-			width   -- 2 * (markExtend * 1.5 - [HSwToV markHalfStroke])
-			top     -- aboveMarkTop
-			bottom  -- aboveMarkBot
-			hs      -- markHalfStroke
-		set-mark-anchor 'topLeft' 0 XH 0 aboveMarkTop
-		set-base-anchor 'aboveBraceL' (-0.75 * markExtend) aboveMarkMid
-		set-base-anchor 'aboveBraceR' ( 0.75 * markExtend) aboveMarkMid
-
 	create-glyph 'rightHalfCircleTR' : glyph-proc
 		set-width 0
 

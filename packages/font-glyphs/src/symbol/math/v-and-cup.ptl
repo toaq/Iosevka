@@ -8,8 +8,6 @@ glyph-block Symbol-Math-VAndCup : begin
 	glyph-block-import CommonShapes
 	glyph-block-import Common-Derivatives
 	glyph-block-import Letter-Latin-U : UShape
-	glyph-block-import Letter-Greek-Pi : PiShape
-	glyph-block-import Letter-Cyrillic-Sha : CyrShaShape
 	glyph-block-import Symbol-Arrow : ArrowShape
 	glyph-block-import Symbol-Math-Relation-Common : EqualHalfSpace
 	glyph-block-import NotGlyphFn : NotGlyphSw
@@ -229,12 +227,3 @@ glyph-block Symbol-Math-VAndCup : begin
 			widths.center NotGlyphSw
 			flat SB OperBot
 			curl RightSB OperTop
-
-	create-glyph 'squareCap' 0x2293 : glyph-proc
-		include : PiShape [DivFrame 1] OperTop OperBot (shrinkRate -- 0) (fine -- OperatorStroke) (doSerif -- false)
-
-	turned 'squareCup' 0x2294 'squareCap' Middle SymbolMid
-
-	create-glyph 'shuffleProduct' 0x29E2 : glyph-proc
-		local df : include : DivFrame para.diversityM 3
-		include : CyrShaShape df OperTop OperBot (fine -- OperatorStroke) (doSerif -- false)

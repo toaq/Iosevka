@@ -76,6 +76,5 @@ glyph-block Letter-Latin-Egyptological : begin
 	create-glyph 'EgyptologicalYodTonos' : glyph-proc
 		set-width 0
 		include : refer-glyph 'EgyptologicalYodAbove'
-		set-mark-anchor 'grekUpperTonos' markMiddle XH
 		set-base-anchor 'aboveBraceL' markMiddle aboveMarkMid
 		set-base-anchor 'aboveBraceR' markMiddle aboveMarkMid

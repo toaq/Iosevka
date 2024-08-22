@@ -189,10 +189,6 @@ glyph-block Letter-Latin-Lower-N : begin
 			if sLB : include : sLB [DivFrame 1] 0
 			if sRB : include : sRB [DivFrame 1] Descender
 
-		if (!tailed && !sRB) : create-glyph "grek/eta.\(suffix)" : glyph-proc
-			include [refer-glyph "latn/eta.\(suffix)"] AS_BASE ALSO_METRICS
-			set-base-anchor 'lf' (SB + HalfStroke) 0
-
 		if (!tailed) : create-glyph "nCrossedTail.\(suffix)" : glyph-proc
 			include : MarkSet.e
 			local fine : AdviceStroke 4
@@ -259,36 +255,9 @@ glyph-block Letter-Latin-Lower-N : begin
 			include : VBar.l SB Descender 0
 			if sLT : include : sLT [DivFrame 1] XH
 
-		create-glyph "cyrl/peMidHook.italic.\(suffix)" : glyph-proc
-			local df : include : DivFrame para.diversityM 3
-			include : df.markSet.p
-
-			local dfHalf : df.slice 3 2
-			include : Body XH dfHalf.leftSB dfHalf.rightSB [if tailed (XH - SmallArchDepthB + O) 0] dfHalf.mvs
-			if tailed : include : EndingTail dfHalf.rightSB 0 (XH - SmallArchDepthB) dfHalf.mvs
-			if sLT : include : sLT dfHalf XH
-			if sLB : include : sLB dfHalf 0
-			if sRB : include : sRB dfHalf 0
-
-			include : MidHook.m df XH
-
-		if (!tailed) : create-glyph "cyrl/yat.italic/base.\(suffix)" : glyph-proc
-			local df : include : DivFrame para.diversityM 3
-			include : df.markSet.e
-
-			local dfSub : df.slice 3 2
-			include : Body XH dfSub.leftSB dfSub.rightSB (XH - SmallArchDepthB - TINY) dfSub.mvs
-
-			if sLT : include : sLT dfSub XH
-			if sLB : include : sLB dfSub 0
-			if sRB : include : sRB dfSub 0
-
 	select-variant 'n' 'n'
 	link-reduced-variant 'n/sansSerif' 'n' MathSansSerif
 	link-reduced-variant 'n/descBase' 'n'
-	select-variant 'cyrl/pe.italic' (shapeFrom -- 'n')
-	select-variant 'cyrl/pe.italic/descBase' (shapeFrom -- 'n')
-	alias 'cyrl/pe.BGR' null 'cyrl/pe.italic'
 
 	select-variant 'eng' 0x14B
 	link-reduced-variant 'eng/phoneticRight' 'eng'
@@ -302,19 +271,11 @@ glyph-block Letter-Latin-Lower-N : begin
 	select-variant 'RInsular' 0xA782 (follow -- 'engHookLeft')
 	select-variant 'rInsular' 0xA783 (follow -- 'engHookLeft')
 
-	select-variant 'grek/eta' 0x3B7
-	link-reduced-variant 'grek/eta/sansSerif' 'grek/eta' MathSansSerif
 	select-variant 'latn/Eta' 0x220 (follow -- 'n')
 	select-variant 'latn/eta' 0x19E (follow -- 'n')
 
 	derive-composites 'nDescender' 0xA791 'n/descBase' [CyrDescender.rSideJut RightSB 0]
 	derive-composites 'nPalatalHook' 0x1D87 'n/descBase' [PalatalHook.rSideJut RightSB 0]
-	derive-composites 'cyrl/peDescender.italic' null 'cyrl/pe.italic/descBase' [CyrDescender.rSideJut RightSB 0]
-
-	select-variant 'cyrl/peMidHook.italic' (follow -- 'cyrl/pe.italic')
-
-	select-variant 'cyrl/yat.italic/base/corner' (shapeFrom -- 'cyrl/yat.italic/base')
-	select-variant 'cyrl/yat.italic/base/cursive' (shapeFrom -- 'cyrl/yat.italic/base')
 
 	do "n with Apostrophe"
 		derive-glyphs 'nApostrophe/comma' null 'commaAbove/asPunctuation' : function [src gr] : glyph-proc

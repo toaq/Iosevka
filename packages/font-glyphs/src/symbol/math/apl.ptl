@@ -132,12 +132,6 @@ glyph-block Symbol-Math-APL : begin
 		include [refer-glyph gn] AS_BASE ALSO_METRICS
 		include : centerSmallPunctuations
 
-	# Aliases
-	alias 'apl/iota'  0x2373 'grek/iota'
-	alias 'apl/rho'   0x2374 'grek/rho'
-	alias 'apl/omega' 0x2375 'grek/omega'
-	alias 'apl/alpha' 0x237A 'grek/alpha'
-
 	# Boxed
 	define [DeriveBoxed src] : aplBoxed : aplBoxedInner src
 	derive-glyphs 'uni2338' 0x2338 'equal'                          DeriveBoxed
@@ -151,10 +145,8 @@ glyph-block Symbol-Math-APL : begin
 	derive-glyphs 'uni2347' 0x2347 'arrowLeft.NWID'                 DeriveBoxed
 	derive-glyphs 'uni2348' 0x2348 'arrowRight.NWID'                DeriveBoxed
 	derive-glyphs 'uni234C' 0x234C 'vee'                            DeriveBoxed
-	derive-glyphs 'uni234D' 0x234D 'increment.aplForm'              DeriveBoxed
 	derive-glyphs 'uni2350' 0x2350 'arrowUp.NWID'                   DeriveBoxed
 	derive-glyphs 'uni2353' 0x2353 'wedge'                          DeriveBoxed
-	derive-glyphs 'uni2354' 0x2354 'nabla.aplForm'                  DeriveBoxed
 	derive-glyphs 'uni2357' 0x2357 'arrowDown.NWID'                 DeriveBoxed
 	derive-glyphs 'uni235E' 0x235E 'asciiSingleQuote/body/straight' DeriveBoxed
 	derive-glyphs 'uni236F' 0x236F 'notequal'                       DeriveBoxed
@@ -168,11 +160,8 @@ glyph-block Symbol-Math-APL : begin
 	create-glyph 0x233F : composite-proc [refer-glyph 'apl/minus'] [refer-glyph 'slash']
 	create-glyph 0x2340 : composite-proc [refer-glyph 'apl/minus'] [refer-glyph 'backslash']
 	create-glyph 0x2349 : composite-proc [refer-glyph 'apl/backSlash'] [refer-glyph 'whiteCircle.NWID']
-	derive-composites 'apl/deltaStile' 0x234B  'increment.aplThin' 'apl/longBar'
 	create-glyph 0x234F : composite-proc [refer-glyph 'arrowUp.NWID'] [refer-glyph 'minus']
-	derive-composites 'apl/delStile'   0x2352  'nabla.aplThin'     'apl/longBar'
 	create-glyph 0x2356 : composite-proc [refer-glyph 'arrowDown.NWID'] [refer-glyph 'minus']
-	derive-composites 'apl/deltaUnderbar' 0x2359 'increment.aplForm' 'underlineBelow'
 	create-glyph 0x2366 : composite-proc [refer-glyph 'cup'] [refer-glyph 'apl/bar']
 	create-glyph 0x236D : composite-proc [refer-glyph 'overlayTildeOperator'] [refer-glyph 'bar']
 
@@ -188,7 +177,6 @@ glyph-block Symbol-Math-APL : begin
 			refer-glyph srcs.1
 			clear-anchors
 
-	AplAccented 0x2362 'nabla.aplForm'                     'dieresisAbove'  [MarkSet.tack]
 	AplAccented 0x2361 'top'                               'dieresisAbove'  [MarkSet.tack]
 	AplAccented 0x2363 'asterisk.pentaSMid'                'dieresisAbove'  [MarkSet.plus]
 	AplAccented 0x2364 'mathSmallCircle'                   'dieresisAbove'  [MarkSet.plus]
@@ -201,10 +189,6 @@ glyph-block Symbol-Math-APL : begin
 	AplAccented 0x235B 'mathSmallCircle'                   'underlineBelow' [MarkSet.plus]
 	AplAccented 0x235C 'whiteCircle.NWID'                  'underlineBelow' [MarkSet.plus]
 	AplAccented 0x2377 'smallElement.aplForm'              'underlineBelow' [MarkSet.e]
-
-	derive-composites 'apl/alphaBar' 0x2376 'grek/alpha' [refer-glyph 'underlineBelow'] [clear-anchors]
-	derive-composites 'apl/iotaBar'  0x2378 'grek/iota'  [refer-glyph 'underlineBelow'] [clear-anchors]
-	derive-composites 'apl/omegaBar' 0x2379 'grek/omega' [refer-glyph 'underlineBelow'] [clear-anchors]
 
 	# Overline
 	create-glyph 0x2351 : composite-proc [refer-glyph 'top'] [MarkSet.tack] [refer-glyph 'sbRsbOverlineAbove'] [clear-anchors]
@@ -231,7 +215,6 @@ glyph-block Symbol-Math-APL : begin
 		difference   [refer-glyph srcs.0] [refer-glyph 'overlayTildeOperatorAboveMask']
 		intersection [refer-glyph srcs.1] [refer-glyph 'overlayTildeOperatorAboveMask']
 
-	derive-multi-part-glyphs 'uni236B' 0x236B { 'nabla.aplThin' 'nabla.aplForm' } DeriveTiledOverlay
 	derive-multi-part-glyphs 'uni2371' 0x2371 { 'vee/aplThin'   'vee'           } DeriveTiledOverlay
 	derive-multi-part-glyphs 'uni2372' 0x2372 { 'wedge/aplThin' 'wedge'         } DeriveTiledOverlay
 

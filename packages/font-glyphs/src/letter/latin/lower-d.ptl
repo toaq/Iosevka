@@ -123,41 +123,16 @@ glyph-block Letter-Latin-Lower-D : begin
 			if bottomSerif : include : bottomSerif df Ascender
 			include : LeaningAnchor.Above.VBar.r df.rightSB
 
-		if [not bottomSerif] : create-glyph "cyrl/djeKomi.\(suffix)" : glyph-proc
-			local df : DivFrame 1 3
-			include : df.markSet.b
-
-			local dfHalf : df.slice 3 2
-			include : Body dfHalf Ascender
-			eject-contour 'rightBar'
-
-			include : with-transform [ApparentTranslate (df.width - dfHalf.width) 0] : UpwardHookShape
-				left -- dfHalf.leftSB
-				right -- dfHalf.rightSB
-				ybegin -- Ascender
-				yend -- (XH / 2)
-				ada -- [dfHalf.archDepthA SmallArchDepth df.mvs]
-				adb -- [dfHalf.archDepthB SmallArchDepth df.mvs]
-				sw -- df.mvs
-
-			if topSerif    : include : topSerif dfHalf Ascender
-			if SLAB : begin
-				local sf2 : [SerifFrame.fromDf df (XH / 2) 0].slice 1 2
-				include sf2.rt.full
-
 	select-variant 'd' 'd'
 	select-variant 'dCaronBase' (follow -- 'd')
 	select-variant 'dStroke' 0x111 (follow -- 'd')
 	select-variant 'latn/de' 0x18C (follow -- 'd')
-	alias 'cyrl/deKomi' 0x501 'd'
 	link-reduced-variant 'd/sansSerif' 'd' MathSansSerif
 	link-reduced-variant 'd/phoneticLeft' 'd'
 	link-reduced-variant 'd/hookBottomBase' 'd'
 
 	select-variant 'dHookTop' 0x257
 	link-reduced-variant 'dHookTop/hookBottomBase' 'dHookTop'
-
-	select-variant 'cyrl/djeKomi' 0x503
 
 	link-reduced-variant 'd/descBase' 'd'
 	derive-composites 'dPalatalHook' 0x1D81 'd/descBase' : PalatalHook.r

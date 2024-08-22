@@ -213,32 +213,6 @@ glyph-block Letter-Latin-U : begin
 			include : Base df XH Stroke
 			include : Slabs df XH
 
-		create-glyph "grek/mu.\(suffix)" : glyph-proc
-			local df : DivFrame 1
-			include : df.markSet.p
-			include : Base df XH Stroke
-			include : dispiro
-				widths.rhs
-				flat df.leftSB Descender [heading Upward]
-				curl df.leftSB (Descender / 2) [heading Upward]
-				straight.up.end df.leftSB SmallArchDepthB [widths.heading 0 [AdviceStroke 4] Upward]
-			include : Slabs df XH
-			include : LeaningAnchor.Below.VBar.l df.leftSB
-
-		create-glyph "cyrl/tse.italic.\(suffix)" : glyph-proc
-			include [refer-glyph "u.\(suffix)"] AS_BASE
-			eject-contour 'serifRB'
-			include : CyrDescender.rSideJut RightSB 0
-
-		create-glyph "cyrl/tseRev.italic.\(suffix)" : glyph-proc
-			include [refer-glyph "u.\(suffix)"] AS_BASE
-			include : VBar.l SB 0 SmallArchDepthB [AdviceStroke 4]
-			include : CyrDescender.lSideJut SB 0
-
-		create-glyph "cyrl/dzhe.italic.\(suffix)" : glyph-proc
-			include [refer-glyph "u.\(suffix)"] AS_BASE ALSO_METRICS
-			include [refer-glyph 'descenderBarBelow']
-
 		create-glyph "turnh.\(suffix)" : glyph-proc
 			local df : DivFrame 1
 			include : df.markSet.p
@@ -318,45 +292,12 @@ glyph-block Letter-Latin-U : begin
 	select-variant 'uShortLeg' 0xAB4E
 	select-variant 'uHookLeft' 0xAB52
 
-	select-variant 'grek/mu' 0x3BC
-	link-reduced-variant 'grek/mu/sansSerif' 'grek/mu' MathSansSerif
-	select-variant 'micro'   0xB5  (shapeFrom -- 'grek/mu')
-
-	select-variant 'cyrl/i.italic' (shapeFrom -- 'u')
-	select-variant 'cyrl/i.italic/descBase' (shapeFrom -- 'u')
-	alias 'cyrl/i.BGR' null 'cyrl/i.italic'
-
-	select-variant 'cyrl/tse.italic'
-	alias 'cyrl/tse.BGR' null 'cyrl/tse.italic'
-	select-variant 'cyrl/tseRev.italic'
-	select-variant 'cyrl/dzhe.italic'
-
 	select-variant 'turnh' 0x265
 	select-variant 'turnhHookLeft' 0x2AE
 	select-variant 'turnhHookLeftRTail' 0x2AF
 
 	select-variant 'uSideways' 0x1D1D (follow -- 'u')
 	select-variant 'uDieresisSidewaysBase' null (follow -- 'u')
-
-	derive-glyphs 'cyrl/ibreve.BGR' null 'cyrl/i.BGR' : lambda [src gr] : glyph-proc
-		include [refer-glyph src] AS_BASE ALSO_METRICS
-		include [refer-glyph 'breveAbove']
-
-	derive-glyphs 'cyrl/igrave.BGR' null 'cyrl/i.BGR' : lambda [src gr] : glyph-proc
-		include [refer-glyph src] AS_BASE ALSO_METRICS
-		include [refer-glyph 'graveAbove']
-
-	derive-composites 'cyrl/iShortTail.italic' null 'cyrl/i.italic/descBase'
-		refer-glyph 'breveAbove'
-		CyrTailDescender.rSideJut RightSB 0
-
-	derive-glyphs 'cyrl/pe.SRB' null 'cyrl/i.italic' : lambda [src gr] : glyph-proc
-		include [refer-glyph src] AS_BASE ALSO_METRICS
-		include [refer-glyph 'macronAbove']
-
-	derive-glyphs 'cyrl/tetse.italic' null 'cyrl/tse.italic' : lambda [src gr] : glyph-proc
-		include [refer-glyph src] AS_BASE ALSO_METRICS
-		include [refer-glyph 'tildeAbove']
 
 	derive-composites 'uRTailBR' 0x1D99 'u/uRTailBase'
 		RetroflexHook.rSideJut RightSB 0 (yOverflow -- Stroke)

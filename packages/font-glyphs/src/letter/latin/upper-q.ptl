@@ -185,7 +185,6 @@ glyph-block Letter-Latin-Upper-Q : begin
 				include : tailShape df (Width - SB) swTailInner
 
 	select-variant 'Q' 'Q'
-	alias 'cyrl/Qa' 0x51A 'Q'
 
 	select-variant 'smcpQ' 0xA7AF (follow -- 'Q')
 

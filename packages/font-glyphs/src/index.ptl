@@ -115,15 +115,15 @@ export : define [buildGlyphs para recursive] : begin
 	# Unified letters
 	run-glyph-module "./letter/shared.mjs"
 	run-glyph-module "./letter/latin.mjs"
-	run-glyph-module "./letter/greek.mjs"
-	run-glyph-module "./letter/cyrillic.mjs"
+	# run-glyph-module "./letter/greek.mjs"
+	# run-glyph-module "./letter/cyrillic.mjs"
 
 	# Numbers
 	run-glyph-module "./number/index.mjs"
 
 	# Letter-likes
-	run-glyph-module "./letter-like/cursive.mjs"
-	run-glyph-module "./letter-like/fraktur.mjs"
+	# run-glyph-module "./letter-like/cursive.mjs"
+	# run-glyph-module "./letter-like/fraktur.mjs"
 
 	# Symbols
 	run-glyph-module "./symbol/shared.mjs"
@@ -135,7 +135,7 @@ export : define [buildGlyphs para recursive] : begin
 	run-glyph-module "./symbol/pictograph.mjs"
 	run-glyph-module "./symbol/math.mjs"
 	run-glyph-module "./symbol/letter.mjs"
-	run-glyph-module "./symbol/braille.mjs"
+	# run-glyph-module "./symbol/braille.mjs"
 	run-glyph-module "./symbol/ligation.mjs"
 
 	# Auto-builds

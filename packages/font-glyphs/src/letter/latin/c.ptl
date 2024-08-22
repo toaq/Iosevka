@@ -213,16 +213,6 @@ glyph-block Letter-Latin-C : begin
 				include : FlipAround df.middle (top / 2)
 				include : Translate 0 (SB / 2)
 
-		create-glyph "cyrl/esWide.\(suffix)" : glyph-proc
-			local df : include : DivFrame para.diversityM 3
-			include : df.markSet.e
-			local desc : -LongJut + 0.5 * Stroke
-			include : ExtendBelowBaseAnchors desc
-			local lf : CLetterForm df sty styBot XH desc
-				ada -- [df.archDepthA SmallArchDepth df.mvs]
-				adb -- [df.archDepthB SmallArchDepth df.mvs]
-			include : lf.full
-
 		create-glyph "cHookTop.\(suffix)" : glyph-proc
 			include : MarkSet.e
 			local lf : CLetterForm [DivFrame 1] sty styBot XH 0
@@ -251,18 +241,6 @@ glyph-block Letter-Latin-C : begin
 				HSerif.mb (Middle + [HSwToV HalfStroke]) Descender MidJutSide
 				no-shape
 
-		if [not styBot] : create-glyph "cyrl/Koppa.\(suffix)" : glyph-proc
-			include : MarkSet.capDesc
-			local lf : CLetterForm [DivFrame 1] sty styBot CAP 0
-			include : KoppaShapeT sty styBot CAP : union [lf.baseTopOnly] [lf.topSerif]
-
-		if [not styBot] : create-glyph "cyrl/koppa.\(suffix)" : glyph-proc
-			include : MarkSet.p
-			local lf : CLetterForm [DivFrame 1] sty styBot XH 0
-				ada -- SmallArchDepthA
-				adb -- SmallArchDepthB
-			include : KoppaShapeT sty styBot XH : union [lf.baseTopOnly] [lf.topSerif]
-
 		create-glyph "C/descBase.\(suffix)" : glyph-proc
 			include : MarkSet.capital
 			local lf : CLetterForm [DivFrame 1] sty styBot CAP 0
@@ -287,8 +265,6 @@ glyph-block Letter-Latin-C : begin
 	select-variant 'C' 'C'
 	link-reduced-variant 'C/sansSerif' 'C' MathSansSerif
 	select-variant 'revC' 0x2183 (follow -- 'C')
-	alias 'cyrl/Es' 0x421 'C'
-	alias 'grek/lunateSigma' 0x3F9 'C'
 
 	select-variant 'CTopSerifOnly' (shapeFrom -- 'C')
 
@@ -303,19 +279,13 @@ glyph-block Letter-Latin-C : begin
 	select-variant 'revc' 0x2184 (follow -- 'c')
 	select-variant 'c/centKernelStd' (follow -- 'c')
 	select-variant 'c/centKernelCap' (follow -- 'c')
-	alias 'cyrl/es' 0x441 'c'
-	alias 'grek/lunateSmallSigma' 0x3F2 'c.serifless'
 	select-variant 'turncSideways' 0x1D12 (follow -- 'c')
-	select-variant 'cyrl/esWide' 0x1C83 (follow -- 'c')
 
 	select-variant 'cTopSerifOnly' (shapeFrom -- 'c')
 
 	select-variant 'cCurlyTail' 0x255
 	select-variant 'cHookTop' 0x188
 	select-variant 'stretchedC' 0x297 (follow -- 'c')
-
-	select-variant 'cyrl/Koppa' 0x480 (follow -- 'CTopSerifOnly')
-	select-variant 'cyrl/koppa' 0x481 (follow -- 'cTopSerifOnly')
 
 	select-variant 'C/descBase'
 	select-variant 'c/descBase'
@@ -324,8 +294,6 @@ glyph-block Letter-Latin-C : begin
 	CreateTurnedLetter 'turnC' 0x186 'C' HalfAdvance (CAP / 2)
 	CreateTurnedLetter 'turnc' 0x254 'c' HalfAdvance (XH / 2)
 	CreateTurnedLetter 'turnSmcpC' 0x1D10 'smcpC' HalfAdvance (XH / 2)
-	alias 'grek/revLunateSigma' 0x3FD 'revC'
-	alias 'grek/revLunateSmallSigma' 0x37B 'revc.serifless'
 
 	CreateTurnedLetter 'turnc/descBase' null 'c/turnDescBase' HalfAdvance (XH / 2)
 	derive-composites 'turncRetroflexHook' 0x1D97 'turnc/descBase'
@@ -340,10 +308,6 @@ glyph-block Letter-Latin-C : begin
 	derive-composites 'cRetroflexHook' 0x1DF1D 'c/descBase'
 		RetroflexHook.r RightSB 0 (yAttach -- DToothlessRise)
 
-	derive-composites 'grek/dotLunateSigma' 0x3FE 'grek/lunateSigma' 'innerDot'
-	derive-composites 'grek/dotRevLunateSigma' 0x3FF 'grek/revLunateSigma' 'innerDot'
-	derive-composites 'grek/dotLunateSmallSigma' 0x37C 'grek/lunateSmallSigma' 'innerDotSmall'
-	derive-composites 'grek/dotRevLunateSmallSigma' 0x37D 'grek/revLunateSmallSigma' 'innerDotSmall'
 	derive-composites 'CRevDot' 0xA73E 'revC' 'innerDotSmall'
 	derive-composites 'cRevDot' 0xA73F 'revc' 'innerDotSmall'
 
@@ -354,8 +318,6 @@ glyph-block Letter-Latin-C : begin
 
 	derive-composites 'CCedilla' 0xC7 'C' 'cedillaExtShapeBelowOArc'
 	derive-composites 'cCedilla' 0xE7 'c' 'cedillaExtShapeBelowOArc'
-	derive-composites 'cyrl/The' 0x4AA 'cyrl/Es' 'cedillaExtShapeBelowOArc'
-	derive-composites 'cyrl/the' 0x4AB 'cyrl/es' 'cedillaExtShapeBelowOArc'
 
 	create-glyph 'mathbb/C' 0x2102 : glyph-proc
 		include : MarkSet.capital

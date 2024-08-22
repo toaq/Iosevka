@@ -269,30 +269,6 @@ glyph-block Letter-Latin-Lower-I : begin
 			local df : DivFrame div
 			include : LetterBarOverlay.m.in [xMiddleT df] XH (Ascender - [if Serif Stroke 0])
 
-		create-glyph "grek/tau.\(suffix)" : glyph-proc
-			local df : include : DivFrame div
-			include : df.markSet.e
-			local xMiddle : xMiddleT df
-			include : Body df XH xMiddle
-			include : Marks df XH xMiddle
-			include : HBar.t df.leftSB df.rightSB XH
-
-			currentGlyph.deleteBaseAnchor 'trailing'
-
-		create-glyph "cyrl/Twe/middle.\(suffix)" : glyph-proc
-			local df : include : DivFrame div
-			include : Body df CAP [XMiddle.Center df]
-			include : Marks df CAP [XMiddle.Center df]
-			currentGlyph.deleteBaseAnchor 'trailing'
-			set-mark-anchor 'cvDecompose' (df.width / 2) CAP
-
-		create-glyph "cyrl/twe/middle.\(suffix)" : glyph-proc
-			local df : include : DivFrame div
-			include : Body df XH  [XMiddle.Center df]
-			include : Marks df XH  [XMiddle.Center df]
-			currentGlyph.deleteBaseAnchor 'trailing'
-			set-mark-anchor 'cvDecompose' (df.width / 2) XH
-
 	do "i glyphs"
 		select-variant 'dotlessi' 0x131
 		link-reduced-variant 'dotlessi/sansSerif' 'dotlessi' MathSansSerif
@@ -307,24 +283,11 @@ glyph-block Letter-Latin-Lower-I : begin
 
 		CreateAccentedComposition 'i.TRK' null 'dotlessi' 'dotAbove'
 
-		alias 'cyrl/iUkrainian' 0x456 'i'
-		CreateAccentedComposition 'cyrl/yi' 0x457 'dotlessi' 'dieresisAbove'
-
-		select-variant 'grek/iota' 0x3B9 (shapeFrom -- 'dotlessi')
-		link-reduced-variant 'grek/iota/sansSerif' 'grek/iota' MathSansSerif (shapeFrom -- 'dotlessi')
-
 		select-variant 'latn/iota' 0x269 (shapeFrom -- 'dotlessi')
-		alias 'cyrl/iota' 0xA647 'latn/iota'
 
 		select-variant 'latn/Iota' 0x196 (follow -- 'latn/iota')
-		alias 'cyrl/Iota' 0xA646 'latn/Iota'
-
-		select-variant 'cyrl/ghe.SRB/base' (shapeFrom -- 'dotlessi') (follow -- 'cyrl/ghe.SRB')
-		CreateAccentedComposition      'cyrl/ghe.SRB' null 'cyrl/ghe.SRB/base'   'macronAbove'
-		CreateMultiAccentedComposition 'cyrl/gje.SRB' null 'cyrl/ghe.SRB/base' { 'macronAbove' 'acuteAbove' }
 
 		CreateTurnedLetter 'turni' 0x1D09 'i' HalfAdvance (XH / 2)
-		CreateTurnedLetter 'grek/turniota' 0x2129 'latn/iota' HalfAdvance (XH / 2)
 
 		CreateAccentedComposition 'dotlessiBarOver' null 'dotlessi' 'barOver'
 		CreateAccentedComposition 'iBarOver' 0x268 'dotlessiBarOver' 'tittleAbove'
@@ -337,7 +300,6 @@ glyph-block Letter-Latin-Lower-I : begin
 		select-variant 'l/reduced/decompress' (shapeFrom -- 'l')
 		select-variant 'lRTail/decompress' (follow -- 'l/reduced/rtailDec') (shapeFrom -- 'lRTail')
 
-		alias 'cyrl/palochka' 0x4CF 'l'
 		CreateTurnedLetter 'turnl' 0xA781 'l' HalfAdvance (XH / 2)
 		select-variant 'l/phoneticLeft' (shapeFrom -- 'l')
 		select-variant 'l/compLigRight' (shapeFrom -- 'l')
@@ -413,11 +375,6 @@ glyph-block Letter-Latin-Lower-I : begin
 				curl df.middle 0 [heading Downward]
 				arcvh
 				straight.right.end (df.middle + HookX) (-Hook)
-
-	do "Tau"
-		select-variant 'grek/tau' 0x3C4
-		select-variant 'cyrl/Twe/middle' (follow -- 'grek/tau/tailed')
-		select-variant 'cyrl/twe/middle' (follow -- 'grek/tau/tailed')
 
 	do "Blackboard"
 		glyph-block-import Letter-Blackboard : BBS BBD BBBarCenter

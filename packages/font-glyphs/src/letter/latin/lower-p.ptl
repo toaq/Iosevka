@@ -116,27 +116,14 @@ glyph-block Letter-Latin-Lower-P : begin
 	select-variant 'p' 'p'
 	link-reduced-variant 'p/sansSerif' 'p' MathSansSerif
 	link-reduced-variant 'p/hookTopBase' 'p'
-	select-variant 'cyrl/er' 0x440 (shapeFrom -- 'p')
 	select-variant 'pPalatalHook' 0x1D88 (follow -- 'p')
-
-	alias 'grek/rho' 0x3C1 'p.earlessRoundedSerifless'
 
 	select-variant 'pStrokeBot' 0xA751 (follow -- 'p')
 
-	alias 'grek/rhoStroke' 0x3FC 'pStrokeBot.earlessRoundedSerifless'
-
 	select-variant 'thorn' 0xFE
-	alias 'grek/sho' 0x3F8 'thorn.earedSerifless'
 
 	select-variant 'thornStroke' 0xA765 (follow -- 'thorn')
 	select-variant 'thornStrokeBot' 0xA767 (follow -- 'thorn')
-
-	derive-glyphs 'cyrl/erTick' 0x48F 'cyrl/er' : lambda [src gr] : glyph-proc
-		include [refer-glyph src] AS_BASE ALSO_METRICS
-		include : dispiro
-			widths.center [AdviceStroke 4]
-			flat [mix SB RightSB 0.5]   (HalfStroke + XH * 0.25)
-			curl [mix SB RightSB 0.875] (HalfStroke - XH * 0.25)
 
 	derive-glyphs 'pHookTop' 0x1A5 "p/hookTopBase" : function [src gr] : glyph-proc
 		include [refer-glyph src] AS_BASE ALSO_METRICS

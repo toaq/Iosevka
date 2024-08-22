@@ -169,10 +169,6 @@ glyph-block Letter-Latin-Upper-P : begin
 				PShape CAP (slab -- slabs)
 				if fGap [PShape.OpenGap (top -- CAP) (bot -- [if fSlabBot Stroke 0])] [glyph-proc]
 
-		create-glyph "grek/Rho.\(suffix)" : glyph-proc
-			include [refer-glyph "P.\(suffix)"] AS_BASE ALSO_METRICS
-			include : SetGrekUpperTonos [if slabs (-SideJut) 0]
-
 		if (!fMotion) : create-glyph "PHookLeft.\(suffix)" : glyph-proc
 			include [refer-glyph "P.\(suffix)"] AS_BASE
 			eject-contour "serifLT"
@@ -217,26 +213,12 @@ glyph-block Letter-Latin-Upper-P : begin
 	select-variant 'P' 'P'
 	link-reduced-variant 'P/sansSerif' 'P' MathSansSerif
 
-	select-variant 'grek/Rho' 0x3A1
-	link-reduced-variant 'grek/Rho/sansSerif' 'grek/Rho' MathSansSerif
-
 	select-variant 'smcpP' 0x1D18 (follow -- 'P')
-	select-variant 'grek/smcpRho' 0x1D29 (shapeFrom -- 'smcpP') (follow -- 'grek/Rho')
-
-	select-variant 'cyrl/Er' 0x420 (shapeFrom -- 'P')
 
 	select-variant 'PHookLeft' 0x1A4
 
 	select-variant 'currency/rubleSign' 0x20BD
 	select-variant 'currency/pesoSign' 0x20B1 (follow -- 'P')
-
-	derive-glyphs 'cyrl/ErTick' 0x48E 'cyrl/Er' : lambda [src gr] : glyph-proc
-		include [refer-glyph src] AS_BASE ALSO_METRICS
-		local yBowl : [PBarPosY CAP Stroke PShape.BarPos] + 0.75 * Stroke
-		include : dispiro
-			widths.center [AdviceStroke 4]
-			flat [mix SB RightSB 0.5]   (yBowl + XH * 0.25)
-			curl [mix SB RightSB 0.875] (yBowl - XH * 0.25)
 
 	create-glyph 'PStroke/overlay' : LetterBarOverlay.l.in
 		x     -- (SB * PShape.defaultMul)

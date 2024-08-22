@@ -28,43 +28,12 @@ glyph-block Letter-Latin-O : begin
 		include : MarkSet.e
 		include : OShape XH 0 SB RightSB nothing nothing nothing
 
-	create-glyph 'cyrl/oNarrow' 0x1C82 : glyph-proc
-		local df : include : DivFrame para.diversityF 2
-		include : df.markSet.e
-		local subDf : DivFrame 0.75 2
-		local ada : subDf.archDepthA SmallArchDepth subDf.mvs
-		local adb : subDf.archDepthB SmallArchDepth subDf.mvs
-
-		include : with-transform [ApparentTranslate (0.5 * (df.width - subDf.width)) 0]
-			OShape XH 0 subDf.leftSB subDf.rightSB subDf.mvs ada adb
-
 	create-glyph 'oSideways' 0x1D11 : glyph-proc
 		include : MarkSet.e
 		include : PointingTo Width XH Width 0 : function []
 			OShape (Width - SB / 2) (SB / 2) (XH * 0.1) (XH * 0.9) nothing nothing nothing
 
 	define rBroadOn : DotRadius * [StrokeWidthBlend 1.625 1]
-	create-glyph 'cyrl/BroadOn' 0x47A : glyph-proc
-		define df : DivFrame 1 3
-		include : MarkSet.capital
-		include : OShape CAP 0 SB RightSB df.mvs ArchDepthA ArchDepthB
-		include : DotAt Middle (df.mvs / 2 + O) rBroadOn
-		include : DotAt Middle (CAP - df.mvs / 2 - O) rBroadOn
-
-	create-glyph 'cyrl/broadOn' 0x47B : glyph-proc
-		define df : DivFrame 1 3
-		include : MarkSet.e
-		include : OShape XH 0 SB RightSB df.mvs nothing nothing
-		include : DotAt Middle (df.mvs / 2 + O) rBroadOn
-		include : DotAt Middle (XH - df.mvs / 2 - O) rBroadOn
-
-	create-glyph 'grek/Omicron' 0x39F : glyph-proc
-		include [refer-glyph 'O'] AS_BASE ALSO_METRICS
-		include : SetGrekUpperTonos 0
-
-	alias 'cyrl/O' 0x41E 'O'
-	alias 'grek/omicron' 0x3BF 'o'
-	alias 'cyrl/o' 0x43e 'o'
 
 	create-glyph 'mathbb/O' 0x1D546 : glyph-proc
 		include : MarkSet.capital
@@ -137,24 +106,6 @@ glyph-block Letter-Latin-O : begin
 		include [refer-glyph 'o'] AS_BASE
 		include : HBar.m (SB + OX + 1) (RightSB - OX - 1) (XH * 0.5) OverlayStroke
 
-	derive-composites 'cyrl/OMonocular' 0xA668 'O' 'innerDot'
-	derive-composites 'cyrl/oMonocular' 0xA669 'o' 'innerDotSmall'
-	derive-composites 'cyrl/OBinocular' 0xA66A 'O' 'innerDoubleDot'
-	derive-composites 'cyrl/oBinocular' 0xA66B 'o' 'innerDoubleDotSmall'
-	alias 'bullEye' 0x298 'cyrl/OMonocular'
-
-	create-glyph 'cyrl/OCross' 0xA69A : glyph-proc
-		include [refer-glyph 'O'] AS_BASE
-		local fine ([StrokeWidthBlend 1 0.5] * OverlayStroke)
-		include : HBar.m (SB + OX + 1) (RightSB - OX - 1) (CAP * 0.5) fine
-		include : VBar.m Middle (O + 1) (CAP - O - 1) fine
-
-	create-glyph 'cyrl/oCross' 0xA69B : glyph-proc
-		include [refer-glyph 'o'] AS_BASE
-		local fine ([StrokeWidthBlend 1 0.5] * OverlayStroke)
-		include : HBar.m (SB + OX + 1) (RightSB - OX - 1) (XH * 0.5) fine
-		include : VBar.m Middle (O + 1) (XH - O - 1) fine
-
 	create-glyph 'romanThousandCD' 0x2180 : glyph-proc
 		local df : include : DivFrame para.diversityM 3
 		include : df.markSet.capital
@@ -200,10 +151,6 @@ glyph-block Letter-Latin-O : begin
 		include : OShape (CAP - heightGap) (0 + heightGap) arcXL1 arcXR1 df.mvs adaInner1 adbInner1
 		include : OShape (CAP - 2 * heightGap) (0 + 2 * heightGap) arcXL2 arcXR2 df.mvs adaInner2 adbInner2
 		include : VBar.m df.middle (df.mvs / 2) (CAP - df.mvs / 2) df.mvs
-
-	alias 'cyrl/Oe' 0x4E8 'Obar'
-	alias 'grek/capSymbolTheta' 0x3F4 'Obar'
-	alias 'cyrl/oe' 0x4E9 'obar'
 
 	create-glyph 'oupperhalf' 0x1D16 : glyph-proc
 		include : MarkSet.e

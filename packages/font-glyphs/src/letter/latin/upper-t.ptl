@@ -59,20 +59,6 @@ glyph-block Letter-Latin-Upper-T : begin
 		include : TShape df top doTopSerifs false
 		eject-contour 'strokeV'
 
-	define [CyrlTallTeShape df top doTopSerifs doBottomSerifs] : glyph-proc
-		local xRight : df.width - 1.5 * df.leftSB
-		local xLeft : df.leftSB - 0.75 * OX
-
-		include : HBar.t xLeft xRight top
-		include : VBar.r xRight 0 top
-
-		if doTopSerifs : begin
-			include : tagged 'serifLT' : VSerif.dl xLeft top VJut
-		if doBottomSerifs : begin
-			include : tagged 'serifMB' : HSerif.rb (xRight - [HSwToV HalfStroke]) 0 Jut
-			include : tagged 'serifMB' : HSerif.lb (xRight - [HSwToV HalfStroke]) 0 MidJutSide
-			include : tagged 'serifRT' : HSerif.rt xRight top SideJut
-
 	define TConfig : object
 		serifless     { 1                           false false }
 		motionSerifed { [mix 1 para.diversityM 0.5] true  false }
@@ -86,16 +72,6 @@ glyph-block Letter-Latin-Upper-T : begin
 			include : df.markSet.capital
 			set-base-anchor 'bottomRight' (df.middle + [HSwToV HalfStroke]) 0
 			include : TShape df CAP doST doSB
-
-		create-glyph "cyrl/TeDescender.\(suffix)" : glyph-proc
-			set-width df.width
-			include : df.markSet.capital
-			set-base-anchor 'bottomRight' (df.middle + [HSwToV HalfStroke]) 0
-			include : TShape df CAP doST doSB
-			include : CyrDescender.rSideJut
-				x -- (df.middle + [HSwToV HalfStroke])
-				y -- 0
-				jut -- [if doSB MidJutCenter Jut]
 
 		create-glyph "TStroke.\(suffix)" : glyph-proc
 			include [refer-glyph "T.\(suffix)"] AS_BASE ALSO_METRICS
@@ -113,18 +89,6 @@ glyph-block Letter-Latin-Upper-T : begin
 			set-base-anchor 'bottomRight' (df.middle + [HSwToV HalfStroke]) 0
 			include : TShape df XH doST doSB
 
-		create-glyph "cyrl/Twe/upper.\(suffix)" : glyph-proc
-			set-width df.width
-			include : df.markSet.capital
-			include : TweUpperShape df CAP doST doSB
-			set-base-anchor 'cvDecompose' (df.width / 2) CAP
-
-		create-glyph "cyrl/twe/upper.\(suffix)" : glyph-proc
-			set-width df.width
-			include : df.markSet.e
-			include : TweUpperShape df XH doST doSB
-			set-base-anchor 'cvDecompose' (df.width / 2) XH
-
 		create-glyph "currency/tengeSign.\(suffix)" : glyph-proc
 			set-width df.width
 			include : df.markSet.capital
@@ -132,65 +96,17 @@ glyph-block Letter-Latin-Upper-T : begin
 			include : HBar.t [TLeftX df] [TRightX df] CAP OverlayStroke
 			include : TShape df (CAP - gap - OverlayStroke) doST doSB
 
-		create-glyph "cyrl/teDescender.upright.\(suffix)" : glyph-proc
-			set-width df.width
-			include : df.markSet.e
-			include : TShape df XH doST doSB
-			include : CyrDescender.rSideJut
-				x -- (df.middle + [HSwToV HalfStroke])
-				y -- 0
-				jut -- [if doSB MidJutCenter Jut]
-
 		create-glyph "TRTailBR.\(suffix)" : glyph-proc
 			include [refer-glyph "T.\(suffix)"] AS_BASE ALSO_METRICS
 			include : MarkSet.capital
 			include : RetroflexHook.mExt df.middle 0
-
-		create-glyph "cyrl/TjeKomi.\(suffix)" : glyph-proc
-			local df : include : DivFrame div 3
-			include : df.markSet.capital
-			include : TjeShape df CAP doST
-
-		create-glyph "cyrl/tjeKomi.upright.\(suffix)" : glyph-proc
-			local df : include : DivFrame div 3
-			include : df.markSet.e
-			include : TjeShape df XH doST
-
-		create-glyph "cyrl/teTall.upright.\(suffix)" : glyph-proc
-			local df : include : DivFrame 1
-			include : df.markSet.b
-			include : CyrlTallTeShape df Ascender doST doSB
-			include : LeaningAnchor.Below.VBar.r (df.width - 1.5 * df.leftSB)
 
 	select-variant 'T' 'T'
 	link-reduced-variant 'T/sansSerif' 'T' MathSansSerif
 	select-variant 'smcpT' 0x1D1B (follow -- 'T')
 	select-variant "TStroke" 0x166 (follow -- 'T')
 	select-variant "Thookleft" 0x1AC (follow -- 'T')
-	select-variant "cyrl/TeDescender" 0x4AC (follow -- 'T')
 	CreateTurnedLetter 'turnT' 0xA7B1 'T' HalfAdvance (CAP / 2)
-
-	alias 'grek/Tau' 0x3A4 'T'
-	alias-reduced-variant 'grek/Tau/sansSerif' 'grek/Tau' 'T/sansSerif' MathSansSerif
-	alias 'cyrl/Te' 0x422 'T'
-
-	alias 'cyrl/te.upright' null 'smcpT'
-	alias 'cyrl/te/reduced.upright' null 'smcpT'
-	select-variant 'cyrl/teDescender.upright' (follow -- 'T')
-
-	select-variant 'TRTailBR' 0x1AE (follow -- 'T/rtailBase')
-
-	select-variant 'cyrl/TjeKomi' 0x50E (follow -- 'T/rtailBase')
-	select-variant 'cyrl/tjeKomi.upright' null (follow -- 'T/rtailBase')
-	select-variant 'cyrl/Twe/upper' (follow -- 'T/rtailBase')
-	select-variant 'cyrl/twe/upper' (follow -- 'T/rtailBase')
-	derive-composites 'cyrl/Twe' 0xA68C 'cyrl/Twe/upper' 'cyrl/Twe/middle'
-	derive-composites 'cyrl/twe' 0xA68D 'cyrl/twe/upper' 'cyrl/twe/middle'
-
-	select-variant 'currency/tengeSign' 0x20B8 (follow -- 'T')
-
-	select-variant 'cyrl/teTall.upright' (follow -- 'T')
-	select-variant 'cyrl/teTall.italic' (shapeFrom -- 'cyrl/teTall.upright') (follow -- 'T/rtailBase')
 
 	create-glyph 'mathbb/T' 0x1D54B : glyph-proc
 		local df : DivFrame 1

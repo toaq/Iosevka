@@ -647,11 +647,6 @@ glyph-block Mark-Above : begin
 	select-variant 'commaAbove' 0x313 (follow -- 'diacriticDot')
 	select-variant 'commaAbove/asPunctuation' (shapeFrom -- 'commaAbove') (follow -- 'punctuationDot')
 
-	derive-glyphs 'commaGrekUpperTonos' null 'commaAbove' : function [src gr] : glyph-proc
-		set-width 0
-		include : refer-glyph src
-		include : StdAnchors.impl 'grekUpperTonos' 0 0
-
 	derive-glyphs 'turnCommaAbove' 0x312 'commaAbove' : function [src gr] : glyph-proc
 		set-width 0
 		include : refer-glyph src
@@ -686,11 +681,6 @@ glyph-block Mark-Above : begin
 		include : ApparentTranslate 0 (DotRadius * 0.3)
 
 	select-variant 'revCommaAbove' 0x314 (follow -- 'diacriticDot')
-
-	derive-glyphs 'revCommaGrekUpperTonos' null 'revCommaAbove' : function [src gr] : glyph-proc
-		set-width 0
-		include : refer-glyph src
-		include : StdAnchors.impl 'grekUpperTonos' 0 0
 
 	create-glyph 'barAbove' 0x30D : glyph-proc
 		set-width 0
@@ -763,26 +753,9 @@ glyph-block Mark-Above : begin
 			include : DrawAt markMiddle yDot (fine * kdr)
 			include : ApparentTranslate 0 (fine * 0.5)
 			include : StdAnchors.mediumWide
-		create-glyph "cyrlKavykaWithDotAbove.\(suffix)" : glyph-proc
-			set-width 0
-			local radius : markExtend * 1.5
-			local arcHs : Math.min markHalfStroke (radius * 0.4)
-			local yDot : mix aboveMarkBot aboveMarkTop 0.625
-			local bottom : yDot - radius
-			local top : bottom + AccentHeight
-			include : dispiro
-				g4.down.start (markMiddle - radius) (top - arcHs) [widths.heading arcHs arcHs Downward]
-				arcvh
-				g4.right.mid markMiddle bottom
-				archv
-				g4.up.end (markMiddle + radius) (top - arcHs) [heading Upward]
-			include : DrawAt markMiddle yDot [Math.min (markDotsRadius * kdr) (radius * 0.4)]
-			include : ApparentTranslate 0 ([Math.max 0 (aboveMarkBot - yDot + radius)] + arcHs)
-			include : StdAnchors.extraWide
 
 	select-variant 'candrabinduAbove' 0x310 (follow -- 'diacriticDot')
 	turned 'fermataAbove' 0x352 'candrabinduAbove' markMiddle aboveMarkMid
-	select-variant 'cyrlKavykaWithDotAbove' null (follow -- 'diacriticDot')
 
 	alias 'graveToneAbove' 0x340 'graveAbove'
 	alias 'acuteToneAbove' 0x341 'acuteAbove'
@@ -1012,86 +985,6 @@ glyph-block Mark-Above : begin
 		include : ArrowheadForArrowMarkAbove-Left
 		include : ArrowheadForArrowMarkAbove-Right
 		include : HBar.mForArrowMarkAbove
-
-	alias 'cyrlDasiaAbove' 0x485 'revCommaAbove'
-	alias 'cyrlPsiliAbove' 0x486 'commaAbove'
-
-	create-glyph 'cyrlPalatilizationAbove' 0x484 : glyph-proc
-		set-width 0
-		include : StdAnchors.wide
-
-		local leftEnd  : markMiddle - markExtend * 2.0
-		local rightEnd : markMiddle + markExtend * 1.2
-
-		include : dispiro
-			g4.up.start rightEnd aboveMarkBot [widths.heading markHalfStroke markHalfStroke Upward]
-			arcvh
-			g2.left.mid markMiddle (aboveMarkTop - markHalfStroke) [heading Leftward]
-			alsoThru.g2 0.5 0.5
-			g2.left.end leftEnd ([mix aboveMarkBot aboveMarkTop 0.5] - markHalfStroke) [heading Leftward]
-
-	create-glyph 'cyrlPokrytieAbove' 0x487 : glyph-proc
-		set-width 0
-		include : StdAnchors.wide
-
-		local leftEnd  : markMiddle - markExtend * 1.2
-		local rightEnd : markMiddle + markExtend * 2.0
-
-		include : dispiro
-			g4.up.start leftEnd aboveMarkBot [widths.heading markHalfStroke markHalfStroke Upward]
-			arcvh
-			g2.right.mid markMiddle (aboveMarkTop - markHalfStroke) [heading Rightward]
-			alsoThru.g2 0.5 0.5
-			g2.right.end rightEnd ([mix aboveMarkBot aboveMarkTop 0.5] - markHalfStroke) [heading Rightward]
-
-	create-glyph 'cyrlTitloAbove' 0x483 : glyph-proc
-		set-width 0
-		include : StdAnchors.wide
-
-		include : VBar.m (markMiddle - markExtend) aboveMarkBot (aboveMarkMid + markFine) (markFine * 2)
-		include : VBar.m (markMiddle + markExtend) (aboveMarkMid - markFine) aboveMarkTop (markFine * 2)
-		include : HBar.m (markMiddle - markExtend) (markMiddle + markExtend) aboveMarkMid (markFine * 2)
-
-	create-glyph 'cyrlVzmetAbove' 0xA66F : glyph-proc
-		set-width 0
-		include : StdAnchors.wide
-
-		include : VBar.m (markMiddle - markExtend) aboveMarkBot (aboveMarkMid + markFine) (markFine * 2)
-		include : VBar.m (markMiddle + markExtend) aboveMarkBot (aboveMarkMid + markFine) (markFine * 2)
-		include : HBar.m (markMiddle - markExtend) (markMiddle + markExtend) aboveMarkMid (markFine * 2)
-
-	create-glyph 'cyrlKavykaAbove' 0xA67C : glyph-proc
-		set-width 0
-		include : StdAnchors.extraWide
-		include : BreveShape
-			xMiddle -- markMiddle
-			width   -- 3.0 * markExtend
-			top     -- aboveMarkTop
-			bottom  -- aboveMarkBot
-			hs      -- markHalfStroke
-
-	create-glyph 'cyrlInvKavykaAbove' : glyph-proc
-		set-width 0
-		include : StdAnchors.extraWide
-		include : InvBreveShape
-			xMiddle -- markMiddle
-			width   -- 3.0 * markExtend
-			top     -- aboveMarkTop
-			bottom  -- aboveMarkBot
-			hs      -- markHalfStroke
-
-	create-glyph 'cyrlPayerokAbove' 0xA67D : glyph-proc
-		set-width 0
-		include : StdAnchors.mediumWide
-
-		local ext : 0.625 * markExtend + markFine
-		local coSlope  0.2
-		local fr : new Box aboveMarkTop aboveMarkBot (markMiddle - ext) (markMiddle + ext)
-		include : HBar.m fr.left (fr.right - coSlope * (fr.top - fr.yMid)) fr.yMid (markFine * 2)
-		include : intersection [MaskBelow fr.top] [MaskAbove (fr.yMid - markFine)]
-			ExtLineLhs 4 (markFine * 2) (fr.left + coSlope * (fr.top - fr.yMid - markFine)) fr.top (fr.left - 2 * markFine * coSlope) (fr.yMid - markFine)
-		include : intersection [MaskAbove fr.bot] [MaskBelow fr.top]
-			ExtLineLhs 4 (markFine * 2) (fr.right - coSlope * (fr.top - fr.bot - 2 * markFine)) fr.bot (fr.right + 2 * markFine * coSlope) fr.top
 
 	create-glyph 'ogonekAbove' 0x1DCE : glyph-proc
 		set-width 0

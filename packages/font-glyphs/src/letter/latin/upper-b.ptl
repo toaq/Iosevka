@@ -149,14 +149,6 @@ glyph-block Letter-Latin-Upper-B : begin
 			include [refer-glyph "B.\(suffix)"] AS_BASE ALSO_METRICS
 			include : BOverlayBar CAP bp
 
-		if (!fAsymmetric) : create-glyph "cyrl/ve.\(suffix)" : glyph-proc
-			include : MarkSet.e
-			include : body XH [AdviceStroke2 2 3 XH] ts bs
-
-		if (!fGap && !fAsymmetric) : create-glyph "smcpBBar.\(suffix)" : glyph-proc
-			include [refer-glyph "cyrl/ve.\(suffix)"] AS_BASE ALSO_METRICS
-			include : BOverlayBar XH bp
-
 		create-glyph "currency/baht.\(suffix)" : union
 			body CAP currencySw ts bs
 			intersection [BahtBar : AdviceStroke 5] [mask CAP : AdviceStroke2 2 3 CAP]
@@ -181,9 +173,6 @@ glyph-block Letter-Latin-Upper-B : begin
 	select-variant 'currency/bitcoin' 0x20BF (follow -- 'B')
 	select-variant 'BStroke' 0x243 (follow -- 'B')
 	select-variant 'latn/Beta' 0xA7B4
-	alias 'grek/Beta' 0x392 'B'
-	alias-reduced-variant 'grek/Beta/sansSerif' 'grek/Beta' 'B/sansSerif' MathSansSerif
-	alias 'cyrl/Ve' 0x412 'B'
 
 	select-variant 'BBar'
 	select-variant 'Bhookleft' 0x181
@@ -210,18 +199,6 @@ glyph-block Letter-Latin-Upper-B : begin
 			flat Middle (midy + (fine - stroke / 2)) [widths.heading fine 0 Leftward]
 			curl mid (midy + (fine - stroke / 2)) [widths.heading fine 0 Leftward]
 
-	create-glyph 'cyrl/ve.cursive' : glyph-proc
-		include : MarkSet.e
-		include : CursiveCyrveShape XH
-
-	create-glyph 'cyrl/ve.cursiveTall' : glyph-proc
-		include : MarkSet.b
-		include : CursiveCyrveShape Ascender
-
-	select-variant 'cyrl/ve'  0x432
-	select-variant 'smcpB'    0x299  (shapeFrom -- 'cyrl/ve')
-	select-variant 'smcpBBar' 0x1D03
-
 	create-glyph 'mathbb/B' 0x1D539 : glyph-proc
 		include : MarkSet.capital
 		include : union
@@ -232,68 +209,3 @@ glyph-block Letter-Latin-Upper-B : begin
 					VBar.r (RightSB - BBD - OX * 2) 0 (CAP * BBarPos) BBS
 					VBar.r ([mix SB RightSB BArcMix] - BBD - OX * 2) (CAP * BBarPos) CAP BBS
 					VBar.l (SB + BBD) 0 CAP BBS
-
-	create-glyph 'grek/beta.standard' : glyph-proc
-		include : MarkSet.bp
-		include : LeaningAnchor.Below.VBar.l SB
-		define pBar 0.55
-		define fine : Stroke * CThin
-		define yMiddle : [mix 0 Ascender pBar] - Stroke * 0.7 # Bottom edge
-		define ada : ArchDepthAOf (ArchDepth * 0.75) (0.5 * Width)
-		define adb : ArchDepthBOf (ArchDepth * 0.75) (0.5 * Width)
-		define xMidLeft : mix (SB + [HSwToV Stroke]) (RightSB - [HSwToV Stroke]) 0.3
-		define xMidArc  : Math.max [mix xMidLeft RightSB 0.1] [mix SB RightSB 0.5]
-		include : dispiro
-			widths.rhs
-			flat SB Descender [heading Upward]
-			curl SB (Ascender - SmallArchDepthA)
-			arch.rhs Ascender
-			g4   (RightSB - OX + O * 3) [YSmoothMidR yMiddle Ascender ada adb]
-			arcvh
-			flat xMidArc  (yMiddle + Stroke - fine) [widths.rhs.heading fine Leftward]
-			curl xMidLeft (yMiddle + Stroke - fine) [heading Leftward]
-		include : dispiro
-			widths.rhs fine
-			flat xMidLeft (yMiddle + fine) [heading Rightward]
-			curl xMidArc  (yMiddle + fine) [heading Rightward]
-			archv
-			g4   (RightSB - OX)  [YSmoothMidR 0 (yMiddle + Stroke) ada adb] [widths.rhs]
-			arch.rhs 0 (swAfter -- ShoulderFine)
-			g4.up.end (SB + HVContrast * (Stroke - ShoulderFine)) adb [widths.rhs ShoulderFine]
-
-	alias 'grek/beta.cursive'  null  'cyrl/ve.cursiveTall'
-	select-variant 'grek/beta' 0x3B2
-
-	alias 'grek/betaSymbol' 0x3D0 'cyrl/ve.cursiveTall'
-	alias 'cyrl/ve.BGR'     null  'cyrl/ve.cursiveTall'
-
-	derive-composites 'latn/beta' 0xA7B5 'grek/beta.standard'
-		if SLAB [SerifFrame.fromDf [DivFrame 1] XH Descender].lb.fullSide [no-shape]
-
-	create-glyph 'cyrl/veRounded' 0x1C80 : glyph-proc
-		include : MarkSet.e
-		local fine : AdviceStroke 4
-		local r0 : 0.2 * (RightSB - SB)
-
-		local ry : r0 + 0.25 * fine
-		local rx : r0 + 0.25 * [HSwToV fine]
-
-		local cx : RightSB - rx
-		local cyt : XH - 1.375 * ry
-		local cyb : XH - cyt
-
-		include : dispiro
-			g4 (cx + rx - OX) [YSmoothMidR.cr cyt ry] [widths.lhs fine]
-			arch.lhs (cyt + ry) (sw -- fine)
-			g4 (cx - rx + OX) [YSmoothMidL.cr cyt ry]
-			arch.lhs (cyt - ry) (sw -- fine)
-			g4 (cx + rx - OX) [YSmoothMidR.cr cyt ry]
-			arch.lhs XH (swBefore -- fine)
-			flat SB (XH - SmallArchDepthA)
-			curl SB (0  + SmallArchDepthB)
-			arch.lhs 0 (swAfter -- fine)
-			g4 (cx + rx - OX) [YSmoothMidR.cr cyb ry] [widths.lhs fine]
-			arch.lhs (cyb + ry) (sw -- fine)
-			g4 (cx - rx + OX) [YSmoothMidL.cr cyb ry]
-			arch.lhs (cyb - ry) (sw -- fine)
-			g4 (cx + rx - OX) [YSmoothMidR.cr cyb ry]

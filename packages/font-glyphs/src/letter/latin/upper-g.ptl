@@ -120,30 +120,6 @@ glyph-block Letter-Latin-Upper-G : begin
 
 	derive-composites 'Gbar' 0x1E4 'G' 'GBarOverlay'
 
-	do "Komi sje"
-		define Config : object
-				serifless               { SLAB-NONE   }
-				unilateralSerifed       { SLAB-LETTER }
-				unilateralInwardSerifed { SLAB-INWARD }
-
-		foreach { suffix { slabType } } [Object.entries Config] : begin
-			create-glyph "cyrl/SjeKomi.\(suffix)" : glyph-proc
-				include : MarkSet.capital
-				include : GShape TOOTHLESS-ROUNDED slabType CROSSBAR-NONE CAP ArchDepthA ArchDepthB (CAP / 2)
-				if SLAB : begin
-					local sf2 : SerifFrame.fromDf [DivFrame 1] (CAP / 2) 0
-					include sf2.rt.full
-
-			create-glyph "cyrl/sjeKomi.\(suffix)" : glyph-proc
-				include : MarkSet.e
-				include : GShape TOOTHLESS-ROUNDED slabType CROSSBAR-NONE XH SmallArchDepthA SmallArchDepthB (XH / 2)
-				if SLAB : begin
-					local sf2 : SerifFrame.fromDf [DivFrame 1] (XH / 2) 0
-					include sf2.rt.full
-
-		select-variant 'cyrl/SjeKomi' 0x50C (follow -- 'CTopSerifOnly')
-		select-variant 'cyrl/sjeKomi' 0x50D (follow -- 'cTopSerifOnly')
-
 	glyph-block-import Letter-Blackboard : BBS BBD BBBarRight
 	define [BBGArcT sink offset top ada adb xTerm yTerm] : sink
 		widths.lhs BBS

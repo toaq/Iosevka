@@ -32,10 +32,6 @@ glyph-block Letter-Latin-Upper-I : begin
 			include : df.markSet.capital
 			include : Body df CAP 0 jut
 
-		create-glyph "grek/Iota.\(suffix)" : glyph-proc
-			include [refer-glyph "I.\(suffix)"] AS_BASE ALSO_METRICS
-			include : SetGrekUpperTonos 0
-
 		create-glyph "ISideways.\(suffix)" : glyph-proc
 			local df : DivFrame (XH / Width) 2 (XH * 0.1 / SB)
 			include : PointingTo Width XH Width 0 : function [] : glyph-proc
@@ -51,11 +47,6 @@ glyph-block Letter-Latin-Upper-I : begin
 
 	select-variant 'I' 'I'
 	link-reduced-variant 'I/sansSerif' 'I' MathSansSerif
-	select-variant 'grek/Iota' 0x399 (follow -- 'I')
-	link-reduced-variant 'grek/Iota/sansSerif' 'grek/Iota' MathSansSerif (follow -- 'I/sansSerif')
-	alias 'cyrl/IUkrainian' 0x406 'I'
-	CreateAccentedComposition 'cyrl/Yi' 0x407 'I' 'dieresisAbove'
-	alias 'cyrl/Palochka' 0x4C0 'I'
 
 	select-variant 'ISideways' 0xA7F7 (follow -- 'I')
 	select-variant 'ILonga' 0xA7FE (follow -- 'I')

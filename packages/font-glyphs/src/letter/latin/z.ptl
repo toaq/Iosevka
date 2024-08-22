@@ -228,22 +228,6 @@ glyph-block Letter-Latin-Z : begin
 			eject-contour 'serifRB'
 			include : difference [DTailBottomStroke] [bsMask CAP]
 
-		create-glyph "cyrl/Zemlya.\(suffix)" : glyph-proc
-			include : MarkSet.capital
-			include : ExtendBelowBaseAnchors Descender
-			if (capital === ZCursiveShape)
-			: then : begin
-				include : capital MODE-RTAIL
-				if serifs : include : serifs CAP
-				if slash  : include : slash  CAP
-				include : ZemlyaBottomStrokeCursive
-			: else : begin
-				include : capital MODE-ZDESC
-				if serifs : include : serifs CAP
-				if slash  : include : slash  CAP
-				eject-contour 'serifRB'
-				include : difference [ZemlyaBottomStroke] [bsMask CAP]
-
 		create-glyph "ZSwash.\(suffix)" : glyph-proc
 			include : MarkSet.capDesc
 			set-base-anchor 'overlay' Middle (CAP / 2)
@@ -273,22 +257,6 @@ glyph-block Letter-Latin-Z : begin
 			if slash  : include : slash  XH
 			eject-contour 'serifRB'
 			include : difference [DTailBottomStroke] [bsMask XH]
-
-		create-glyph "cyrl/zemlya.\(suffix)" : glyph-proc
-			include : MarkSet.e
-			include : ExtendBelowBaseAnchors Descender
-			if (small === SmallZCursiveShape)
-			: then : begin
-				include : small MODE-RTAIL
-				if serifs : include : serifs XH
-				if slash  : include : slash  XH
-				include : ZemlyaBottomStrokeCursive
-			: else : begin
-				include : small MODE-ZDESC
-				if serifs : include : serifs XH
-				if slash  : include : slash  XH
-				eject-contour 'serifRB'
-				include : difference [ZemlyaBottomStroke] [bsMask XH]
 
 		create-glyph "zSwash.\(suffix)" : glyph-proc
 			include : MarkSet.p
@@ -333,10 +301,6 @@ glyph-block Letter-Latin-Z : begin
 	select-variant 'ZSwash' 0x2C7F (follow -- 'ZDesc')
 	select-variant 'zSwash' 0x240 (follow -- 'zDesc')
 	select-variant 'zCurlyTail' 0x291 (follow -- 'zDesc')
-	select-variant 'cyrl/Zemlya' 0xA640 (follow -- 'ZDesc')
-	select-variant 'cyrl/zemlya' 0xA641 (follow -- 'zDesc')
-	select-variant 'cyrl/Zemlya/reduced' (follow -- 'ZDesc/reduced') (shapeFrom -- 'cyrl/Zemlya')
-	select-variant 'cyrl/zemlya/reduced' (follow -- 'zDesc/reduced') (shapeFrom -- 'cyrl/zemlya')
 
 	select-variant 'z/phoneticRight'           (shapeFrom --'z')
 	select-variant 'z/rtailBase/phoneticRight' (shapeFrom --'z/rtailBase') (follow -- 'z/phoneticRight')
@@ -350,9 +314,6 @@ glyph-block Letter-Latin-Z : begin
 
 	derive-composites 'zRTail'       0x290  'z/rtailBase' [RetroflexHook.r RightSB 0]
 	derive-composites 'zRTail/phoneticRight' null 'z/rtailBase/phoneticRight' [RetroflexHook.r RightSB 0]
-
-	alias 'grek/Zeta' 0x396 'Z/reduced'
-	alias-reduced-variant 'grek/Zeta/sansSerif' 'grek/Zeta' 'Z/reduced/sansSerif' MathSansSerif
 
 	define [BBZShape top] : glyph-proc
 		include : HBar.t SB RightSB top BBS
@@ -387,5 +348,3 @@ glyph-block Letter-Latin-Z : begin
 	CreateAccentedComposition 'zBar' 0x1B6 'z/reduced' 'barOver'
 	CreateAccentedComposition 'ZCaron' 0x17D 'Z' 'caronAbove' true
 	CreateAccentedComposition 'zCaron' 0x17E 'z' 'caronAbove' true
-	CreateAccentedComposition 'cyrl/ZemlyaBar' 0xA642 'cyrl/Zemlya/reduced' 'barOver'
-	CreateAccentedComposition 'cyrl/zemlyaBar' 0xA643 'cyrl/zemlya/reduced' 'barOver'

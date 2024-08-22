@@ -10,10 +10,6 @@ export : define [buildLOCL gsub para glyphStore] : begin
 
 	define { chain-rule } : gsub.ChainRuleBuilder
 
-	define cyrlSRB  : gsub.copyLanguage 'cyrl_SRB ' 'cyrl_DFLT'
-	define cyrlMKD  : gsub.copyLanguage 'cyrl_MKD ' 'cyrl_DFLT'
-	define cyrlBOS  : gsub.copyLanguage 'cyrl_BOS ' 'cyrl_DFLT'
-	define cyrlBGR  : gsub.copyLanguage 'cyrl_BGR ' 'cyrl_DFLT'
 	define latnTRK  : gsub.copyLanguage 'latn_TRK ' 'latn_DFLT'
 	define latnAZE  : gsub.copyLanguage 'latn_AZE ' 'latn_DFLT'
 	define latnGAG  : gsub.copyLanguage 'latn_GAG ' 'latn_DFLT'
@@ -21,20 +17,6 @@ export : define [buildLOCL gsub para glyphStore] : begin
 	define latnTAT  : gsub.copyLanguage 'latn_TAT ' 'latn_DFLT'
 	define latnCRT  : gsub.copyLanguage 'latn_CRT ' 'latn_DFLT'
 	define latnVIT  : gsub.copyLanguage 'latn_VIT ' 'latn_DFLT'
-	define grekIPPH : gsub.copyLanguage 'grek_IPPH ' 'grek_DFLT'
-	define grekAPPH : gsub.copyLanguage 'grek_APPH ' 'grek_DFLT'
-
-	# SRB
-	define loclSRB : gsub.createFeature 'locl'
-	cyrlSRB.addFeature loclSRB
-	cyrlMKD.addFeature loclSRB
-	cyrlBOS.addFeature loclSRB
-	loclSRB.addLookup : createGsubLookupFromGr gsub glyphStore
-		if [not para.isItalic] LocalizedForm.SRB.Upright LocalizedForm.SRB.Italic
-
-	# BGR
-	define loclBGR : cyrlBGR.addFeature : gsub.createFeature 'locl'
-	loclBGR.addLookup : createGsubLookupFromGr gsub glyphStore LocalizedForm.BGR
 
 	# TRK
 	define loclTRK : gsub.createFeature 'locl'
@@ -86,8 +68,6 @@ export : define [buildLOCL gsub para glyphStore] : begin
 
 	# IPPH
 	define loclIPPH : gsub.createFeature 'locl'
-	grekIPPH.addFeature loclIPPH
-	grekAPPH.addFeature loclIPPH
 	loclIPPH.addLookup : createGsubLookupFromGr gsub glyphStore LocalizedForm.IPPH
 
 	gsub.endBlockAtFront rec

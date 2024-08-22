@@ -216,9 +216,6 @@ glyph-block Letter-Latin-Lower-G : begin
 	select-variant 'gScriptPalatalHook' 0x1D83 (follow -- 'gScript')
 	select-variant 'gScriptCrossedTail' 0xAB36
 
-	alias 'cyrl/de.BGR' null 'g/single'
-	alias 'cyrl/de.SRB' null 'g/single'
-
 	derive-glyphs 'gHookTop' 0x260 "g/hookTopBase" : function [src gr] : glyph-proc
 		include [refer-glyph src] AS_BASE ALSO_METRICS
 		include : TopHook.rBarOuter RightSB 0 XH

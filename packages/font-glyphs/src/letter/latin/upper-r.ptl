@@ -211,16 +211,6 @@ glyph-block Letter-Latin-Upper-R : begin
 			include : MarkSet.e
 			include : RRotundaShape legShape XH (hook -- AHook) (pBar -- 0.9) (slab -- null) (legSlab -- doLegSlab)
 
-		create-glyph "cyrl/Ya.\(suffix)" : glyph-proc
-			include : MarkSet.capital
-			include : StrikeAnchor
-			include : RevRShape legShape CAP (slab -- revSlabs) (legSlab -- doLegSlab) (bp -- bpCap) (open -- fOpen)
-
-		create-glyph "cyrl/ya.\(suffix)" : glyph-proc
-			include : MarkSet.e
-			include : StrikeAnchor
-			include : RevRShape legShape XH (slab -- revSlabs) (legSlab -- doLegSlab) (bp -- bpXH) (tailedShape -- fTailed) (open -- fOpen)
-
 		create-glyph "Yr.\(suffix)" : glyph-proc
 			include : MarkSet.capDesc
 			local top : CAP * 0.825 + [if fSlabBot (-0.2125) 0.25  ] * Stroke
@@ -265,11 +255,6 @@ glyph-block Letter-Latin-Upper-R : begin
 
 	select-variant 'RRotunda' 0xA75A
 	select-variant 'rRotunda' 0xA75B (follow -- 'RRotunda')
-
-	select-variant 'cyrl/Ya' 0x42F
-	select-variant 'cyrl/ya' 0x44F
-	select-variant 'revSmcpR' 0x1D19 (shapeFrom -- 'cyrl/ya') (follow -- 'R')
-	CreateTurnedLetter 'invSmcpR' 0x281 'revSmcpR' HalfAdvance (XH / 2)
 
 	select-variant 'Yr' 0x1A6 (follow -- 'R')
 	select-variant 'smcpRLongRightLeg' 0xAB46 (follow -- 'R')

@@ -99,7 +99,6 @@ glyph-block Letter-Latin-Lower-Q : begin
 
 	select-variant 'q' 'q'
 	link-reduced-variant 'q/sansSerif' 'q' MathSansSerif
-	alias 'cyrl/qa' 0x51B 'q'
 	select-variant 'QRTail' 0x24A (follow -- 'qRTail')
 	select-variant 'qRTail' 0x24B
 	select-variant "q/hookTopBase" (shapeFrom -- 'q')

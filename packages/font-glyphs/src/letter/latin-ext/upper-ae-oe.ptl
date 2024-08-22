@@ -124,20 +124,6 @@ glyph-block Letter-Latin-Upper-AE-OE : begin
 		foreach { suffix { legShape fOpen fTailed {slabs revSlabs doLegSlab} } } [Object.entries RConfig] : begin
 			local fSlabBot : slabs && slabs !== PShape.SlabMotion
 
-			if [not fTailed] : begin
-				create-glyph "cyrl/Yae/left.\(suffix)" : glyph-proc
-					local df : include : DivFrame para.diversityM 3
-					include : df.markSet.capital
-					local sw : AESW df CAP
-					local bp : RBarPos CAP fSlabBot
-					local subDf : df.sliceFine 3 2 0.5 [HSwToV : 0.25 * sw]
-					set-base-anchor 'cvDecompose' 0 0
-
-					include : RevRShape legShape CAP (df -- subDf) (slab -- revSlabs) (legSlab -- doLegSlab) (bp -- bp) (open -- fOpen) (sw -- sw)
-
-					eject-contour 'strokeR'
-					eject-contour 'serifRT'
-
 	define AConfig : object
 		straightSerifless     { true   SLAB-A-NONE }
 		curlySerifless        { false  SLAB-A-NONE }
@@ -181,12 +167,9 @@ glyph-block Letter-Latin-Upper-AE-OE : begin
 	select-variant 'AE/EHalf' (follow -- 'AE/EHalf')
 	select-variant 'smcpAE/AHalf' (follow -- 'A')
 	select-variant 'smcpAE/EHalf' (follow -- 'AE/EHalf')
-	select-variant 'cyrl/Yae/left'
 
 	derive-composites "AE" 0xC6 'AE/AHalf' 'AE/EHalf'
 	derive-composites "smcpAE" 0x1D01 'smcpAE/AHalf' 'smcpAE/EHalf'
-	derive-composites "cyrl/Yae" 0x518 'cyrl/Yae/left' 'AE/EHalf'
-	alias 'cyrl/AE' 0x4D4 'AE'
 
 	define [OEShape top df slabKind] : glyph-proc
 		define eBarPos DesignParameters.upperEBarPos

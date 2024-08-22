@@ -100,21 +100,12 @@ glyph-block Symbol-Currency-Letter-Derived : begin
 	derive-composites 'currency/guaraniSign' 0x20B2 'G' 'longVStrokeOver'
 	derive-composites 'currency/cediSign' 0x20B5 'C' 'longVStrokeOver'
 
-	derive-composites 'currency/somSign' 0x20C0 'cyrl/es' 'sbRsbUnderlineBelow'
-
 glyph-block Symbol-Letter : begin
 	glyph-block-import CommonShapes
 	glyph-block-import Common-Derivatives
 	glyph-block-import Letter-Latin-X : XStrand
 	glyph-block-import Symbol-Geometric-Shared : UnicodeWeightGrade
 	glyph-block-import Letter-Shared-Shapes : FlatHookDepth
-
-	alias 'eulerConst' 0x2107 'latn/Epsilon'
-	alias 'scruple' 0x2108 'cyrl/E'
-
-
-	alias 'Ohm' 0x2126 'grek/Omega'
-	turned 'Mho' 0x2127 'Ohm' Middle (CAP / 2)
 
 	alias 'letterLike/kelvinSign' 0x212A 'K'
 
@@ -312,14 +303,6 @@ glyph-block Symbol-Letter : begin
 				flat (left  - LongJut / 2 + OX) (CAP * (1/3)) [widths.center df.mvs]
 				curl (right + LongJut / 2 - OX) (CAP * (2/3))
 
-glyph-block Symbol-Cyrl-Thousands : begin
-	glyph-block-import CommonShapes
-	create-glyph 'cyrlThousandsSign' 0x482 : glyph-proc
-		define fine : AdviceStroke 3
-		include : ExtLineCenter (-0.1) fine SB Descender RightSB XH
-		include : ExtLineCenter (-0.1) fine [mix SB RightSB 0.1] [mix Descender XH 0.8] [mix SB RightSB 1.1] [mix Descender XH 0.5]
-		include : ExtLineCenter (-0.1) fine [mix SB RightSB (-0.1)] [mix Descender XH 0.5] [mix SB RightSB 0.9] [mix Descender XH 0.2]
-
 glyph-block Symbol-Letter-Phonetic : begin
 	glyph-block-import CommonShapes
 	glyph-block-import Mark-Above : BreveShape InvBreveShape
@@ -340,20 +323,3 @@ glyph-block Symbol-Letter-Phonetic : begin
 			g4.down.start (SB + OX) XH [heading Downward]
 			arch.lhs (XH - archHeight)
 			g4.up.end (RightSB - OX) XH [heading Upward]
-
-	create-glyph 'cyrlInvLowKavykaWithKavyka' 0x2E46 : glyph-proc
-		include : MarkSet.e
-
-		include : BreveShape
-			xMiddle -- Middle
-			width   -- markExtend * 3.0
-			top     -- XH
-			bottom  -- XH - AccentHeight
-			hs      -- markHalfStroke
-
-		include : InvBreveShape
-			xMiddle -- Middle
-			width   -- markExtend * 3.0
-			top     -- AccentHeight
-			bottom  -- 0
-			hs      -- markHalfStroke

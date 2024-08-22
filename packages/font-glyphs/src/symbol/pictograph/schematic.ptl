@@ -63,11 +63,6 @@ glyph-block Symbol-Pictograph-Schematic : for-width-kinds WideWidth4 : begin
 				ApparentTranslate 0 (Geom.Size / 2)
 				refer-glyph : MangleName 'segment'
 
-	do "Fuse"
-		create-glyph [MangleName 'fuse'] [MangleUnicode 0x23DB] : glyph-proc
-			include [refer-glyph : MangleName : NameUni 0x2500] AS_BASE ALSO_METRICS
-			include : refer-glyph : MangleName 'whiteHoriRectangle'
-
 	do "Earth Ground"
 		create-glyph [MangleName 'earthGround'] [MangleUnicode 0x23DA] : glyph-proc
 			set-width MosaicWidth
@@ -300,13 +295,6 @@ glyph-block Symbol-Pictograph-Schematic : for-width-kinds WideWidth4 : begin
 				corner (arrowCx - tipDx) (arrowCy + tipDy)
 				corner (arrowCx + tipDx - baseDx) (arrowCy - tipDy - baseDy)
 				corner (arrowCx + tipDx + baseDx) (arrowCy - tipDy + baseDy)
-
-	do "Receptacle"
-		create-glyph [MangleName 'receptacle'] [MangleUnicode 0x1CC12] : glyph-proc
-			set-width MosaicWidth
-			include : ForceUpright
-			include : refer-glyph : MangleName : NameUni 0x1FBDB
-			include : refer-glyph : MangleName : NameUni 0x2576
 
 	do "Capacitor"
 		define capacitorSize Geom.Size

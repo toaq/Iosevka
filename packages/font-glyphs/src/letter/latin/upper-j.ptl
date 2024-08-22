@@ -145,8 +145,6 @@ glyph-block Letter-Latin-Upper-J : begin
 	select-variant 'J/noDescend' (shapeFrom -- 'J')
 	link-reduced-variant 'J/sansSerif' 'J' MathSansSerif
 	select-variant 'smcpJ' 0x1D0A (follow -- 'J')
-	alias 'cyrl/Je' 0x408 'J'
-	alias 'grek/Yot' 0x37F 'J'
 	select-variant 'JCurlyTail' 0xA7B2
 
 	create-glyph 'mathbb/J' 0x1D541 : glyph-proc
