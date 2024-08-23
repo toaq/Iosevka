@@ -1787,6 +1787,7 @@ descriptionAffix = "standard, straight body"
 selectorAffix.W = "straight"
 selectorAffix."W/sansSerif" = "straight"
 selectorAffix.WHookTop = "straight"
+selectorAffix.VY = "straight"
 
 [prime.capital-w.variants-buildup.stages.body.curly]
 rank = 2
@@ -1794,6 +1795,7 @@ descriptionAffix = "curly body"
 selectorAffix.W = "curly"
 selectorAffix."W/sansSerif" = "curly"
 selectorAffix.WHookTop = "curly"
+selectorAffix.VY = "curly"
 
 [prime.capital-w.variants-buildup.stages.body.straight-flat-top]
 rank = 3
@@ -1801,6 +1803,7 @@ descriptionAffix = "straight body shape that the middle is forced to be aligned 
 selectorAffix.W = "straightFlatTop"
 selectorAffix."W/sansSerif" = "straightFlatTop"
 selectorAffix.WHookTop = "straightFlatTop"
+selectorAffix.VY = "straightFlatTop"
 
 [prime.capital-w.variants-buildup.stages.body.straight-double-v]
 rank = 4
@@ -1808,6 +1811,7 @@ descriptionAffix = "body shape like double V"
 selectorAffix.W = "straightDoubleV"
 selectorAffix."W/sansSerif" = "straightDoubleV"
 selectorAffix.WHookTop = "straightDoubleV"
+selectorAffix.VY = "straightDoubleV"
 
 [prime.capital-w.variants-buildup.stages.body.straight-asymmetric]
 rank = 5
@@ -1815,6 +1819,7 @@ descriptionAffix = "asymmetric shape"
 selectorAffix.W = "straightAsymmetric"
 selectorAffix."W/sansSerif" = "straightAsymmetric"
 selectorAffix.WHookTop = "straightAsymmetric"
+selectorAffix.VY = "straightAsymmetric"
 
 [prime.capital-w.variants-buildup.stages.body.straight-vertical-sides]
 rank = 6
@@ -1822,6 +1827,7 @@ descriptionAffix = "straight body shape with vertical sides"
 selectorAffix.W = "straightVerticalSides"
 selectorAffix."W/sansSerif" = "straightVerticalSides"
 selectorAffix.WHookTop = "straightVerticalSides"
+selectorAffix.VY = "straightVerticalSides"
 
 [prime.capital-w.variants-buildup.stages.body.rounded-vertical-sides]
 rank = 7
@@ -1830,6 +1836,7 @@ descriptionAffix = "rounded body shape with vertical sides"
 selectorAffix.W = "roundedVerticalSides"
 selectorAffix."W/sansSerif" = "roundedVerticalSides"
 selectorAffix.WHookTop = "roundedVerticalSides"
+selectorAffix.VY = "roundedVerticalSides"
 
 [prime.capital-w.variants-buildup.stages.serifs.serifless]
 rank = 1
@@ -1838,6 +1845,7 @@ descriptionJoiner = "without"
 selectorAffix.W = "serifless"
 selectorAffix."W/sansSerif" = "serifless"
 selectorAffix.WHookTop = "serifless"
+selectorAffix.VY = "serifless"
 
 [prime.capital-w.variants-buildup.stages.serifs.motion-serifed]
 rank = 2
@@ -1845,6 +1853,7 @@ descriptionAffix = "motion serifs"
 selectorAffix.W = "motionSerifed"
 selectorAffix."W/sansSerif" = "serifless"
 selectorAffix.WHookTop = "motionSerifed"
+selectorAffix.VY = "motionSerifed"
 
 [prime.capital-w.variants-buildup.stages.serifs.serifed]
 rank = 3
@@ -1852,6 +1861,7 @@ descriptionAffix = "serifs"
 selectorAffix.W = "serifed"
 selectorAffix."W/sansSerif" = "serifless"
 selectorAffix.WHookTop = "serifed"
+selectorAffix.VY = "serifed"
 
 
 
@@ -4616,6 +4626,7 @@ descriptionAffix = "standard, straight body"
 selectorAffix.w = "straight"
 selectorAffix."w/sansSerif" = "straight"
 selectorAffix.wHookTop = "straight"
+selectorAffix.vy = "straight"
 
 [prime.w.variants-buildup.stages.body.curly]
 rank = 2
@@ -4624,6 +4635,7 @@ descriptionAffix = "curly body"
 selectorAffix.w = "curly"
 selectorAffix."w/sansSerif" = "curly"
 selectorAffix.wHookTop = "curly"
+selectorAffix.vy = "curly"
 
 [prime.w.variants-buildup.stages.body.straight-vertical-sides]
 rank = 3
@@ -4632,6 +4644,7 @@ descriptionAffix = "straight body shape with vertical sides"
 selectorAffix.w = "straightVerticalSides"
 selectorAffix."w/sansSerif" = "straightVerticalSides"
 selectorAffix.wHookTop = "straightVerticalSides"
+selectorAffix.vy = "straightVerticalSides"
 
 [prime.w.variants-buildup.stages.body.rounded-vertical-sides]
 rank = 4
@@ -4641,6 +4654,7 @@ descriptionAffix = "rounded body shape with vertical sides"
 selectorAffix.w = "roundedVerticalSides"
 selectorAffix."w/sansSerif" = "roundedVerticalSides"
 selectorAffix.wHookTop = "roundedVerticalSides"
+selectorAffix.vy = "roundedVerticalSides"
 
 [prime.w.variants-buildup.stages.body.straight-flat-top]
 rank = 5
@@ -4649,6 +4663,7 @@ descriptionAffix = "straight body shape that the middle is forced to be aligned 
 selectorAffix.w = "straightFlatTop"
 selectorAffix."w/sansSerif" = "straightFlatTop"
 selectorAffix.wHookTop = "straightFlatTop"
+selectorAffix.vy = "straightFlatTop"
 
 [prime.w.variants-buildup.stages.body.straight-double-v]
 rank = 6
@@ -4657,6 +4672,7 @@ descriptionAffix = "body shape like double V"
 selectorAffix.w = "straightDoubleV"
 selectorAffix."w/sansSerif" = "straightDoubleV"
 selectorAffix.wHookTop = "straightDoubleV"
+selectorAffix.vy = "straightDoubleV"
 
 [prime.w.variants-buildup.stages.body.straight-asymmetric]
 rank = 7
@@ -4665,6 +4681,7 @@ descriptionAffix = "asymmetric shape"
 selectorAffix.w = "straightAsymmetric"
 selectorAffix."w/sansSerif" = "straightAsymmetric"
 selectorAffix.wHookTop = "straightAsymmetric"
+selectorAffix.vy = "straightAsymmetric"
 
 [prime.w.variants-buildup.stages.body.cursive]
 rank = 8
@@ -4673,6 +4690,7 @@ descriptionAffix = "cursive shape"
 selectorAffix.w = "cursive"
 selectorAffix."w/sansSerif" = "cursive"
 selectorAffix.wHookTop = "cursive"
+selectorAffix.vy = "cursive"
 
 [prime.w.variants-buildup.stages.serifs.serifless]
 rank = 1
@@ -4681,6 +4699,7 @@ descriptionJoiner = "without"
 selectorAffix.w = "serifless"
 selectorAffix."w/sansSerif" = "serifless"
 selectorAffix.wHookTop = "serifless"
+selectorAffix.vy = "serifless"
 
 [prime.w.variants-buildup.stages.serifs.motion-serifed]
 rank = 2
@@ -4689,6 +4708,7 @@ descriptionAffix = "motion serifs"
 selectorAffix.w = "motionSerifed"
 selectorAffix."w/sansSerif" = "serifless"
 selectorAffix.wHookTop = "motionSerifed"
+selectorAffix.vy = "motionSerifed"
 
 [prime.w.variants-buildup.stages.serifs.serifed]
 rank = 3
@@ -4696,6 +4716,7 @@ descriptionAffix = "serifs"
 selectorAffix.w = "serifed"
 selectorAffix."w/sansSerif" = "serifless"
 selectorAffix.wHookTop = "serifed"
+selectorAffix.vy = "serifed"
 
 
 

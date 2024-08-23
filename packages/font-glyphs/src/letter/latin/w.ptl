@@ -132,7 +132,7 @@ glyph-block Letter-Latin-W : begin
 		return : object xBot1 xBot2 strokeOuter strokeOuterCr fineOuter fineOuterCr fineInner fineInnerCr fineInnerCrTop fineHeight wMidHeight xRight1 xLeft2 wCoCr curlyStraightSegLength
 
 	### W and w
-	define [WShapeImpl df top bodyType slabType] : glyph-proc
+	define [WShapeImpl df top bodyType slabType tail] : glyph-proc
 		local dim : WDim df top bodyType
 
 		include : tagged 'strokeDown1' : match bodyType
@@ -199,6 +199,11 @@ glyph-block Letter-Latin-W : begin
 				flat (dim.xLeft2 + shiftT) dim.wMidHeight [widths.center.heading dim.fineInnerCrTop Downward]
 				curl (dim.xBot2 - shiftB)   0             [widths.center.heading dim.fineOuterCr    Downward]
 
+		if tail : include : tagged 'tail1' : dispiro
+			widths.center (dim.xBot2 + [HSwToV : 0.5 * dim.wCoCr] - (dim.xBot2 - shiftB - dim.fineOuterCr / 4))
+			flat (dim.xBot2) 0 [heading Downward]
+			arcvh
+			g2 (0.75 * dim.xBot1 + 0.25 * dim.xBot2) Descender [widths.rhs.heading dim.strokeOuter Leftward]
 
 		local oSlabPos : if bodyType (O * 2) 0
 
@@ -221,8 +226,8 @@ glyph-block Letter-Latin-W : begin
 					HSerif.mtAsymmetric (df.leftSB + [HSwToV : 0.5 * dim.strokeOuter]) dim.wMidHeight jut jut
 					HSerif.mtAsymmetric dim.xLeft2 dim.wMidHeight jut jut
 
-	define [WHooktopShape df top bodyType serifsType] : glyph-proc
-		include : WShapeImpl df top bodyType serifsType
+	define [WHooktopShape df top bodyType serifsType tail] : glyph-proc
+		include : WShapeImpl df top bodyType serifsType tail
 
 		local dim : WDim df top bodyType
 
@@ -243,7 +248,7 @@ glyph-block Letter-Latin-W : begin
 			yDepth -- (-TailY)
 			sw -- dim.strokeOuter
 
-	define [WVertSides df top bodyType slabType] : glyph-proc
+	define [WVertSides df top bodyType slabType tail] : glyph-proc
 		include : new-glyph : glyph-proc
 			include : MShape top df (form -- 2) (slabType -- 0)
 			include : FlipAround (df.width / 2) (top / 2)
@@ -255,8 +260,8 @@ glyph-block Letter-Latin-W : begin
 			[Just SERIFS-MOTION] : begin sf.lt.outer
 			___                  : glyph-proc
 
-	define [WVSHookTopShape df top bodyType serifsType] : glyph-proc
-		include : WVertSides df top bodyType serifsType
+	define [WVSHookTopShape df top bodyType serifsType tail] : glyph-proc
+		include : WVertSides df top bodyType serifsType tail
 
 		# Eject unnecessary contours
 		eject-contour 'strokeLeftBar'
@@ -270,7 +275,7 @@ glyph-block Letter-Latin-W : begin
 
 		include : VerticalHook.r df.rightSB (top - TailY - HalfStroke - O) TailX (-TailY)
 
-	define [WRounded df top bodyType slabType] : glyph-proc
+	define [WRounded df top bodyType slabType tail] : glyph-proc
 		include : new-glyph : glyph-proc
 			include : EarlessRoundedDoubleArchSmallMShape df top 0 (top * 0.4) 0
 			include : FlipAround (df.width / 2) (top / 2)
@@ -282,7 +287,7 @@ glyph-block Letter-Latin-W : begin
 			[Just SERIFS-MOTION] : begin sf.lt.outer
 			___                  : glyph-proc
 
-	define [WHookTopRounded df top bodyType slabType] : glyph-proc
+	define [WHookTopRounded df top bodyType slabType tail] : glyph-proc
 		include : new-glyph : glyph-proc
 			include : EarlessRoundedDoubleArchSmallMShape df top (TailY + HalfStroke + O) (top * 0.4) 0
 			include : FlipAround (df.width / 2) (top / 2)
@@ -296,7 +301,7 @@ glyph-block Letter-Latin-W : begin
 
 		include : VerticalHook.r df.rightSB (top - TailY - HalfStroke - O) TailX (-TailY) (sw -- df.mvs)
 
-	define [WCursiveImplImpl fHookTop df top bodyType slabType] : glyph-proc
+	define [WCursiveImplImpl fHookTop df top bodyType slabType tail] : glyph-proc
 		define fine : AdviceStroke 3.25 df.div
 		define mfine : fine * CThin
 		define x0 : mix df.leftSB df.rightSB 0.1
@@ -342,8 +347,8 @@ glyph-block Letter-Latin-W : begin
 			[Just SERIFS-MOTION]  : begin sf.lt.outer
 			___                   : glyph-proc
 
-	define [WCursiveImpl df top bodyType serifsType] : WCursiveImplImpl false df top bodyType serifsType
-	define [WHookTopCursive df top bodyType serifsType]  : WCursiveImplImpl true  df top bodyType serifsType
+	define [WCursiveImpl df top bodyType serifsType tail] : WCursiveImplImpl false df top bodyType serifsType tail
+	define [WHookTopCursive df top bodyType serifsType tail]  : WCursiveImplImpl true  df top bodyType serifsType tail
 
 	define WConfig : SuffixCfg.weave
 		# Body
@@ -371,31 +376,41 @@ glyph-block Letter-Latin-W : begin
 		create-glyph "W.\(suffix)" : glyph-proc
 			local df : include : DivFrame para.diversityM 3
 			include : df.markSet.capital
-			include : implT df CAP bodyType slabType
+			include : implT df CAP bodyType slabType false
 
 		create-glyph "w.\(suffix)" : glyph-proc
 			local df : include : DivFrame para.diversityM 3
 			include : df.markSet.e
-			include : implT df XH bodyType slabType
+			include : implT df XH bodyType slabType false
+
+		create-glyph "VY.\(suffix)" : glyph-proc
+			local df : include : DivFrame para.diversityM 3
+			include : df.markSet.capital
+			include : implT df CAP bodyType slabType true
+
+		create-glyph "vy.\(suffix)" : glyph-proc
+			local df : include : DivFrame para.diversityM 3
+			include : df.markSet.e
+			include : implT df XH bodyType slabType true
 
 		create-glyph "ww.\(suffix)": glyph-proc
 			local df : include : DivFrame 1 3
 			include : df.markSet.capital
 
 			local gap : CAP * 0.05
-			include : implT df (CAP / 2 - gap / 2) bodyType slabType
+			include : implT df (CAP / 2 - gap / 2) bodyType slabType false
 			include : ApparentTranslate 0 (CAP / 2 + gap)
-			include : implT df (CAP / 2 - gap / 2) bodyType slabType
+			include : implT df (CAP / 2 - gap / 2) bodyType slabType false
 
 		if hookTopImplT : create-glyph "WHookTop.\(suffix)" : glyph-proc
 			local df : include : DivFrame para.diversityM 3
 			include : df.markSet.capital
-			include : hookTopImplT df CAP bodyType slabType
+			include : hookTopImplT df CAP bodyType slabType false
 
 		if hookTopImplT : create-glyph "wHookTop.\(suffix)" : glyph-proc
 			local df : include : DivFrame para.diversityM 3
 			include : df.markSet.e
-			include : hookTopImplT df XH bodyType slabType
+			include : hookTopImplT df XH bodyType slabType false
 
 	select-variant 'W' 'W'
 	link-reduced-variant 'W/sansSerif' 'W' MathSansSerif
@@ -404,6 +419,8 @@ glyph-block Letter-Latin-W : begin
 	link-reduced-variant 'w/sansSerif' 'w' MathSansSerif
 	select-variant 'smcpW' 0x1D21 (shapeFrom -- 'w') (follow -- 'W')
 	select-variant 'ww' 0x2AC (follow -- 'w')
+	select-variant 'VY' 0xA760
+	select-variant 'vy' 0xA761
 	select-variant 'wHookTop' 0x2C73
 	CreateTurnedLetter 'turnw' 0x28D 'w' HalfAdvance (XH / 2)
 
