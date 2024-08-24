@@ -138,6 +138,8 @@ export : define [buildGlyphs para recursive] : begin
 	# run-glyph-module "./symbol/braille.mjs"
 	run-glyph-module "./symbol/ligation.mjs"
 
+	run-glyph-module "./derani/index.mjs"
+
 	# Auto-builds
 	if [not recursive] : begin
 		run-glyph-module "./auto-build/recursive-build.mjs"

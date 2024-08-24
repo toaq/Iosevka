@@ -1,0 +1,66 @@
+$$include '../meta/macros.ptl'
+
+import [mix linreg clamp fallback] from "@iosevka/util"
+
+glyph-module
+
+glyph-block Derani-Shared : begin
+	glyph-block-import Common-Derivatives : refer-glyph
+	glyph-block-import Common-Derivatives : derive-glyphs
+	define u XH
+	define ada ArchDepthA
+	define adb ArchDepthB
+	define l SB
+	define r RightSB
+	define middle : 0.5 * (l + r)
+
+	create-glyph 'saqseoq' 0xF16BA : glyph-proc
+		include : MarkSet.e
+		local d 0
+		include : dispiro
+			widths.lhs Stroke
+			g4 middle (u - O) [heading Leftward]
+			archv
+			flat (l + OX) (u - ada)
+			curl (l + OX) (d + adb)
+			arcvh
+			curl middle (d + O)
+			archv
+			flat (r - OX) (d + ada)
+			curl (r - OX) (u - adb)
+			arcvh
+			close
+
+	create-glyph 'cecoa' 0xF16B9 : glyph-proc
+		include : MarkSet.e
+		local d 0
+		include : dispiro
+			widths.lhs Stroke
+			g4 [mix l r 0.6] (u - O) [heading Leftward]
+			curl [mix l r 0.5] (u - O) [heading Leftward]
+			archv
+			flat (l + OX) (u - ada)
+			curl (l + OX) (d + adb)
+			arcvh
+			curl middle (d + O)
+			archv
+			flat (r - OX) (d + ada) [heading Upward]
+
+	create-glyph 'bubue' 0xF16B2 : glyph-proc
+		include : MarkSet.e
+		local d 0
+		include : dispiro
+			widths.rhs Stroke
+			g4 (l + OX) (u - ada) [heading Upward]
+			arcvh
+			curl middle (u - O)
+			archv
+			flat (r + OX) (u - ada)
+			curl (r + OX) (d + ada)
+			arcvh
+			flat middle (d + O) [heading Leftward]
+			curl [mix l r 0.4] (d + O) [heading Leftward]
+
+	derive-glyphs 'kikue' 0xF16C4 "cecoa" : function [src gr] : glyph-proc
+		include [refer-glyph src] AS_BASE ALSO_METRICS
+		include [refer-glyph 'dotBelow']

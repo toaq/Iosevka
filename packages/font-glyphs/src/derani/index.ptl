@@ -1,0 +1,7 @@
+$$include '../meta/macros.ptl'
+
+glyph-module
+
+export : define [apply] : begin
+	define $$Capture$$ this
+	run-glyph-module "./shared.mjs"
