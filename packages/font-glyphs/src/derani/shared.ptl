@@ -5,8 +5,9 @@ import [mix linreg clamp fallback] from "@iosevka/util"
 glyph-module
 
 glyph-block Derani-Shared : begin
-	glyph-block-import Common-Derivatives : refer-glyph
-	glyph-block-import Common-Derivatives : derive-glyphs
+	glyph-block-import CommonShapes
+	glyph-block-import Common-Derivatives
+	glyph-block-import Letter-Shared-Shapes
 	define u XH
 	define ada ArchDepthA
 	define adb ArchDepthB
@@ -51,12 +52,12 @@ glyph-block Derani-Shared : begin
 		local d 0
 		include : dispiro
 			widths.rhs Stroke
-			g4 (l + OX) (u - ada) [heading Upward]
+			g4 (l + OX) (u - Hook) [heading Upward]
 			arcvh
 			curl middle (u - O)
 			archv
-			flat (r + OX) (u - ada)
-			curl (r + OX) (d + ada)
+			flat (r - OX) (u - ada)
+			curl (r - OX) (d + adb)
 			arcvh
 			flat middle (d + O) [heading Leftward]
 			curl [mix l r 0.4] (d + O) [heading Leftward]
@@ -64,3 +65,31 @@ glyph-block Derani-Shared : begin
 	derive-glyphs 'kikue' 0xF16C4 "cecoa" : function [src gr] : glyph-proc
 		include [refer-glyph src] AS_BASE ALSO_METRICS
 		include [refer-glyph 'dotBelow']
+
+	create-glyph 'rairua' 0xF16BB : glyph-proc
+		local df : include : DivFrame para.diversityM 3
+		local l df.leftSB
+		local r df.rightSB
+		local a (ada)
+		local sw (df.mvs)
+		define fine ShoulderFine
+		include : df.markSet.e
+		include : HBar.b ([mix l r 0.5]) r 0
+		include : union
+			dispiro
+				widths.rhs sw
+				flat (l + OX) (u - Hook) [heading Upward]
+				arch.rhs u (sw -- sw)
+				flat ([mix l r 0.5] + sw / 2) (u - a)
+				curl ([mix l r 0.5] + sw / 2) 0 [heading Downward]
+			dispiro
+				flat ([mix l r 0.5] + sw / 2 - [HSwToV fine]) (u - a - 2) [widths.rhs fine]
+				curl ([mix l r 0.5] + sw / 2 - [HSwToV fine]) (u - a)
+				arch.rhs u (sw -- sw) (swBefore -- fine)
+				flat r (u - adb) [widths.rhs sw]
+				curl r Descender
+
+		if SLAB : begin
+			include : HSerif.lb ([mix l r 0.5] - sw / 2) 0 SideJut
+			include : HSerif.lb r Descender SideJut
+			include : HSerif.rb r Descender SideJut
