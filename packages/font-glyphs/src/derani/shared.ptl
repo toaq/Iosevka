@@ -67,29 +67,76 @@ glyph-block Derani-Shared : begin
 		include [refer-glyph 'dotBelow']
 
 	create-glyph 'rairua' 0xF16BB : glyph-proc
-		local df : include : DivFrame para.diversityM 3
-		local l df.leftSB
-		local r df.rightSB
-		local a (ada)
-		local sw (df.mvs)
+		local a ada
+		local sw Stroke
 		define fine ShoulderFine
-		include : df.markSet.e
-		include : HBar.b ([mix l r 0.5]) r 0
+		include : MarkSet.e
+		include : HBar.b l r 0
+		include : VBar.l l 0 u
 		include : union
 			dispiro
-				widths.rhs sw
-				flat (l + OX) (u - Hook) [heading Upward]
-				arch.rhs u (sw -- sw)
-				flat ([mix l r 0.5] + sw / 2) (u - a)
-				curl ([mix l r 0.5] + sw / 2) 0 [heading Downward]
-			dispiro
-				flat ([mix l r 0.5] + sw / 2 - [HSwToV fine]) (u - a - 2) [widths.rhs fine]
-				curl ([mix l r 0.5] + sw / 2 - [HSwToV fine]) (u - a)
+				flat (l + [HSwToV sw] - [HSwToV fine]) (u - a - 2) [widths.rhs fine]
+				curl (l + [HSwToV sw] - [HSwToV fine]) (u - a)
 				arch.rhs u (sw -- sw) (swBefore -- fine)
 				flat r (u - adb) [widths.rhs sw]
 				curl r Descender
 
 		if SLAB : begin
-			include : HSerif.lb ([mix l r 0.5] - sw / 2) 0 SideJut
-			include : HSerif.lb r Descender SideJut
-			include : HSerif.rb r Descender SideJut
+			include : HSerif.lt l u SideJut
+			include : HSerif.lb l 0 SideJut
+			include : HSerif.lb (r - [HSwToV HalfStroke]) Descender MidJutSide
+			include : HSerif.rb (r - [HSwToV HalfStroke]) Descender Jut
+
+	create-glyph 'mamei_coda' 0xF16B1 : glyph-proc
+		local a ada
+		local sw Stroke
+		define fine ShoulderFine
+		include : MarkSet.e
+		include : HBar.b l r 0
+		include : VBar.l l 0 u
+		include : union
+			dispiro
+				flat (l + [HSwToV sw] - [HSwToV fine]) (u - a - 2) [widths.rhs fine]
+				curl (l + [HSwToV sw] - [HSwToV fine]) (u - a)
+				arch.rhs u (sw -- sw) (swBefore -- fine)
+				flat r (u - adb) [widths.rhs sw]
+				curl r 0
+
+		if SLAB : begin
+			include : HSerif.lt l u SideJut
+			include : HSerif.lb l 0 SideJut
+			include : HSerif.rb (r - [HSwToV HalfStroke]) 0 Jut
+
+	create-glyph 'mamei' 0xF16B0 : glyph-proc
+		local df : include : DivFrame para.diversityM 3
+		local l df.leftSB
+		local r df.rightSB
+		local a ada
+		local sw df.mvs
+		define fine ShoulderFine
+		include : MarkSet.e
+		include : HBar.b l r 0
+		include : VBar.l l 0 u
+		include : union
+			dispiro
+				flat (l + [HSwToV sw] - [HSwToV fine]) (u - a - 2) [widths.rhs fine]
+				curl (l + [HSwToV sw] - [HSwToV fine]) (u - a)
+				arch.rhs u (sw -- sw) (swBefore -- fine)
+				flat ([mix l r 0.5] + [HSwToV sw] / 2) (u - adb) [widths.rhs sw]
+				curl ([mix l r 0.5] + [HSwToV sw] / 2) 0
+			dispiro
+				flat ([mix l r 0.5] + [HSwToV sw] / 2 - [HSwToV fine]) (u - a - 2) [widths.rhs fine]
+				curl ([mix l r 0.5] + [HSwToV sw] / 2 - [HSwToV fine]) (u - a)
+				arch.rhs u (sw -- sw) (swBefore -- fine)
+				flat r (u - adb) [widths.rhs sw]
+				curl r Descender
+
+		if SLAB : begin
+			include : HSerif.lt l u SideJut
+			include : HSerif.lb l 0 SideJut
+			include : HSerif.rb (r - [HSwToV HalfStroke]) 0 Jut
+
+	derive-glyphs 'laoliq' 0xF16BC "mamei_coda" : function [src gr] : glyph-proc
+		include [refer-glyph src] AS_BASE ALSO_METRICS
+		include [refer-glyph 'dotBelow']
+
