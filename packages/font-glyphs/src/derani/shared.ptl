@@ -116,7 +116,7 @@ glyph-block Derani-Shared : begin
 		define fine ShoulderFine
 		include : MarkSet.e
 		include : HBar.b l r 0
-		include : VBar.l l 0 u
+		include : VBar.l l 0 u sw
 		include : union
 			dispiro
 				flat (l + [HSwToV sw] - [HSwToV fine]) (u - a - 2) [widths.rhs fine]
@@ -134,7 +134,7 @@ glyph-block Derani-Shared : begin
 		if SLAB : begin
 			include : HSerif.lt l u SideJut
 			include : HSerif.lb l 0 SideJut
-			include : HSerif.rb (r - [HSwToV HalfStroke]) 0 Jut
+			include : HSerif.rb (r - [HSwToV HalfStroke]) Descender Jut
 
 	derive-glyphs 'laoliq' 0xF16BC "mamei_coda" : function [src gr] : glyph-proc
 		include [refer-glyph src] AS_BASE ALSO_METRICS
