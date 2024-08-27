@@ -133,10 +133,33 @@ glyph-block Derani-Shared : begin
 
 		if SLAB : begin
 			include : HSerif.lt l u SideJut
-			include : HSerif.lb l 0 SideJut
+			include : HSerif.lb (r - [HSwToV HalfStroke]) Descender MidJutSide
 			include : HSerif.rb (r - [HSwToV HalfStroke]) Descender Jut
 
 	derive-glyphs 'laoliq' 0xF16BC "mamei_coda" : function [src gr] : glyph-proc
 		include [refer-glyph src] AS_BASE ALSO_METRICS
 		include [refer-glyph 'dotBelow']
 
+	derive-glyphs 'pipoq' 0xF16B3 'saqseoq' : function [src gr] : glyph-proc
+		include [refer-glyph src] AS_BASE ALSO_METRICS
+		include : VBar.r (r - OX) [mix u 0 0.5] Descender Stroke
+		if SLAB : begin
+			include : HSerif.lb (r - OX - [HSwToV HalfStroke]) Descender MidJutSide
+			include : HSerif.rb (r - OX - [HSwToV HalfStroke]) Descender Jut
+
+	create-glyph 'fofuaq' 0xF16B4 : glyph-proc
+		include : MarkSet.e
+		local d 0
+		include : dispiro
+			widths.rhs Stroke
+			g4 (l + OX) (u - Hook) [heading Upward]
+			arcvh
+			curl middle (u - O)
+			archv
+			flat r (u - ada)
+			curl r (d + adb)
+			curl r Descender
+
+		if SLAB : begin
+			include : HSerif.lb (r - [HSwToV HalfStroke]) Descender MidJutSide
+			include : HSerif.rb (r - [HSwToV HalfStroke]) Descender Jut
