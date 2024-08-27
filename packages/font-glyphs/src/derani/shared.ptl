@@ -203,3 +203,21 @@ glyph-block Derani-Shared : begin
 	derive-glyphs 'jujuo' 0xF16BE 'gugui' : function [src gr] : glyph-proc
 		include [refer-glyph src] AS_BASE ALSO_METRICS
 		include : FlipAround [mix l r 0.5] (XH / 2)
+
+	alias 'oaomo' 0xF16C5 'interpunct'
+
+# TODO:
+#
+# F16B5 nanaq
+# F16B6 dudeo
+# F16B7 titieq
+# F16B8 zozeo
+# F16BD nhanhoq
+# F16BF chichao
+# F16C0 shoshia
+# F16C1 veva
+# F16C2 aqaq
+# F16C6 hehaq
+# tones
+# punctuation
+# cartouches
