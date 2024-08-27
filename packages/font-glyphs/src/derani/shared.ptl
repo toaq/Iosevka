@@ -87,11 +87,12 @@ glyph-block Derani-Shared : begin
 			include : HSerif.lb (r - [HSwToV HalfStroke]) Descender MidJutSide
 			include : HSerif.rb (r - [HSwToV HalfStroke]) Descender Jut
 
-	create-glyph 'mamei_coda' 0xF16B1 : glyph-proc
+	create-glyph 'laoliq' 0xF16BC : glyph-proc
 		local a ada
 		local sw Stroke
 		define fine ShoulderFine
 		include : MarkSet.e
+		include [refer-glyph 'dotBelow']
 		include : HBar.b l r 0
 		include : VBar.l l 0 u
 		include : union
@@ -106,6 +107,25 @@ glyph-block Derani-Shared : begin
 			include : HSerif.lt l u SideJut
 			include : HSerif.lb l 0 SideJut
 			include : HSerif.rb (r - [HSwToV HalfStroke]) 0 Jut
+
+	create-glyph 'mamei_coda' 0xF16B1 : glyph-proc
+		local a ada
+		local sw Stroke
+		define fine ShoulderFine
+		include : MarkSet.e
+		# include : HBar.b l r 0
+		include : VBar.l l 0 u
+		include : union
+			dispiro
+				flat (l + [HSwToV sw] - [HSwToV fine]) (u - a - 2) [widths.rhs fine]
+				curl (l + [HSwToV sw] - [HSwToV fine]) (u - a)
+				arch.rhs u (sw -- sw) (swBefore -- fine)
+				g2 r (u - adb) [widths.rhs sw]
+				curl (l + [HSwToV sw]) 0 [heading Leftward]
+
+		if SLAB : begin
+			include : HSerif.lt l u SideJut
+			include : HSerif.lb l 0 SideJut
 
 	create-glyph 'mamei' 0xF16B0 : glyph-proc
 		local df : include : DivFrame para.diversityM 3
@@ -135,10 +155,6 @@ glyph-block Derani-Shared : begin
 			include : HSerif.lt l u SideJut
 			include : HSerif.lb (r - [HSwToV HalfStroke]) Descender MidJutSide
 			include : HSerif.rb (r - [HSwToV HalfStroke]) Descender Jut
-
-	derive-glyphs 'laoliq' 0xF16BC "mamei_coda" : function [src gr] : glyph-proc
-		include [refer-glyph src] AS_BASE ALSO_METRICS
-		include [refer-glyph 'dotBelow']
 
 	derive-glyphs 'pipoq' 0xF16B3 'saqseoq' : function [src gr] : glyph-proc
 		include [refer-glyph src] AS_BASE ALSO_METRICS
