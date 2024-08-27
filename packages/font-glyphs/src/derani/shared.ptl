@@ -193,10 +193,10 @@ glyph-block Derani-Shared : begin
 			arcvh
 			curl ([mix l r 0.3333] + 0.25 * Stroke) d
 			archv
-			flat ([mix l r 0.6666] + HalfStroke) (d + adb) [heading Upward]
+			flat ([mix l r 0.6666] + HalfStroke) (d + ada) [heading Upward]
 		include : dispiro
 			widths.lhs Stroke
-			curl ([mix l r 0.6666] - HalfStroke) (d + adb) [heading Downward]
+			curl ([mix l r 0.6666] - HalfStroke) (d + ada) [heading Downward]
 			arcvh
 			curl r d [heading Rightward]
 
@@ -206,9 +206,27 @@ glyph-block Derani-Shared : begin
 
 	alias 'oaomo' 0xF16C5 'interpunct'
 
+	create-glyph 'nanaq' 0xF16B5 : glyph-proc
+		include : MarkSet.e
+		local d 0
+		local h [mix (u - Stroke) (d + Stroke) 0.2]
+		include : dispiro
+			widths.lhs Stroke
+			flat r (u) [heading Leftward]
+			curl [mix l r 0.5] (u) [heading Leftward]
+			archv
+			flat (l + OX) (u - ada)
+			curl (l + OX) (d + adb)
+			arcvh
+			curl ([mix l r 0.5]) d [heading Rightward]
+			archv
+			# flat (r - OX) (d + ada)
+			g2 (r - OX) [mix h d 0.5]
+			arcvh
+			flat [mix l r 0.5] h [heading Leftward]
+
 # TODO:
 #
-# F16B5 nanaq
 # F16B6 dudeo
 # F16B7 titieq
 # F16B8 zozeo
