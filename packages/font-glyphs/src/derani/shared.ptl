@@ -218,12 +218,28 @@ glyph-block Derani-Shared : begin
 			flat (l + OX) (u - ada)
 			curl (l + OX) (d + adb)
 			arcvh
-			curl ([mix l r 0.5]) d [heading Rightward]
+			curl ([mix l r 0.5]) (d + O) [heading Rightward]
 			archv
 			# flat (r - OX) (d + ada)
 			g2 (r - OX) [mix h d 0.5]
 			arcvh
 			flat [mix l r 0.5] h [heading Leftward]
+
+	create-glyph 'chichao' 0xF16BF : glyph-proc
+		include : MarkSet.e
+		local d 0
+		include : VSerif.dr r u VJut
+		include : dispiro
+			widths.lhs Stroke
+			flat r u [heading Leftward]
+			curl [mix l r 0.5] u [heading Leftward]
+			archv
+			flat (l + OX) (u - ada)
+			curl (l + OX) (d + adb)
+			arcvh
+			curl middle (d + O)
+			archv
+			flat (r - OX) (d + adb) [heading Upward]
 
 # TODO:
 #
@@ -231,7 +247,6 @@ glyph-block Derani-Shared : begin
 # F16B7 titieq
 # F16B8 zozeo
 # F16BD nhanhoq
-# F16BF chichao
 # F16C0 shoshia
 # F16C1 veva
 # F16C2 aqaq
