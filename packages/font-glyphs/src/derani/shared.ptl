@@ -27,7 +27,7 @@ glyph-block Derani-Shared : begin
 			arcvh
 			curl middle (d + O)
 			archv
-			flat (r - OX) (d + ada)
+			flat (r - OX) (d + adb)
 			curl (r - OX) (u - adb)
 			arcvh
 			close
@@ -45,7 +45,7 @@ glyph-block Derani-Shared : begin
 			arcvh
 			curl middle (d + O)
 			archv
-			flat (r - OX) (d + ada) [heading Upward]
+			flat (r - OX) (d + adb) [heading Upward]
 
 	create-glyph 'bubue' 0xF16B2 : glyph-proc
 		include : MarkSet.e
@@ -163,3 +163,25 @@ glyph-block Derani-Shared : begin
 		if SLAB : begin
 			include : HSerif.lb (r - [HSwToV HalfStroke]) Descender MidJutSide
 			include : HSerif.rb (r - [HSwToV HalfStroke]) Descender Jut
+
+	create-glyph 'gugui' 0xF16C3 : glyph-proc
+		include : MarkSet.e
+		local d 0
+		include : dispiro
+			widths.lhs Stroke
+			g4 [mix l r 0.7] (u - O) [heading Leftward]
+			curl [mix l r 0.5] (u - O) [heading Leftward]
+			archv
+			flat (l + OX) (u - ada)
+			curl (l + OX) (d + adb)
+			arcvh
+			curl ([mix l r 0.3333] + 0.25 * Stroke) d
+			archv
+			flat ([mix l r 0.6666] + HalfStroke) (d + adb) [heading Upward]
+		include : dispiro
+			widths.lhs Stroke
+			curl ([mix l r 0.6666] - HalfStroke) (d + adb) [heading Downward]
+			arcvh
+			curl r d [heading Rightward]
+
+
