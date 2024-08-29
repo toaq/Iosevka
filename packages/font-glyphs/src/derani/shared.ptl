@@ -134,7 +134,7 @@ glyph-block Derani-Shared : begin
 		local a ada
 		local sw df.mvs
 		define fine ShoulderFine
-		include : MarkSet.e
+		include : df.markSet.e
 		include : HBar.b l r 0
 		include : VBar.l l 0 u sw
 		include : union
@@ -251,6 +251,5 @@ glyph-block Derani-Shared : begin
 # F16C1 veva
 # F16C2 aqaq
 # F16C6 hehaq
-# tones
 # punctuation
 # cartouches

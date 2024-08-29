@@ -760,6 +760,32 @@ glyph-block Mark-Above : begin
 	alias 'graveToneAbove' 0x340 'graveAbove'
 	alias 'acuteToneAbove' 0x341 'acuteAbove'
 
+	create-glyph 'deraniRisingTone' 0xF16CA : glyph-proc
+		set-width 0
+		include : StdAnchors.medium
+		include : dispiro
+			widths.center markStroke
+			flat (markMiddle - markExtend) (aboveMarkBot)
+			curl (markMiddle + markExtend) (aboveMarkTop)
+
+	create-glyph 'deraniLowGlottalTone' 0xF16CB : glyph-proc
+		set-width 0
+		include : StdAnchors.medium
+		include : dispiro
+			curl (markMiddle - markExtend) (aboveMarkBot) [widths.center.heading markStroke Upward]
+			arcvh
+			g4 markMiddle (aboveMarkMid + markFine)
+			archv
+			curl (markMiddle + markExtend) (aboveMarkTop + markFine)
+
+	create-glyph 'deraniRisingFallingTone' 0xF16CC : glyph-proc
+		set-width 0
+		include : StdAnchors.medium
+		include : dispiro
+			curl (markMiddle - markExtend) aboveMarkTop [widths.center markStroke]
+			g4 (markMiddle + 0.4 * markExtend) aboveMarkTop [widths.center markStroke]
+			g4 (markMiddle + 0.4 * markExtend) aboveMarkBot
+
 	create-glyph 'tonosAbove' : glyph-proc
 		set-width 0
 		include : StdAnchors.narrow
