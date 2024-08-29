@@ -241,15 +241,41 @@ glyph-block Derani-Shared : begin
 			archv
 			flat (r - OX) (d + adb) [heading Upward]
 
+	create-glyph 'dudeo' 0xF16B6 : glyph-proc
+		include : MarkSet.e
+		local d 0
+		include : dispiro
+			widths.center [AdviceStroke 5]
+			curl (r - OX - Stroke + [AdviceStroke 5] / 2) [mix u d 0.4]
+			g2 [mix l r 0.45] [mix u d 0.5]
+			g4 middle (u - O) [widths.rhs.heading Stroke Rightward]
+			archv
+			flat (r - OX) (u - ada)
+			curl (r - OX) (d + adb)
+			arcvh
+			curl middle (d + O)
+			archv
+			flat (l + OX) (d + adb) [heading Upward]
+
+	derive-glyphs 'nhanhoq' 0xF16BD 'dudeo' : function [src gr] : glyph-proc
+		include [refer-glyph src] AS_BASE ALSO_METRICS
+		include : ScaleAround [mix l r 0.5] (XH / 2) 1 (-1)
+
 # TODO:
 #
-# F16B6 dudeo
 # F16B7 titieq
 # F16B8 zozeo
-# F16BD nhanhoq
 # F16C0 shoshia
 # F16C1 veva
 # F16C2 aqaq
 # F16C6 hehaq
-# punctuation
-# cartouches
+# F16CD hiatus mark
+# F16CE diphthong mark
+# F16D2 prefix mark
+# F16D3 quotation mark
+# F16D4 subordination mark
+# F16D5 declarative full stop
+# F16D6 other full stop
+# F16D7 interrogative full stop
+# F16DA null variable
+# cartouches (F16D8 start, F16D9 end, F16DB space)
