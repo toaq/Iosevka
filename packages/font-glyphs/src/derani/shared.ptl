@@ -245,8 +245,8 @@ glyph-block Derani-Shared : begin
 		include : MarkSet.e
 		local d 0
 		include : dispiro
-			widths.center [AdviceStroke 5]
-			curl (r - OX - Stroke + [AdviceStroke 5] / 2) [mix u d 0.4]
+			widths.center [AdviceStroke 4]
+			curl (r - OX - Stroke + [AdviceStroke 4] / 2) [mix u d 0.4]
 			g2 [mix l r 0.45] [mix u d 0.5]
 			g4 middle (u - O) [widths.rhs.heading Stroke Rightward]
 			archv
@@ -261,13 +261,52 @@ glyph-block Derani-Shared : begin
 		include [refer-glyph src] AS_BASE ALSO_METRICS
 		include : ScaleAround [mix l r 0.5] (XH / 2) 1 (-1)
 
+	create-glyph 'veva' 0xF16C1 : glyph-proc
+		include : MarkSet.b
+		local d 0
+		include : dispiro
+			widths.lhs Stroke
+			curl [mix l r 0.5] Ascender [heading Leftward]
+			archv
+			curl (l + OX) u [heading Downward]
+
+		include : dispiro
+			widths.rhs Stroke
+			flat (l + OX) u [heading Rightward]
+			curl middle u
+			archv
+			flat (r - OX) (u - ada)
+			curl (r - OX) (d + adb)
+			arcvh
+			flat middle (d + O) [heading Leftward]
+			archv
+			curl (l + OX) (d + ada) [heading Upward]
+
+	create-glyph 'aqaq' 0xF16C2 : glyph-proc
+		include : MarkSet.e
+		local d 0
+		local rx (r - [HSwToV Stroke] + [HSwToV ShoulderFine])
+		include : dispiro
+			widths.rhs ShoulderFine
+			curl rx (d + adb)
+			arch.rhs (d + O) (sw -- Stroke) (swBefore -- ShoulderFine)
+			flat (l + OX) (d + adb)
+			curl (l + OX) (u - ada)
+			arcvh
+			flat [mix l r 0.5] (u - O) [heading Rightward]
+			curl [mix l r 0.6] (u - O) [heading Rightward]
+
+		include : VBar.r r (d + adb) Descender Stroke
+
+		if SLAB : begin
+			include : HSerif.lb (r - [HSwToV HalfStroke]) Descender MidJutSide
+			include : HSerif.rb (r - [HSwToV HalfStroke]) Descender Jut
+
 # TODO:
 #
 # F16B7 titieq
 # F16B8 zozeo
 # F16C0 shoshia
-# F16C1 veva
-# F16C2 aqaq
 # F16C6 hehaq
 # F16CD hiatus mark
 # F16CE diphthong mark
