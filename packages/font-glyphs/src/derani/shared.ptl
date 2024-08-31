@@ -1,6 +1,7 @@
 $$include '../meta/macros.ptl'
 
 import [mix linreg clamp fallback] from "@iosevka/util"
+import [TieMark TieGlyph] from "@iosevka/glyph/relation"
 
 glyph-module
 
@@ -302,14 +303,54 @@ glyph-block Derani-Shared : begin
 			include : HSerif.lb (r - [HSwToV HalfStroke]) Descender MidJutSide
 			include : HSerif.rb (r - [HSwToV HalfStroke]) Descender Jut
 
+	# I copied this from tie.ptl and changed it a little
+	glyph-block-import Mark-Shared-Metrics : markHalfStroke
+	glyph-block-import Mark-Shared-Metrics : markMiddle
+
+	define belowTieBase     Descender
+	define belowTieBottom : belowTieBase - (0.1 * XH)
+	define belowTieTop    : belowTieBase - (-0.2 * XH)
+	define belowTieMid    : mix belowTieBottom belowTieTop 0.5
+
+	local tieLeft [mix 0 markMiddle 0.5]
+	local tieRight (-tieLeft)
+
+	define [TieBelowAnchors] : glyph-proc
+		set-mark-anchor 'tieBelow' 0 belowTieBase 0 belowTieBottom
+		set-base-anchor 'belowBraceL' tieLeft belowTieMid
+		set-base-anchor 'belowBraceR' tieRight belowTieMid
+
+	create-glyph 'deraniHiatusMark' 0xF16CD : glyph-proc
+		set-width 0
+		include : TieBelowAnchors
+		TieGlyph.set currentGlyph
+		include : dispiro
+			widths.center (markHalfStroke * 2)
+			flat tieLeft belowTieTop
+			archv
+			curl tieRight belowTieBottom
+
+	create-glyph 'deraniDiphthongMark' 0xF16CE : glyph-proc
+		set-width 0
+		include : TieBelowAnchors
+		TieGlyph.set currentGlyph
+		include : dispiro
+			widths.center (markHalfStroke * 2)
+			flat tieLeft belowTieTop
+			curl tieRight belowTieTop
+		include : dispiro
+			widths.center (markHalfStroke * 2)
+			curl (tieRight - [HSwToV markHalfStroke]) belowTieTop [heading Downward]
+			arcvh
+			curl [mix tieLeft tieRight 0.6] belowTieBottom
+
+
 # TODO:
 #
 # F16B7 titieq
 # F16B8 zozeo
 # F16C0 shoshia
 # F16C6 hehaq
-# F16CD hiatus mark
-# F16CE diphthong mark
 # F16D2 prefix mark
 # F16D3 quotation mark
 # F16D4 subordination mark
