@@ -263,6 +263,26 @@ glyph-block Derani-Shared : begin
 			include : HSerif.lb (r - [HSwToV HalfStroke]) Descender MidJutSide
 			include : HSerif.rb (r - [HSwToV HalfStroke]) Descender Jut
 
+	create-glyph 'titieq' 0xF16B7 : glyph-proc
+		include : MarkSet.e
+		local d 0
+		local rx (r - [HSwToV Stroke] + [HSwToV ShoulderFine])
+		include : dispiro
+			widths.rhs ShoulderFine
+			heading Leftward
+			curl rx (d + ada + 2)
+			arch.rhs d (sw -- Stroke) (swBefore -- ShoulderFine)
+			flat (l + OX) (d + adb)
+			curl (l + OX) (u - ada)
+			arch.rhs u (sw -- Stroke) (swAfter -- ShoulderFine)
+			flat rx (u - ada - 2) [widths.rhs ShoulderFine]
+
+		include : VBar.r r d Ascender Stroke
+
+		if SLAB : begin
+			include : HSerif.rt r Ascender SideJut
+			include : HSerif.rb r d SideJut
+
 	create-glyph 'dudeo' 0xF16B6 : glyph-proc
 		include : MarkSet.e
 		local d 0
@@ -368,7 +388,6 @@ glyph-block Derani-Shared : begin
 
 # TODO:
 #
-# F16B7 titieq
 # F16B8 zozeo
 # F16C6 hehaq
 # F16D2 prefix mark
