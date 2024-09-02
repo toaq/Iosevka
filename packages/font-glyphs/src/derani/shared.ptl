@@ -242,6 +242,27 @@ glyph-block Derani-Shared : begin
 			archv
 			flat (r - OX) (d + adb) [heading Upward]
 
+	create-glyph 'shoshia' 0xF16C0 : glyph-proc
+		include : MarkSet.e
+		local d 0
+		local rx (r - [HSwToV Stroke] + [HSwToV ShoulderFine])
+		include : VSerif.dr r u VJut
+		include : dispiro
+			widths.rhs ShoulderFine
+			curl rx (d + adb)
+			arch.rhs (d + O) (sw -- Stroke) (swBefore -- ShoulderFine)
+			flat (l + OX) (d + adb)
+			curl (l + OX) (u - ada)
+			arcvh
+			flat [mix l r 0.5] u [heading Rightward]
+			flat r u [heading Rightward]
+
+		include : VBar.r r (d + adb) Descender Stroke
+
+		if SLAB : begin
+			include : HSerif.lb (r - [HSwToV HalfStroke]) Descender MidJutSide
+			include : HSerif.rb (r - [HSwToV HalfStroke]) Descender Jut
+
 	create-glyph 'dudeo' 0xF16B6 : glyph-proc
 		include : MarkSet.e
 		local d 0
@@ -349,7 +370,6 @@ glyph-block Derani-Shared : begin
 #
 # F16B7 titieq
 # F16B8 zozeo
-# F16C0 shoshia
 # F16C6 hehaq
 # F16D2 prefix mark
 # F16D3 quotation mark
