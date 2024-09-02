@@ -146,9 +146,20 @@ glyph-block Derani-Shared : begin
 			include : HSerif.lb (r - [HSwToV HalfStroke]) Descender MidJutSide
 			include : HSerif.rb (r - [HSwToV HalfStroke]) Descender Jut
 
-	derive-glyphs 'pipoq' 0xF16B3 'saqseoq' : function [src gr] : glyph-proc
-		include [refer-glyph src] AS_BASE ALSO_METRICS
-		include : VBar.r (r - OX) [mix u 0 0.5] Descender Stroke
+	create-glyph 'pipoq' 0xF16B3 : glyph-proc
+		include : MarkSet.e
+		include : dispiro
+			widths.rhs fine
+			curl (r - [HSwToV sw]) (d + ada) [widths.lhs fine]
+			arch.rhs 0 (sw -- sw) (swBefore -- fine)
+			flat (l + OX) (d + adb)
+			curl (l + OX) (u - ada)
+			arcvh
+			curl [mix (l + OX) r 0.5] (u - O)
+			archv
+			flat r (u - adb)
+			curl r Descender
+
 		if SLAB : begin
 			include : HSerif.lb (r - OX - [HSwToV HalfStroke]) Descender MidJutSide
 			include : HSerif.rb (r - OX - [HSwToV HalfStroke]) Descender Jut
