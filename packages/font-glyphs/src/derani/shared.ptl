@@ -9,7 +9,10 @@ glyph-block Derani-Shared : begin
 	glyph-block-import CommonShapes
 	glyph-block-import Common-Derivatives
 	glyph-block-import Letter-Shared-Shapes
+	define sw Stroke
+	define fine ShoulderFine
 	define u XH
+	define d 0
 	define ada ArchDepthA
 	define adb ArchDepthB
 	define l SB
@@ -18,7 +21,6 @@ glyph-block Derani-Shared : begin
 
 	create-glyph 'saqseoq' 0xF16BA : glyph-proc
 		include : MarkSet.e
-		local d 0
 		include : dispiro
 			widths.lhs Stroke
 			g4 middle (u - O) [heading Leftward]
@@ -35,7 +37,6 @@ glyph-block Derani-Shared : begin
 
 	create-glyph 'cecoa' 0xF16B9 : glyph-proc
 		include : MarkSet.e
-		local d 0
 		include : dispiro
 			widths.lhs Stroke
 			g4 [mix l r 0.6] (u - O) [heading Leftward]
@@ -50,7 +51,6 @@ glyph-block Derani-Shared : begin
 
 	create-glyph 'bubue' 0xF16B2 : glyph-proc
 		include : MarkSet.e
-		local d 0
 		include : dispiro
 			widths.rhs Stroke
 			g4 (l + OX) (u - Hook) [heading Upward]
@@ -68,16 +68,13 @@ glyph-block Derani-Shared : begin
 		include [refer-glyph 'dotBelow']
 
 	create-glyph 'rairua' 0xF16BB : glyph-proc
-		local a ada
-		local sw Stroke
-		define fine ShoulderFine
 		include : MarkSet.e
 		include : HBar.b l r 0
 		include : VBar.l l 0 u
 		include : union
 			dispiro
-				flat (l + [HSwToV sw] - [HSwToV fine]) (u - a - 2) [widths.rhs fine]
-				curl (l + [HSwToV sw] - [HSwToV fine]) (u - a)
+				flat (l + [HSwToV sw] - [HSwToV fine]) (u - ada - 2) [widths.rhs fine]
+				curl (l + [HSwToV sw] - [HSwToV fine]) (u - ada)
 				arch.rhs u (sw -- sw) (swBefore -- fine)
 				flat r (u - adb) [widths.rhs sw]
 				curl r Descender
@@ -89,17 +86,14 @@ glyph-block Derani-Shared : begin
 			include : HSerif.rb (r - [HSwToV HalfStroke]) Descender Jut
 
 	create-glyph 'laoliq' 0xF16BC : glyph-proc
-		local a ada
-		local sw Stroke
-		define fine ShoulderFine
 		include : MarkSet.e
 		include [refer-glyph 'dotBelow']
 		include : HBar.b l r 0
 		include : VBar.l l 0 u
 		include : union
 			dispiro
-				flat (l + [HSwToV sw] - [HSwToV fine]) (u - a - 2) [widths.rhs fine]
-				curl (l + [HSwToV sw] - [HSwToV fine]) (u - a)
+				flat (l + [HSwToV sw] - [HSwToV fine]) (u - ada - 2) [widths.rhs fine]
+				curl (l + [HSwToV sw] - [HSwToV fine]) (u - ada)
 				arch.rhs u (sw -- sw) (swBefore -- fine)
 				flat r (u - adb) [widths.rhs sw]
 				curl r 0
@@ -110,16 +104,13 @@ glyph-block Derani-Shared : begin
 			include : HSerif.rb (r - [HSwToV HalfStroke]) 0 Jut
 
 	create-glyph 'mamei_coda' 0xF16B1 : glyph-proc
-		local a ada
-		local sw Stroke
-		define fine ShoulderFine
 		include : MarkSet.e
 		# include : HBar.b l r 0
 		include : VBar.l l 0 u
 		include : union
 			dispiro
-				flat (l + [HSwToV sw] - [HSwToV fine]) (u - a - 2) [widths.rhs fine]
-				curl (l + [HSwToV sw] - [HSwToV fine]) (u - a)
+				flat (l + [HSwToV sw] - [HSwToV fine]) (u - ada - 2) [widths.rhs fine]
+				curl (l + [HSwToV sw] - [HSwToV fine]) (u - ada)
 				arch.rhs u (sw -- sw) (swBefore -- fine)
 				g2 r (u - adb) [widths.rhs sw]
 				curl (l + [HSwToV sw]) 0 [heading Leftward]
@@ -132,22 +123,20 @@ glyph-block Derani-Shared : begin
 		local df : include : DivFrame para.diversityM 3
 		local l df.leftSB
 		local r df.rightSB
-		local a ada
 		local sw df.mvs
-		define fine ShoulderFine
 		include : df.markSet.e
 		include : HBar.b l r 0
 		include : VBar.l l 0 u sw
 		include : union
 			dispiro
-				flat (l + [HSwToV sw] - [HSwToV fine]) (u - a - 2) [widths.rhs fine]
-				curl (l + [HSwToV sw] - [HSwToV fine]) (u - a)
+				flat (l + [HSwToV sw] - [HSwToV fine]) (u - ada - 2) [widths.rhs fine]
+				curl (l + [HSwToV sw] - [HSwToV fine]) (u - ada)
 				arch.rhs u (sw -- sw) (swBefore -- fine)
 				flat ([mix l r 0.5] + [HSwToV sw] / 2) (u - adb) [widths.rhs sw]
 				curl ([mix l r 0.5] + [HSwToV sw] / 2) 0
 			dispiro
-				flat ([mix l r 0.5] + [HSwToV sw] / 2 - [HSwToV fine]) (u - a - 2) [widths.rhs fine]
-				curl ([mix l r 0.5] + [HSwToV sw] / 2 - [HSwToV fine]) (u - a)
+				flat ([mix l r 0.5] + [HSwToV sw] / 2 - [HSwToV fine]) (u - ada - 2) [widths.rhs fine]
+				curl ([mix l r 0.5] + [HSwToV sw] / 2 - [HSwToV fine]) (u - ada)
 				arch.rhs u (sw -- sw) (swBefore -- fine)
 				flat r (u - adb) [widths.rhs sw]
 				curl r Descender
@@ -166,7 +155,6 @@ glyph-block Derani-Shared : begin
 
 	create-glyph 'fofuaq' 0xF16B4 : glyph-proc
 		include : MarkSet.e
-		local d 0
 		include : dispiro
 			widths.rhs Stroke
 			g4 (l + OX) (u - Hook) [heading Upward]
@@ -183,7 +171,6 @@ glyph-block Derani-Shared : begin
 
 	create-glyph 'gugui' 0xF16C3 : glyph-proc
 		include : MarkSet.e
-		local d 0
 		include : dispiro
 			widths.lhs Stroke
 			g4 [mix l r 0.7] (u - O) [heading Leftward]
@@ -209,7 +196,6 @@ glyph-block Derani-Shared : begin
 
 	create-glyph 'nanaq' 0xF16B5 : glyph-proc
 		include : MarkSet.e
-		local d 0
 		local h [mix (u - Stroke) (d + Stroke) 0.22]
 		include : dispiro
 			widths.lhs Stroke
@@ -229,7 +215,6 @@ glyph-block Derani-Shared : begin
 
 	create-glyph 'chichao' 0xF16BF : glyph-proc
 		include : MarkSet.e
-		local d 0
 		include : VSerif.dr r u VJut
 		include : dispiro
 			widths.lhs Stroke
@@ -245,7 +230,6 @@ glyph-block Derani-Shared : begin
 
 	create-glyph 'shoshia' 0xF16C0 : glyph-proc
 		include : MarkSet.e
-		local d 0
 		local rx (r - [HSwToV Stroke] + [HSwToV ShoulderFine])
 		include : VSerif.dr r u VJut
 		include : dispiro
@@ -266,7 +250,6 @@ glyph-block Derani-Shared : begin
 
 	create-glyph 'titieq' 0xF16B7 : glyph-proc
 		include : MarkSet.e
-		local d 0
 		local rx (r - [HSwToV Stroke] + [HSwToV ShoulderFine])
 		include : dispiro
 			widths.rhs ShoulderFine
@@ -286,7 +269,6 @@ glyph-block Derani-Shared : begin
 
 	create-glyph 'dudeo' 0xF16B6 : glyph-proc
 		include : MarkSet.e
-		local d 0
 		include : dispiro
 			widths.center [AdviceStroke 4]
 			curl (r - OX - Stroke + [AdviceStroke 4] / 2) [mix u d 0.4]
@@ -306,7 +288,6 @@ glyph-block Derani-Shared : begin
 
 	create-glyph 'veva' 0xF16C1 : glyph-proc
 		include : MarkSet.b
-		local d 0
 		include : dispiro
 			widths.lhs Stroke
 			curl [mix l r 0.5] Ascender [heading Leftward]
@@ -327,7 +308,6 @@ glyph-block Derani-Shared : begin
 
 	create-glyph 'aqaq' 0xF16C2 : glyph-proc
 		include : MarkSet.e
-		local d 0
 		local rx (r - [HSwToV Stroke] + [HSwToV ShoulderFine])
 		include : dispiro
 			widths.rhs ShoulderFine
