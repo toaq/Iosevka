@@ -210,7 +210,7 @@ glyph-block Derani-Shared : begin
 	create-glyph 'nanaq' 0xF16B5 : glyph-proc
 		include : MarkSet.e
 		local d 0
-		local h [mix (u - Stroke) (d + Stroke) 0.2]
+		local h [mix (u - Stroke) (d + Stroke) 0.22]
 		include : dispiro
 			widths.lhs Stroke
 			flat r (u) [heading Leftward]
@@ -219,12 +219,13 @@ glyph-block Derani-Shared : begin
 			flat (l + OX) (u - ada)
 			curl (l + OX) (d + adb)
 			arcvh
-			curl ([mix l r 0.5]) (d + O) [heading Rightward]
+			g2 ([mix l r 0.5]) (d + O) [heading Rightward]
 			archv
 			# flat (r - OX) (d + ada)
 			g2 (r - OX) [mix h d 0.5]
 			arcvh
-			flat [mix l r 0.5] h [heading Leftward]
+			g2 [mix l r 0.6] h [widths.center.heading [AdviceStroke 4] Leftward]
+			flat [mix l r 0.4] (h - 8) [heading Leftward]
 
 	create-glyph 'chichao' 0xF16BF : glyph-proc
 		include : MarkSet.e
