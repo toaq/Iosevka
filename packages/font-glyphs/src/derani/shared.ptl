@@ -362,6 +362,14 @@ glyph-block Derani-Shared : begin
 			include : HSerif.lb (r - [HSwToV HalfStroke]) Descender MidJutSide
 			include : HSerif.rb (r - [HSwToV HalfStroke]) Descender Jut
 
+	create-glyph 'deraniPrefixMark' 0xF16D2 : glyph-proc
+		define radius ([HSwToV Stroke] * 5 / 6)
+		define inset : Math.min (O + radius * 5 / 3) ([mix d u 0.5] - radius * 1.5)
+		include : DotAt middle (u - inset) radius
+		include : DotAt middle (d + inset) radius
+
+	alias 'deraniQuotationMark' 0xF16D3 'deraniPrefixMark'
+
 	# I copied this from tie.ptl and changed it a little
 	glyph-block-import Mark-Shared-Metrics : markHalfStroke
 	glyph-block-import Mark-Shared-Metrics : markMiddle
@@ -406,8 +414,6 @@ glyph-block Derani-Shared : begin
 
 # TODO:
 #
-# F16D2 prefix mark
-# F16D3 quotation mark
 # F16D4 subordination mark
 # F16D5 declarative full stop
 # F16D6 other full stop
