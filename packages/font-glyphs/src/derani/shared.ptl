@@ -185,6 +185,26 @@ glyph-block Derani-Shared : begin
 		include : HBar.b [mix l r 0.35] r (d + [HSwToV sw]) OverlayStroke
 		if SLAB : include : HSerif.rb r (d + [HSwToV sw]) SideJut OverlayStroke
 
+	create-glyph 'zozeo' 0xF16B8 : glyph-proc
+		include : MarkSet.e
+		include : dispiro
+			widths.rhs Stroke
+			g4 (l + OX) (u - Hook) [heading Upward]
+			arcvh
+			curl middle (u - O)
+			archv
+			flat r (u - ada)
+			curl r (Descender + ada)
+			arcvh
+			curl middle Descender [heading Leftward]
+			archv
+			curl (l + OX) (Descender + ada) [heading Upward]
+			flat middle (d + [HSwToV sw]) [widths.lhs.heading OverlayStroke Rightward]
+			curl r (d + [HSwToV sw])
+
+		if SLAB : begin
+			include : HSerif.rb r (d + [HSwToV sw]) SideJut OverlayStroke
+
 	create-glyph 'gugui' 0xF16C3 : glyph-proc
 		include : MarkSet.e
 		include : dispiro
@@ -385,7 +405,6 @@ glyph-block Derani-Shared : begin
 
 # TODO:
 #
-# F16B8 zozeo
 # F16D2 prefix mark
 # F16D3 quotation mark
 # F16D4 subordination mark
