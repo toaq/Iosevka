@@ -222,7 +222,8 @@ glyph-block Derani-Shared : begin
 			widths.lhs Stroke
 			curl ([mix l r 0.6666] - HalfStroke) (d + ada) [heading Downward]
 			arcvh
-			curl r d [heading Rightward]
+			flat r d
+			curl (r + SideJut) d [heading Rightward]
 
 	derive-glyphs 'jujuo' 0xF16BE 'gugui' : function [src gr] : glyph-proc
 		include [refer-glyph src] AS_BASE ALSO_METRICS
