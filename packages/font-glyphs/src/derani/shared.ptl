@@ -375,6 +375,8 @@ glyph-block Derani-Shared : begin
 
 	alias 'deraniQuotationMark' 0xF16D3 'deraniPrefixMark'
 
+	alias 'deraniCompatNbsp' 0xF16DB 'space'
+
 	# I copied this from tie.ptl and changed it a little
 	glyph-block-import Mark-Shared-Metrics : markHalfStroke
 	glyph-block-import Mark-Shared-Metrics : markMiddle
