@@ -202,6 +202,20 @@ define [buildLigationsImpl gsub para $LigGroup$] : begin
 			chain-rule C skipR opcTo
 			chain-rule C opcTo
 
+	LigGroup "derani" : begin
+		define cartoucheBase {'mamei' 'mamei_coda' 'bubue' 'pipoq' 'fofuaq' 'nanaq' 'dudeo' 'titieq' 'zozeo' 'cecoa' 'saqseoq' 'rairua' 'laoliq' 'nhanhoq' 'jujuo' 'chichao' 'shoshia' 'veva' 'aqaq' 'gugui' 'kikue' 'oaomo' 'hehaq' 'deraniPrefixMark' 'deraniQuotationMark' 'space' 'deraniCompatNbsp'}
+		define cartoucheSeed : cartoucheBase.map : lambda [name] "\(name).c"
+		cartoucheSeed.push 'deraniCartoucheStart'
+
+		CreateLigationLookup : list
+			chain-rule
+				cartoucheSeed ~> look-around
+				cartoucheBase ~> [csx 'c.end']
+				{'deraniCartoucheEnd'} ~> look-around
+			chain-rule
+				cartoucheSeed ~> look-around
+				cartoucheBase ~> [csx 'c']
+
 	LigGroup "slash-asterisk" : if [hasLG 'slash-asterisk'] : begin
 		CreateLigationLookup : list
 			chain-rule # /*
