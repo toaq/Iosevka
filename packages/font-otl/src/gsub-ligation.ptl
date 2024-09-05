@@ -207,6 +207,11 @@ define [buildLigationsImpl gsub para $LigGroup$] : begin
 		define cartoucheSeed : cartoucheBase.map : lambda [name] "\(name).c"
 		cartoucheSeed.push 'deraniCartoucheStart'
 
+		define [andCartouches x] : x.flatMap : lambda [name] {name "\(name).c" "\(name).c.end"}
+		define deraniLeft : andCartouches {'cecoa' 'gugui' 'kikue' 'aqaq'}
+		define deraniRight : andCartouches {'bubue' 'fofuaq' 'hehaq' 'jujuo'}
+		define deraniZeroWidth {'deraniHiatusMark' 'deraniDiphthongMark' 'deraniRisingTone' 'deraniLowGlottalTone' 'deraniRisingFallingTone'}
+
 		CreateLigationLookup : list
 			chain-rule
 				cartoucheSeed ~> look-around
@@ -215,6 +220,20 @@ define [buildLigationsImpl gsub para $LigGroup$] : begin
 			chain-rule
 				cartoucheSeed ~> look-around
 				cartoucheBase ~> [csx 'c']
+
+		CreateLigationLookup: list
+			chain-rule
+				deraniLeft ~> [csx 'nudgeRight']
+				deraniRight ~> [csx 'nudgeLeft']
+			chain-rule
+				deraniLeft ~> [csx 'nudgeRight']
+				deraniZeroWidth ~> look-around
+				deraniRight ~> [csx 'nudgeLeft']
+			chain-rule
+				deraniLeft ~> [csx 'nudgeRight']
+				deraniZeroWidth ~> look-around
+				deraniZeroWidth ~> look-around
+				deraniRight ~> [csx 'nudgeLeft']
 
 	LigGroup "slash-asterisk" : if [hasLG 'slash-asterisk'] : begin
 		CreateLigationLookup : list
