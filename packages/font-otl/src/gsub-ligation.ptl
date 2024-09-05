@@ -221,6 +221,29 @@ define [buildLigationsImpl gsub para $LigGroup$] : begin
 				cartoucheSeed ~> look-around
 				cartoucheBase ~> [csx 'c']
 
+			# TODO: If we made deraniHiatusMark etc real marks instead of
+			# zero-width glyphs, we wouldn't need rules like this, apparently
+			chain-rule
+				cartoucheSeed ~> look-around
+				deraniZeroWidth ~> look-around
+				cartoucheBase ~> [csx 'c.end']
+				{'deraniCartoucheEnd'} ~> look-around
+			chain-rule
+				cartoucheSeed ~> look-around
+				deraniZeroWidth ~> look-around
+				deraniZeroWidth ~> look-around
+				cartoucheBase ~> [csx 'c.end']
+				{'deraniCartoucheEnd'} ~> look-around
+			chain-rule
+				cartoucheSeed ~> look-around
+				deraniZeroWidth ~> look-around
+				cartoucheBase ~> [csx 'c']
+			chain-rule
+				cartoucheSeed ~> look-around
+				deraniZeroWidth ~> look-around
+				deraniZeroWidth ~> look-around
+				cartoucheBase ~> [csx 'c']
+
 		CreateLigationLookup: list
 			chain-rule
 				deraniLeft ~> [csx 'nudgeRight']
