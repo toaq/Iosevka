@@ -463,15 +463,15 @@ glyph-block Derani-Shared : begin
 	foreach [base cartoucheBase] : begin
 		derive-glyphs "\(base).c" null base : function [src gr] : glyph-proc
 			include [refer-glyph src] AS_BASE ALSO_METRICS
-			include : HBar.t 0 ([cLength src] + cOvershoot) cy
+			include : HBar.t 0 ([cLength src] + cOvershoot) cy (markHalfStroke * 2)
 		derive-glyphs "\(base).c.end" null base : function [src gr] : glyph-proc
 			include [refer-glyph src] AS_BASE ALSO_METRICS
 			define curlStart ([cLength src] - [mix 0 cCurlWidth 0.3])
 			include : dispiro
-				widths.rhs sw
+				widths.rhs (markHalfStroke * 2)
 				flat 0 cy
 				curl (curlStart - cCurlWidth / 2) cy
-				curl (curlStart + cCurlWidth / 2) (cy - ada * 3 / 4) [widths.rhs.heading [AdviceStroke 4] Downward]
+				curl (curlStart + cCurlWidth / 2) (cy - ada * 3 / 4) [heading Downward]
 
 	# Null variable symbol is constructed as a squiggle + cartouche
 	alias 'deraniNullVariable' 0xF16DA 'deraniSquiggle.c.end'
