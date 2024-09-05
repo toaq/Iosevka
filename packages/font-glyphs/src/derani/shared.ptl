@@ -377,6 +377,21 @@ glyph-block Derani-Shared : begin
 
 	alias 'deraniQuotationMark' 0xF16D3 'deraniPrefixMark'
 
+	create-glyph 'deraniSubordinationMark' 0xF16D4 : glyph-proc
+		define df : include : DivFrame para.diversityI 1
+		define sw df.mvs
+		# Deliberately built from the same width values in both monospace and
+		# quasi-proportional mode
+		define curlMiddle : mix middle Width 0.5
+		include : dispiro
+			widths.rhs sw
+			flat middle d
+			curl curlMiddle d
+			g2 Width [mix d Descender 0.5]
+			curl (curlMiddle + [HSwToV sw]) Descender [widths.rhs.heading [AdviceStroke 4] Downward]
+		# Visually center the result
+		include : Translate ([mix df.leftSB df.rightSB 0.5] - curlMiddle) 0
+
 	create-glyph 'deraniCartoucheStart' 0xF16D8 : glyph-proc
 		set-width 0
 
@@ -384,13 +399,13 @@ glyph-block Derani-Shared : begin
 
 	create-glyph 'deraniSquiggle' null : glyph-proc
 		include : dispiro
-			widths.rhs Stroke
+			widths.rhs sw
 			flat (l + OX) (d + adb)
 			curl (l + OX) (u - ada)
 			arcvh
 			curl middle (u - O) [heading Rightward]
 		include : dispiro
-			widths.rhs Stroke
+			widths.rhs sw
 			flat (r - OX) (u - adb)
 			curl (r - OX) (d + adb)
 			arcvh
@@ -464,7 +479,6 @@ glyph-block Derani-Shared : begin
 
 # TODO:
 #
-# F16D4 subordination mark
 # F16D5 declarative full stop
 # F16D6 other full stop
 # F16D7 interrogative full stop
