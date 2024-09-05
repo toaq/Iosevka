@@ -19,7 +19,7 @@ glyph-block Derani-Shared : begin
 	define r RightSB
 	define middle : 0.5 * (l + r)
 	# Glyphs that a cartouche can extend over
-	define cartoucheBase : list 'mamei' 'mamei_coda' 'bubue' 'pipoq' 'fofuaq' 'nanaq' 'dudeo' 'titieq' 'zozeo' 'cecoa' 'saqseoq' 'rairua' 'laoliq' 'nhanhoq' 'jujuo' 'chichao' 'shoshia' 'veva' 'aqaq' 'gugui' 'kikue' 'oaomo' 'hehaq' 'deraniPrefixMark' 'deraniQuotationMark' 'space' 'deraniCompatNbsp'
+	define cartoucheBase : list 'mamei' 'mamei_coda' 'bubue' 'pipoq' 'fofuaq' 'nanaq' 'dudeo' 'titieq' 'zozeo' 'cecoa' 'saqseoq' 'rairua' 'laoliq' 'nhanhoq' 'jujuo' 'chichao' 'shoshia' 'veva' 'aqaq' 'gugui' 'kikue' 'oaomo' 'hehaq' 'deraniPrefixMark' 'deraniQuotationMark' 'deraniSquiggle' 'space' 'deraniCompatNbsp'
 
 	create-glyph 'saqseoq' 0xF16BA : glyph-proc
 		include : MarkSet.e
@@ -382,6 +382,20 @@ glyph-block Derani-Shared : begin
 
 	alias 'deraniCartoucheEnd' 0xF16D9 'deraniCartoucheStart'
 
+	create-glyph 'deraniSquiggle' null : glyph-proc
+		include : dispiro
+			widths.rhs Stroke
+			flat (l + OX) (d + adb)
+			curl (l + OX) (u - ada)
+			arcvh
+			curl middle (u - O) [heading Rightward]
+		include : dispiro
+			widths.rhs Stroke
+			flat (r - OX) (u - adb)
+			curl (r - OX) (d + adb)
+			arcvh
+			curl middle (d + O) [heading Leftward]
+
 	alias 'deraniCompatNbsp' 0xF16DB 'space'
 
 	# I copied this from tie.ptl and changed it a little
@@ -444,6 +458,9 @@ glyph-block Derani-Shared : begin
 				curl (curlStart - cCurlWidth / 2) cy
 				curl (curlStart + cCurlWidth / 2) (cy - ada * 3 / 4) [widths.rhs.heading [AdviceStroke 4] Downward]
 
+	# Null variable symbol is constructed as a squiggle + cartouche
+	alias 'deraniNullVariable' 0xF16DA 'deraniSquiggle.c.end'
+
 
 # TODO:
 #
@@ -451,4 +468,3 @@ glyph-block Derani-Shared : begin
 # F16D5 declarative full stop
 # F16D6 other full stop
 # F16D7 interrogative full stop
-# F16DA null variable
