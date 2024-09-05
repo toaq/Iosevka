@@ -457,7 +457,7 @@ glyph-block Derani-Shared : begin
 	define cy (ParenTop + [HSwToV sw] / 2)
 	define cOvershoot (Width * para.diversityII / 2)
 	define [cLength src] [query-glyph src].advanceWidth
-	define cCurlWidth (r - middle)
+	define cCurlWidth (1.2 * (r - middle))
 
 	# Generate nudged variants
 	foreach [base {'cecoa' 'gugui' 'kikue' 'aqaq'}] : begin
@@ -483,8 +483,8 @@ glyph-block Derani-Shared : begin
 					include : dispiro
 						widths.rhs (markHalfStroke * 2)
 						flat 0 cy
-						curl (curlStart - cCurlWidth / 2) cy
-						curl (curlStart + cCurlWidth / 2) (cy - ada * 3 / 4) [heading Downward]
+						curl (curlStart - 0.5 * cCurlWidth) cy
+						g2 (curlStart + 0.5 * cCurlWidth) (cy - 0.5 * ada)
 
 	# Null variable symbol is constructed as a squiggle + cartouche
 	alias 'deraniNullVariable' 0xF16DA 'deraniSquiggle.c.end'
