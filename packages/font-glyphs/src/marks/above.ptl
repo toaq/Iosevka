@@ -771,12 +771,12 @@ glyph-block Mark-Above : begin
 	create-glyph 'deraniLowGlottalTone' 0xF16CB : glyph-proc
 		set-width 0
 		include : StdAnchors.medium
-		include : dispiro
-			curl (markMiddle - markExtend) (aboveMarkBot) [widths.center.heading markStroke Upward]
-			arcvh
-			g4 markMiddle (aboveMarkMid + markFine)
-			archv
-			curl (markMiddle + markExtend) (aboveMarkTop + markFine)
+		include : TildeShape
+			ttop -- aboveMarkTop
+			tbot -- aboveMarkBot + markFine / 2
+			leftEnd -- (markMiddle - markExtend * 1.5)
+			rightEnd -- (markMiddle + markExtend * 1.5)
+			hs -- markHalfStroke
 
 	create-glyph 'deraniRisingFallingTone' 0xF16CC : glyph-proc
 		set-width 0
