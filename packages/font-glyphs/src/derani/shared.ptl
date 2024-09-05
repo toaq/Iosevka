@@ -389,7 +389,7 @@ glyph-block Derani-Shared : begin
 			flat middle d
 			curl curlMiddle d
 			g2 Width [mix d Descender 0.5]
-			curl (curlMiddle + [HSwToV sw]) Descender [widths.rhs.heading [AdviceStroke 4] Downward]
+			curl (curlMiddle + [HSwToV sw]) Descender [widths.rhs [AdviceStroke 4]]
 		# Visually center the result
 		include : Translate ([mix df.leftSB df.rightSB 0.5] - curlMiddle) 0
 
