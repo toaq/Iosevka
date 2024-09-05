@@ -425,22 +425,24 @@ glyph-block Derani-Shared : begin
 			arcvh
 			curl [mix tieLeft tieRight 0.6] belowTieBottom
 
-	define [getWidth src] [query-glyph src].advanceWidth
+	define cy (ParenTop + [HSwToV sw] / 2)
+	define cOvershoot (Width * para.diversityII / 2)
+	define [cLength src] [query-glyph src].advanceWidth
+	define cCurlWidth (r - middle)
 
 	# Generate cartouche variants
 	foreach [base cartoucheBase] : begin
 		derive-glyphs "\(base).c" null base : function [src gr] : glyph-proc
 			include [refer-glyph src] AS_BASE ALSO_METRICS
-			define Width : getWidth src
-			include : HBar.t 0 Width ParenTop
+			include : HBar.t 0 ([cLength src] + cOvershoot) cy
 		derive-glyphs "\(base).c.end" null base : function [src gr] : glyph-proc
 			include [refer-glyph src] AS_BASE ALSO_METRICS
-			define Width : getWidth src
+			define curlStart ([cLength src] - [mix 0 cCurlWidth 0.3])
 			include : dispiro
 				widths.rhs sw
-				flat 0 ParenTop
-				curl (middle + Width - r) ParenTop
-				curl Width (ParenTop - ada * 3 / 4) [heading Downward]
+				flat 0 cy
+				curl (curlStart - cCurlWidth / 2) cy
+				curl (curlStart + cCurlWidth / 2) (cy - ada * 3 / 4) [widths.rhs.heading [AdviceStroke 4] Downward]
 
 
 # TODO:
