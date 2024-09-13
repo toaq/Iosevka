@@ -393,6 +393,39 @@ glyph-block Derani-Shared : begin
 		# Visually center the result
 		include : Translate ([mix df.leftSB df.rightSB 0.5] - curlMiddle) 0
 
+	define fullStopL : mix RightSB SB DesignParameters.bracketInside
+	define fullStopR : mix RightSB SB DesignParameters.bracketOutside
+	define fullStopLargeRadius ([HSwToV sw] * 3 / 4)
+	define fullStopSmallRadius ([HSwToV [DivFrame para.diversityII 1].mvs] * 5 / 6)
+
+	create-glyph 'deraniFullStop' null : glyph-proc
+		include : dispiro
+			widths.rhs sw
+			flat fullStopR ParenTop
+			curl fullStopR [mix ParenTop ParenBot 0.8]
+			g2 fullStopL ParenBot [heading Leftward]
+
+		if SLAB : begin
+			include : HBar.t fullStopL fullStopR ParenTop
+
+	derive-glyphs 'deraniDeclarativeFullStop' 0xF16D5 "deraniFullStop" : function [src gr] : glyph-proc
+		include [refer-glyph src] AS_BASE ALSO_METRICS
+		define radius fullStopLargeRadius
+		include : DotAt fullStopL (d + radius) radius
+
+	derive-glyphs 'deraniOtherFullStop' 0xF16D6 "deraniFullStop" : function [src gr] : glyph-proc
+		include [refer-glyph src] AS_BASE ALSO_METRICS
+		define radius : mix fullStopLargeRadius fullStopSmallRadius 0.5
+		include : DotAt fullStopL [mix d u 0.5] radius
+		include : DotAt fullStopL (d + radius) radius
+
+	derive-glyphs 'deraniInterrogativeFullStop' 0xF16D7 "deraniFullStop" : function [src gr] : glyph-proc
+		include [refer-glyph src] AS_BASE ALSO_METRICS
+		define radius fullStopSmallRadius
+		include : DotAt fullStopL (u - radius) radius
+		include : DotAt fullStopL [mix d u 0.5] radius
+		include : DotAt fullStopL (d + radius) radius
+
 	create-glyph 'deraniCartoucheStart' 0xF16D8 : glyph-proc
 		set-width 0
 
@@ -489,10 +522,3 @@ glyph-block Derani-Shared : begin
 
 	# Null variable symbol is constructed as a squiggle + cartouche
 	alias 'deraniNullVariable' 0xF16DA 'deraniSquiggle.c.end'
-
-
-# TODO:
-#
-# F16D5 declarative full stop
-# F16D6 other full stop
-# F16D7 interrogative full stop
