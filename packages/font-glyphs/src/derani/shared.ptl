@@ -404,9 +404,7 @@ glyph-block Derani-Shared : begin
 			flat fullStopR ParenTop
 			curl fullStopR [mix ParenTop ParenBot 0.8]
 			g2 fullStopL ParenBot [heading Leftward]
-
-		if SLAB : begin
-			include : HBar.t fullStopL fullStopR ParenTop
+		include : HBar.t fullStopL fullStopR ParenTop
 
 	derive-glyphs 'deraniDeclarativeFullStop' 0xF16D5 "deraniFullStop" : function [src gr] : glyph-proc
 		include [refer-glyph src] AS_BASE ALSO_METRICS
