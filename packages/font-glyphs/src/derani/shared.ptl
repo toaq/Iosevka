@@ -495,11 +495,11 @@ glyph-block Derani-Shared : begin
 	foreach [base {'cecoa' 'gugui' 'kikue' 'aqaq'}] : begin
 		derive-glyphs "\(base).nudgeRight" null base : function [src gr] : glyph-proc
 			include [refer-glyph src] AS_BASE ALSO_METRICS
-			include : ApparentTranslate (0.08 * Width) 0
+			include : ApparentTranslate (0.06 * Width) 0
 	foreach [base {'bubue' 'fofuaq' 'hehaq' 'jujuo'}]: begin
 		derive-glyphs "\(base).nudgeLeft" null base : function [src gr] : glyph-proc
 			include [refer-glyph src] AS_BASE ALSO_METRICS
-			include : ApparentTranslate (-0.08 * Width) 0
+			include : ApparentTranslate (-0.06 * Width) 0
 
 	# Generate cartouche variants
 	foreach [base cartoucheBase] : begin
