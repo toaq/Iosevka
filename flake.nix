@@ -6,6 +6,7 @@
         devShells.default = pkgs.mkShellNoCC {
           buildInputs = with pkgs; [
             nodejs_latest
+            ttfautohint
           ];
         };
       });
