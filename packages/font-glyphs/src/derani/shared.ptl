@@ -383,15 +383,16 @@ glyph-block Derani-Shared : begin
 		define sw df.mvs
 		# Deliberately built from the same width values in both monospace and
 		# quasi-proportional mode
-		define curlMiddle : mix middle Width 0.5
+		define xStart (middle * 3 / 4)
+		define xEnd Width
+		include : HBar.b xStart xEnd d
 		include : dispiro
 			widths.rhs sw
-			flat middle d
-			curl curlMiddle d
-			g2 Width [mix d Descender 0.5]
-			curl (curlMiddle + [HSwToV sw]) Descender [widths.rhs [AdviceStroke 4]]
+			flat xEnd d [heading Downward]
+			curl xEnd [mix d Descender 0.3]
+			g2 (middle + [HSwToV sw]) Descender [widths.rhs.heading [AdviceStroke 5] Leftward]
 		# Visually center the result
-		include : Translate ([mix df.leftSB df.rightSB 0.5] - curlMiddle) 0
+		include : Translate ([mix df.leftSB df.rightSB 0.5] + xStart * 2 / 3 - xEnd) 0
 
 	define fullStopL : mix RightSB SB DesignParameters.bracketInside
 	define fullStopR : mix RightSB SB DesignParameters.bracketOutside
