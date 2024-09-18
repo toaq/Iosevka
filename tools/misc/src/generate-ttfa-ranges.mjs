@@ -252,6 +252,12 @@ const LatinPunctuation = {
 	),
 };
 
+const Derani = {
+	scriptTag: "latn",
+	featureTag: "dflt",
+	filter: Either(In("󱚰󱚱󱚲󱚳󱚴󱚵󱚶󱚷󱚸󱚹󱚺󱚻󱚼󱚽󱚾󱚿󱛀󱛁󱛂󱛃󱛄󱛅󱛆󱛇󱛈󱛉󱛊󱛋󱛌󱛍󱛎󱛏󱛐󱛑󱛒󱛓󱛔󱛕󱛖󱛗󱛘󱛙󱛚󱛛󱛜󱛝󱛞󱛟")),
+};
+
 const Targets = [
 	LatinBase,
 	LatinSubscript,
@@ -266,4 +272,5 @@ const Targets = [
 	DigitSubscript,
 	DigitSuperscript,
 	LatinPunctuation,
+	Derani,
 ];
