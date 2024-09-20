@@ -203,7 +203,7 @@ define [buildLigationsImpl gsub para $LigGroup$] : begin
 			chain-rule C opcTo
 
 	LigGroup "derani" : begin
-		define cartoucheBase {'mamei' 'mamei_coda' 'bubue' 'pipoq' 'fofuaq' 'nanaq' 'dudeo' 'titieq' 'zozeo' 'cecoa' 'saqseoq' 'rairua' 'laoliq' 'nhanhoq' 'jujuo' 'chichao' 'shoshia' 'veva' 'aqaq' 'gugui' 'kikue' 'oaomo' 'hehaq' 'deraniPrefixMark' 'deraniQuotationMark' 'space' 'deraniCompatNbsp'}
+		define cartoucheBase {'mamei' 'mamei_coda' 'bubue' 'pipoq' 'fofuaq' 'nanaq' 'dudeo' 'titieq' 'zozeo' 'cecoa' 'saqseoq' 'rairua' 'laoliq' 'nhanhoq' 'jujuo' 'chichao' 'shoshia' 'veva' 'aqaq' 'gugui' 'kikue' 'oaomo' 'hehaq' 'deraniPrefixMark' 'deraniQuotationMark' 'space' 'nbsp' 'deraniCompatNbsp'}
 		define cartoucheSeed : cartoucheBase.map : lambda [name] "\(name).c"
 		cartoucheSeed.push 'deraniCartoucheStart'
 

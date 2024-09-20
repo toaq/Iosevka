@@ -19,7 +19,7 @@ glyph-block Derani-Shared : begin
 	define r RightSB
 	define middle : 0.5 * (l + r)
 	# Glyphs that a cartouche can extend over
-	define cartoucheBase : list 'mamei' 'mamei_coda' 'bubue' 'pipoq' 'fofuaq' 'nanaq' 'dudeo' 'titieq' 'zozeo' 'cecoa' 'saqseoq' 'rairua' 'laoliq' 'nhanhoq' 'jujuo' 'chichao' 'shoshia' 'veva' 'aqaq' 'gugui' 'kikue' 'oaomo' 'hehaq' 'deraniPrefixMark' 'deraniQuotationMark' 'deraniSquiggle' 'space' 'deraniCompatNbsp'
+	define cartoucheBase : list 'mamei' 'mamei_coda' 'bubue' 'pipoq' 'fofuaq' 'nanaq' 'dudeo' 'titieq' 'zozeo' 'cecoa' 'saqseoq' 'rairua' 'laoliq' 'nhanhoq' 'jujuo' 'chichao' 'shoshia' 'veva' 'aqaq' 'gugui' 'kikue' 'oaomo' 'hehaq' 'deraniPrefixMark' 'deraniQuotationMark' 'deraniSquiggle' 'space' 'nbsp' 'deraniCompatNbsp'
 
 	create-glyph 'saqseoq' 0xF16BA : glyph-proc
 		include : MarkSet.e
