@@ -167,7 +167,7 @@ glyph-block Derani-Shared : begin
 			include : HSerif.rb (r - OX - [HSwToV HalfStroke]) Descender Jut
 
 	create-glyph 'fofuaq' 0xF16B4 : glyph-proc
-		include : MarkSet.e
+		include : MarkSet.p
 		include : dispiro
 			widths.rhs Stroke
 			g4 (l + OX) (u - Hook) [heading Upward]
@@ -177,6 +177,8 @@ glyph-block Derani-Shared : begin
 			flat r (u - ada)
 			curl r (d + adb)
 			curl r Descender
+
+		set-base-anchor 'tieBelow' [mix l r 1.6] Descender
 
 		if SLAB : begin
 			include : HSerif.lb (r - [HSwToV HalfStroke]) Descender MidJutSide
