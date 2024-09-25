@@ -1,74 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iosevka Toaq test page</title>
     <style>
-        @font-face { font-family: "IosevkaToaq"; font-weight: 100; src: url("./images/IosevkaToaq-Thin.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaq"; font-weight: 200; src: url("./images/IosevkaToaq-ExtraLight.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaq"; font-weight: 300; src: url("./images/IosevkaToaq-Light.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaq"; font-weight: 400; src: url("./images/IosevkaToaq-Regular.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaq"; font-weight: 500; src: url("./images/IosevkaToaq-Medium.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaq"; font-weight: 600; src: url("./images/IosevkaToaq-SemiBold.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaq"; font-weight: 700; src: url("./images/IosevkaToaq-Bold.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaq"; font-weight: 800; src: url("./images/IosevkaToaq-ExtraBold.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaq"; font-weight: 900; src: url("./images/IosevkaToaq-Heavy.woff2") format(woff2); }
+        @font-face {
+            font-family: "IosevkaToaq";
+            font-weight: 100;
+            src: url("./images/IosevkaToaq-Thin.woff2") format(woff2);
+        }
 
-        @font-face { font-family: "IosevkaToaqAile"; font-weight: 100; src: url("./images/IosevkaToaqAile-Thin.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqAile"; font-weight: 200; src: url("./images/IosevkaToaqAile-ExtraLight.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqAile"; font-weight: 300; src: url("./images/IosevkaToaqAile-Light.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqAile"; font-weight: 400; src: url("./images/IosevkaToaqAile-Regular.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqAile"; font-weight: 500; src: url("./images/IosevkaToaqAile-Medium.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqAile"; font-weight: 600; src: url("./images/IosevkaToaqAile-SemiBold.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqAile"; font-weight: 700; src: url("./images/IosevkaToaqAile-Bold.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqAile"; font-weight: 800; src: url("./images/IosevkaToaqAile-ExtraBold.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqAile"; font-weight: 900; src: url("./images/IosevkaToaqAile-Heavy.woff2") format(woff2); }
+        @font-face {
+            font-family: "IosevkaToaq";
+            font-weight: 200;
+            src: url("./images/IosevkaToaq-ExtraLight.woff2") format(woff2);
+        }
 
-        @font-face { font-family: "IosevkaToaqEtoile"; font-weight: 100; src: url("./images/IosevkaToaqEtoile-Thin.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqEtoile"; font-weight: 200; src: url("./images/IosevkaToaqEtoile-ExtraLight.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqEtoile"; font-weight: 300; src: url("./images/IosevkaToaqEtoile-Light.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqEtoile"; font-weight: 400; src: url("./images/IosevkaToaqEtoile-Regular.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqEtoile"; font-weight: 500; src: url("./images/IosevkaToaqEtoile-Medium.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqEtoile"; font-weight: 600; src: url("./images/IosevkaToaqEtoile-SemiBold.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqEtoile"; font-weight: 700; src: url("./images/IosevkaToaqEtoile-Bold.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqEtoile"; font-weight: 800; src: url("./images/IosevkaToaqEtoile-ExtraBold.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqEtoile"; font-weight: 900; src: url("./images/IosevkaToaqEtoile-Heavy.woff2") format(woff2); }
+        @font-face {
+            font-family: "IosevkaToaq";
+            font-weight: 300;
+            src: url("./images/IosevkaToaq-Light.woff2") format(woff2);
+        }
 
-        @font-face { font-family: "IosevkaToaqSlab"; font-weight: 100; src: url("./images/IosevkaToaqSlab-Thin.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqSlab"; font-weight: 200; src: url("./images/IosevkaToaqSlab-ExtraLight.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqSlab"; font-weight: 300; src: url("./images/IosevkaToaqSlab-Light.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqSlab"; font-weight: 400; src: url("./images/IosevkaToaqSlab-Regular.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqSlab"; font-weight: 500; src: url("./images/IosevkaToaqSlab-Medium.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqSlab"; font-weight: 600; src: url("./images/IosevkaToaqSlab-SemiBold.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqSlab"; font-weight: 700; src: url("./images/IosevkaToaqSlab-Bold.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqSlab"; font-weight: 800; src: url("./images/IosevkaToaqSlab-ExtraBold.woff2") format(woff2); }
-        @font-face { font-family: "IosevkaToaqSlab"; font-weight: 900; src: url("./images/IosevkaToaqSlab-Heavy.woff2") format(woff2); }
-        body { font-family: "IosevkaToaq"; }
-        input { font-family: inherit; }
-      </style>
-    </head>
-  <body>
+        @font-face {
+            font-family: "IosevkaToaq";
+            font-weight: 400;
+            src: url("./images/IosevkaToaq-Regular.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaq";
+            font-weight: 500;
+            src: url("./images/IosevkaToaq-Medium.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaq";
+            font-weight: 600;
+            src: url("./images/IosevkaToaq-SemiBold.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaq";
+            font-weight: 700;
+            src: url("./images/IosevkaToaq-Bold.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaq";
+            font-weight: 800;
+            src: url("./images/IosevkaToaq-ExtraBold.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaq";
+            font-weight: 900;
+            src: url("./images/IosevkaToaq-Heavy.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqAile";
+            font-weight: 100;
+            src: url("./images/IosevkaToaqAile-Thin.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqAile";
+            font-weight: 200;
+            src: url("./images/IosevkaToaqAile-ExtraLight.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqAile";
+            font-weight: 300;
+            src: url("./images/IosevkaToaqAile-Light.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqAile";
+            font-weight: 400;
+            src: url("./images/IosevkaToaqAile-Regular.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqAile";
+            font-weight: 500;
+            src: url("./images/IosevkaToaqAile-Medium.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqAile";
+            font-weight: 600;
+            src: url("./images/IosevkaToaqAile-SemiBold.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqAile";
+            font-weight: 700;
+            src: url("./images/IosevkaToaqAile-Bold.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqAile";
+            font-weight: 800;
+            src: url("./images/IosevkaToaqAile-ExtraBold.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqAile";
+            font-weight: 900;
+            src: url("./images/IosevkaToaqAile-Heavy.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqEtoile";
+            font-weight: 100;
+            src: url("./images/IosevkaToaqEtoile-Thin.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqEtoile";
+            font-weight: 200;
+            src: url("./images/IosevkaToaqEtoile-ExtraLight.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqEtoile";
+            font-weight: 300;
+            src: url("./images/IosevkaToaqEtoile-Light.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqEtoile";
+            font-weight: 400;
+            src: url("./images/IosevkaToaqEtoile-Regular.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqEtoile";
+            font-weight: 500;
+            src: url("./images/IosevkaToaqEtoile-Medium.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqEtoile";
+            font-weight: 600;
+            src: url("./images/IosevkaToaqEtoile-SemiBold.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqEtoile";
+            font-weight: 700;
+            src: url("./images/IosevkaToaqEtoile-Bold.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqEtoile";
+            font-weight: 800;
+            src: url("./images/IosevkaToaqEtoile-ExtraBold.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqEtoile";
+            font-weight: 900;
+            src: url("./images/IosevkaToaqEtoile-Heavy.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqSlab";
+            font-weight: 100;
+            src: url("./images/IosevkaToaqSlab-Thin.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqSlab";
+            font-weight: 200;
+            src: url("./images/IosevkaToaqSlab-ExtraLight.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqSlab";
+            font-weight: 300;
+            src: url("./images/IosevkaToaqSlab-Light.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqSlab";
+            font-weight: 400;
+            src: url("./images/IosevkaToaqSlab-Regular.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqSlab";
+            font-weight: 500;
+            src: url("./images/IosevkaToaqSlab-Medium.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqSlab";
+            font-weight: 600;
+            src: url("./images/IosevkaToaqSlab-SemiBold.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqSlab";
+            font-weight: 700;
+            src: url("./images/IosevkaToaqSlab-Bold.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqSlab";
+            font-weight: 800;
+            src: url("./images/IosevkaToaqSlab-ExtraBold.woff2") format(woff2);
+        }
+
+        @font-face {
+            font-family: "IosevkaToaqSlab";
+            font-weight: 900;
+            src: url("./images/IosevkaToaqSlab-Heavy.woff2") format(woff2);
+        }
+
+        body {
+            font-family: "IosevkaToaq";
+        }
+
+        input {
+            font-family: inherit;
+        }
+
+        #samples>div>div {
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
     <h1>Iosevka Toaq test page</h1>
     <input oninput="draw()" id="sample-text" type="text" value="󱚶󱚴 󱚵󱛊󱚹 󱚼󱚺󱛎󱚹󱚷󱚴󱛎󱚹󱚰󱚴 󱚶󱛊󱚺 󱛗"></input>
     <output id="samples"></output>
     <script>
         function draw() {
             const text = document.getElementById("sample-text").value;
-            const samples = [];
+            const groups = [];
             for (const style of ["", "Slab", "Aile", "Etoile"]) {
+                const h2 = document.createElement("h2");
+                h2.innerText = style || "Iosevka";
+                h2.style.fontFamily = "IosevkaToaq" + style;
+                const elements = [h2];
                 for (let weight = 100; weight <= 900; weight += 100) {
                     const sample = document.createElement("div");
                     sample.innerText = text;
                     sample.style.fontFamily = "IosevkaToaq" + style;
                     sample.style.fontWeight = weight;
-                    samples.push(sample);
+                    elements.push(sample);
                 }
+                const div = document.createElement("div");
+                div.replaceChildren(...elements);
+                groups.push(div);
             }
-            document.getElementById("samples").replaceChildren(...samples);
+            document.getElementById("samples").replaceChildren(...groups);
         }
         draw();
     </script>
-  </body>
-</html>
+</body>
 
+</html>
