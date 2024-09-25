@@ -460,6 +460,7 @@ glyph-block Derani-Shared : begin
 
 	local tieLeft [mix 0 markMiddle 0.5]
 	local tieRight (-tieLeft)
+	local ms (markHalfStroke * 2)
 
 	define [TieBelowAnchors] : glyph-proc
 		set-mark-anchor 'tieBelow' 0 belowTieBase 0 belowTieBottom
@@ -471,7 +472,7 @@ glyph-block Derani-Shared : begin
 		include : TieBelowAnchors
 		TieGlyph.set currentGlyph
 		include : dispiro
-			widths.center (markHalfStroke * 2)
+			widths.center ms
 			flat tieLeft belowTieTop
 			archv
 			curl tieRight belowTieBottom
@@ -481,14 +482,14 @@ glyph-block Derani-Shared : begin
 		include : TieBelowAnchors
 		TieGlyph.set currentGlyph
 		include : dispiro
-			widths.center (markHalfStroke * 2)
+			widths.center ms
 			flat tieLeft belowTieTop
 			curl tieRight belowTieTop
 		include : dispiro
-			widths.center (markHalfStroke * 2)
-			curl (tieRight - [HSwToV markHalfStroke]) belowTieTop [heading Downward]
+			widths.center ms
+			curl (tieRight - [HSwToV ms] / 2) (belowTieTop - ms / 2) [heading Downward]
 			arcvh
-			curl [mix tieLeft tieRight 0.6] belowTieBottom
+			curl ([mix tieLeft tieRight 0.6] - [HSwToV ms] / 2) belowTieBottom [heading Leftward]
 
 	define cy (ParenTop + [HSwToV sw] / 2)
 	define cOvershoot (Width * para.diversityII / 2)
