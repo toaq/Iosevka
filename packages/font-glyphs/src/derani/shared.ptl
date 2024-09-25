@@ -290,6 +290,7 @@ glyph-block Derani-Shared : begin
 
 	create-glyph 'titieq' 0xF16B7 : glyph-proc
 		include : MarkSet.e
+		set-base-anchor 'above' [mix l r 0.25] XH
 		local rx (r - [HSwToV Stroke] + [HSwToV ShoulderFine])
 		include : dispiro
 			widths.rhs ShoulderFine

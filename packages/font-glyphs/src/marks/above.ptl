@@ -774,8 +774,8 @@ glyph-block Mark-Above : begin
 		include : TildeShape
 			ttop -- aboveMarkTop
 			tbot -- aboveMarkBot + markFine / 2
-			leftEnd -- (markMiddle - markExtend * 1.5)
-			rightEnd -- (markMiddle + markExtend * 1.5)
+			leftEnd -- (markMiddle - markExtend * 1.35)
+			rightEnd -- (markMiddle + markExtend * 1.35)
 			hs -- markHalfStroke
 
 	create-glyph 'deraniRisingFallingTone' 0xF16CC : glyph-proc
