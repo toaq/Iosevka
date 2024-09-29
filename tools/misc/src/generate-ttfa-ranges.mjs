@@ -15,6 +15,12 @@ setImmediate(() => {
 	});
 });
 
+function increment(lch) {
+	// Most Iosevka glyphs lie within the first 2 planes. Jump ahead to Derani's
+	// plane once we're through with those.
+	return lch === 0x1FFFFF ? 0xF00000 : lch + 1;
+}
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 async function main() {
@@ -24,7 +30,7 @@ async function main() {
 
 	const results = new Map();
 
-	nextChar: for (let lch = 0; lch < 0x20000; lch++) {
+	nextChar: for (let lch = 0; lch < 0xF2000; lch = increment(lch)) {
 		for (const target of Targets) {
 			if (target.filter.has(lch)) {
 				const resultKey = `${target.scriptTag}-${target.featureTag}`;
@@ -253,7 +259,7 @@ const LatinPunctuation = {
 };
 
 const Derani = {
-	scriptTag: "latn",
+	scriptTag: "dern",
 	featureTag: "dflt",
 	filter: Either(In("󱚰󱚱󱚲󱚳󱚴󱚵󱚶󱚷󱚸󱚹󱚺󱚻󱚼󱚽󱚾󱚿󱛀󱛁󱛂󱛃󱛄󱛅󱛆󱛇󱛈󱛉󱛊󱛋󱛌󱛍󱛎󱛏󱛐󱛑󱛒󱛓󱛔󱛕󱛖󱛗󱛘󱛙󱛚󱛛󱛜󱛝󱛞󱛟")),
 };

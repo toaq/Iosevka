@@ -1,5 +1,9 @@
 {
-  outputs = { self, nixpkgs, flake-utils, ... }:
+  inputs = {
+    ttfautohint.url = github:toaq/ttfautohint;
+  };
+
+  outputs = { self, nixpkgs, flake-utils, ttfautohint, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let pkgs = import nixpkgs { inherit system; };
       in rec {
@@ -9,7 +13,7 @@
         defaultPackage = pkgs.buildNpmPackage {
           name = "iosevka-toaq";
           src = self;
-          nativeBuildInputs = [ pkgs.nodejs_latest pkgs.ttfautohint ];
+          nativeBuildInputs = [ pkgs.nodejs_latest ttfautohint.defaultPackage.${system} ];
           npmDepsHash = "sha256-xw0GA1aIA/J5hfLQBSE+GJzXfbfWQI2k2pYdenlM9NY=";
           buildPhase = ''
             npm run build -- contents::IosevkaToaq contents::IosevkaToaqSlab contents::IosevkaToaqAile contents::IosevkaToaqEtoile

@@ -474,5 +474,15 @@ export default [
 				122986
 			]
 		]
+	},
+	{
+		"scriptTag": "dern",
+		"featureTag": "dflt",
+		"ranges": [
+			[
+				988848,
+				988895
+			]
+		]
 	}
 ];
