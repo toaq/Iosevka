@@ -9,6 +9,8 @@ glyph-block Derani-Shared : begin
 	glyph-block-import CommonShapes
 	glyph-block-import Common-Derivatives
 	glyph-block-import Letter-Shared-Shapes
+	glyph-block-import Letter-Latin-Lower-M : SmallMArches
+
 	define sw Stroke
 	define fine ShoulderFine
 	define u XH
@@ -128,21 +130,8 @@ glyph-block Derani-Shared : begin
 		local sw df.mvs
 		include : df.markSet.e
 		include : HBar.b l r 0
-		include : VBar.l l 0 u sw
-		include : union
-			dispiro
-				flat (l + [HSwToV sw] - [HSwToV fine]) (u - ada - 2) [widths.rhs fine]
-				curl (l + [HSwToV sw] - [HSwToV fine]) (u - ada)
-				arch.rhs u (sw -- sw) (swBefore -- fine)
-				flat ([mix l r 0.5] + [HSwToV sw] / 2) (u - adb) [widths.rhs sw]
-				curl ([mix l r 0.5] + [HSwToV sw] / 2) 0
-			dispiro
-				flat ([mix l r 0.5] + [HSwToV sw] / 2 - [HSwToV fine]) (u - ada - 2) [widths.rhs fine]
-				curl ([mix l r 0.5] + [HSwToV sw] / 2 - [HSwToV fine]) (u - ada)
-				arch.rhs u (sw -- sw) (swBefore -- fine)
-				flat r (u - adb) [widths.rhs sw]
-				curl r Descender
-
+		include : VBar.r r 0 Descender sw
+		include : SmallMArches df u 0 0 0
 		if SLAB : begin
 			include : HSerif.lt l u SideJut
 			include : HSerif.lb (r - [HSwToV HalfStroke]) Descender MidJutSide
