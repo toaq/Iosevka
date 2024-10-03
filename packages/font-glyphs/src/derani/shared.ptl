@@ -399,31 +399,31 @@ glyph-block Derani-Shared : begin
 
 	define fullStopL : mix RightSB SB DesignParameters.bracketInside
 	define fullStopR : mix RightSB SB DesignParameters.bracketOutside
-	define fullStopLargeRadius (PeriodRadius * 11 / 12)
-	define fullStopSmallRadius ([HSwToV [DivFrame para.diversityII 1].mvs] * 5 / 6)
+	define fullStopRadius DotRadius
 
 	create-glyph 'deraniFullStop' null : glyph-proc
 		include : dispiro
 			widths.rhs sw
 			flat fullStopR ParenTop
 			curl fullStopR [mix ParenTop ParenBot 0.8]
-			g2 fullStopL ParenBot [heading Leftward]
+			arcvh
+			curl fullStopL Descender [heading Leftward]
 		include : HBar.t fullStopL fullStopR ParenTop
 
 	derive-glyphs 'deraniDeclarativeFullStop' 0xF16D5 "deraniFullStop" : function [src gr] : glyph-proc
 		include [refer-glyph src] AS_BASE ALSO_METRICS
-		define radius fullStopLargeRadius
+		define radius fullStopRadius
 		include : DotAt fullStopL (d + radius) radius
 
 	derive-glyphs 'deraniOtherFullStop' 0xF16D6 "deraniFullStop" : function [src gr] : glyph-proc
 		include [refer-glyph src] AS_BASE ALSO_METRICS
-		define radius : mix fullStopLargeRadius fullStopSmallRadius 0.5
+		define radius fullStopRadius
 		include : DotAt fullStopL [mix d u 0.5] radius
 		include : DotAt fullStopL (d + radius) radius
 
 	derive-glyphs 'deraniInterrogativeFullStop' 0xF16D7 "deraniFullStop" : function [src gr] : glyph-proc
 		include [refer-glyph src] AS_BASE ALSO_METRICS
-		define radius fullStopSmallRadius
+		define radius fullStopRadius
 		include : DotAt fullStopL (u - radius) radius
 		include : DotAt fullStopL [mix d u 0.5] radius
 		include : DotAt fullStopL (d + radius) radius
