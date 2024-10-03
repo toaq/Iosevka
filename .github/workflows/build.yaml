@@ -19,3 +19,13 @@ jobs:
           automatic_release_tag: latest
           prerelease: false
           files: 'result/share/fonts/*/*'
+      - name: Push to fonts repository
+        run: |
+          git clone https://github.com/toaq/fonts.git
+          cd fonts
+          cp -R ../result/share/fonts/* .
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Update Iosevka [skip ci]"
+          git push https://x-access-token:${{ secrets.TOAQ_FONTS_PAT }}@github.com/toaq/fonts.git
