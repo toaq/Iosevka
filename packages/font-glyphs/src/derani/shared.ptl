@@ -388,7 +388,7 @@ glyph-block Derani-Shared : begin
 
 	define fullStopL : mix RightSB SB DesignParameters.bracketInside
 	define fullStopR : mix RightSB SB DesignParameters.bracketOutside
-	define fullStopRadius DotRadius
+	define fullStopRadius : Math.min DotRadius ((u - d) / 6.5)
 
 	create-glyph 'deraniFullStop' null : glyph-proc
 		include : dispiro
