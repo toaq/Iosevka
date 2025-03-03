@@ -1,6 +1,6 @@
 {
   inputs = {
-    ttfautohint.url = github:toaq/ttfautohint;
+    ttfautohint.url = "github:toaq/ttfautohint";
   };
 
   outputs = { self, nixpkgs, flake-utils, ttfautohint, ... }:
